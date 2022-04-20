@@ -29,6 +29,7 @@ const AuthLayout = ({ title, subtitle, titleContainerStyle, children }) => {
             <View
                 style={{
                     alignItems: 'center'
+                    
                 }}
             >
                 <Image 
@@ -42,8 +43,34 @@ const AuthLayout = ({ title, subtitle, titleContainerStyle, children }) => {
 
             </View>
            {/* Title & Subtitle */}
+            <View
+                style={{
+                    marginTop: SIZES.padding,
+                    ...titleContainerStyle
+                }}
+            >
+               <Text
+                    style={{
+                        textAlign: 'center',
+                        ...FONTS.h2
+                    }}
+               >
+                    {title}
+               </Text>
+               <Text
+                style={{
+                    textAlign: 'center',
+                    color: COLORS.darkGray,
+                    marginTop: SIZES.base,
+                    ...FONTS.body3
+                }}
+               >
+                   {subtitle}
+               </Text>
+            </View>                 
 
            {/* Content / Children */}
+            {children}
            </KeyboardAwareScrollView>
         </View>
     )
