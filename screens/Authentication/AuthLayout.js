@@ -33,11 +33,11 @@ const AuthLayout = ({ title, subtitle, titleContainerStyle, children }) => {
                 }}
             >
                 <Image 
-                    source={images.logo_02}
+                    source={images.alayonLogo1}
                     resizeMode="contain"
                     style={{
-                        height: 100,
-                        width: 200
+                        height: 150,
+                        width: 250
                     }}
                 />
 

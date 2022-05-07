@@ -43,7 +43,7 @@ const OnBoarding = ({ navigation }) => {
 
                         const dotWidth = dotPosition.interpolate({
                             inputRange: [index -1, index, index + 1],
-                            outputRange: [10, 30, 10],
+                            outputRange: [10, 20, 10],
                             extrapolate: "clamp"
                         })
 
@@ -79,11 +79,11 @@ const OnBoarding = ({ navigation }) => {
             }}
         >
             <Image 
-                source={images.logo_02}
+                source={images.AlayonLogo}
                 resizeMode="contain"
                 style={{
-                    width: SIZES.width * 0.5,
-                    height: 100
+                    width: SIZES.width * 1,
+                    height: 500
                 }}            
             /> 
 
@@ -210,12 +210,12 @@ const OnBoarding = ({ navigation }) => {
                                 }}
                             >
                                 <ImageBackground
-                                    source={item.backgroundImage}
+                                    
                                     style={{
                                         flex: 1,
                                         alignItems: 'center',
                                         justifyContent: 'flex-end',
-                                        height: index == 1 ? "94%" : "100%",
+                                        height: index == 1 ? "91%" : "99%",
                                         width: "100%"
                                     }}
                                 >
@@ -244,7 +244,7 @@ const OnBoarding = ({ navigation }) => {
                                 }}
                             >
 
-                            <Text style={{ ...FONTS.h1, fontSize: 25 }}>
+                            <Text style={{ ...FONTS.h1, fontSize: 20 }}>
                                 {item.title}
                             </Text>
                             <Text

@@ -31,11 +31,11 @@ const CustomSwitch = ({ value, onChange }) => {
                 {/* Text */}
                 <Text
                     style={{
-                        color: value ? COLORS.primary : COLORS.gray,
+                        color: value ? COLORS.gray : COLORS.gray,
                         marginLeft: SIZES.base, ...FONTS.body4
                     }}
                 >
-                    Save Me                    
+                    Remember             
                 </Text>
             </View>
         </TouchableWithoutFeedback>

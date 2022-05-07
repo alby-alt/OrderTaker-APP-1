@@ -13,10 +13,8 @@ import {
     FormInput,
     CustomSwitch,
     TextButton,
-    TextIconButton
 } from "../../components";
 import { utils } from "../../utils";
-import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 const SignIn =({navigation}) => {
 
@@ -34,7 +32,7 @@ const SignIn =({navigation}) => {
     return (
         <AuthLayout
             title="Let's Sign You In"
-            subtitle="Welcome back, you've been missed"
+            subtitle=""
         >
             <View
                 style={{
@@ -121,12 +119,12 @@ const SignIn =({navigation}) => {
                 />
 
                 <TextButton 
-                    label="Forgot Password"
+                    label="Recover Password"
                     buttonContainerStyle={{
                         backgroundColor: null
                     }}
                     labelStyle={{
-                        color: COLORS.gray,
+                        color: COLORS.black,
                         ...FONTS.body4
                     }}
                     onPress={() => navigation.navigate("ForgotPassword")}
@@ -156,7 +154,7 @@ const SignIn =({navigation}) => {
                         justifyContent: 'center'
                     }}
                 >
-                    <Text
+                    {/* <Text
                         style={{
                             color: COLORS.darkGray,
                             ...FONTS.body3
@@ -176,14 +174,14 @@ const SignIn =({navigation}) => {
                                                         
                         }}
                         onPress={() => navigation.navigate("SignUp")}
-                    />
+                    /> */}
                 </View>
             </View>
             
             {/* Footer */}
             <View>
                 {/* Facebook */}
-                <TextIconButton 
+                {/* <TextIconButton 
                     containerStyle={{
                         height: 50,
                         alignItems: 'center',
@@ -201,10 +199,10 @@ const SignIn =({navigation}) => {
                         color: COLORS.white
                     }}
                     onPress={() => console.log("FB")}
-                /> 
+                />  */}
                 
                 {/* Google */}
-                <TextIconButton 
+                {/* <TextIconButton 
                     containerStyle={{
                         height: 50,
                         alignItems: 'center',
@@ -222,7 +220,7 @@ const SignIn =({navigation}) => {
                         marginLeft: SIZES.radius
                     }}
                     onPress={() => console.log("Google")}
-                />
+                /> */}
             </View>
         </AuthLayout>
     )

@@ -7,6 +7,8 @@ const logo_01 = require("../assets/images/logo_01.png")
 const logo_02 = require("../assets/images/logo_02.png")
 const alayonLogo1 = require("../assets/images/alayonLogo1.png")
 const profile = require("../assets/images/profile.png")
+const Background_RoundHeaded = require("../assets/images/Background_RoundHeaded.png")
+const AlayonLogo = require("../assets/images/AlayonLogo.png")
 
 export default {
     background_01,
@@ -18,4 +20,6 @@ export default {
     logo_02,
     alayonLogo1,    
     profile,
+    Background_RoundHeaded,
+    AlayonLogo
 }
