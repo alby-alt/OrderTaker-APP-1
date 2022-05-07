@@ -6,21 +6,28 @@ function isValidEmail(value) {
 function validateEmail(value, setEmailError) {
     if (value == "") {
         setEmailError("")
+        return true
     }
     else if (isValidEmail(value)) {
         setEmailError("")
+        return true
     }
     else {
         setEmailError("Invalid Email")
+        return false
     }
 }
 
 function validatePassword(value, setPasswordError) {
+
     if (value.length < 9) {
         setPasswordError("Password must be 9 characters")
+        return false;
     } else {
         setPasswordError("")
+        return true
     }
+
 }
 
 const utils = {

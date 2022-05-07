@@ -5,6 +5,8 @@ import {
     TouchableOpacity,
     Image
 } from 'react-native';
+import axios from 'axios';
+
 
 import { AuthLayout } from "../";
 import { FONTS, SIZES, COLORS, icons } from "../../constants";
@@ -21,18 +23,51 @@ const SignIn =({navigation}) => {
     const [email, setEmail] = React.useState("")
     const [password, setPassword] = React.useState("")
     const [emailError, setEmailError] = React.useState("")
-    
+    const [passwordError, setPasswordError] = React.useState("")
     const [showPass, setShowPass] = React.useState(false)
     const [saveMe, setSaveMe] = React.useState(false)
+    const [token, setToken] = React.useState("");
+    function handleSignIn() {
+        setToken("")
+        setEmailError("")
+        setPassword("")
+    //   let err1 = utils.validateEmail(email, setEmailError)
+      let err2 = utils.validatePassword(password, setPasswordError)
 
-    function isEnableSignIn() {
-        return email != "" && password != "" && emailError == ""
+        // console.log(err1)
+        console.log(err2)
+       new axios.post('https://solidbbm.online/api/auth/signin', {
+            username: email,
+            password: password
+        })
+        .then(doc => {
+            console.log(doc)
+            let { accessToken } = doc.data;
+            // console.log(doc.data)
+            // console.log(accessToken)
+
+            setToken(accessToken)
+                  navigation.navigate("ForgotPassword");
+
+        })
+        .catch(err => {
+            console.log(err.response.data)
+            let { message, errors } = err.response.data;
+            setToken(message.text)
+            console.log(errors)
+            errors.username && setEmailError(errors.username);
+            errors.password && setPasswordError(errors.password)
+        })
+
+
     }
+
+
 
     return (
         <AuthLayout
             title="Let's Sign You In"
-            subtitle=""
+            subtitle={token}
         >
             <View
                 style={{
@@ -45,11 +80,21 @@ const SignIn =({navigation}) => {
                     label="Email"
                     keyboardType="email-address"
                     autoCompleteType="email"
+                    // value={email}
                     onChange={(value) => {
-                        // Set Email
-                        utils.validateEmail(value, setEmailError)
+                        // setText(newText)
+                        // utils.validateEmail(value, setEmailError)
                         setEmail(value)
+                        // return newText
                     }}
+                    // defaultValue={email}
+            
+                    // onChange={(value) => {
+                        // Set Email
+                        // console.log(value.target.value)
+                        // utils.validateEmail(value, setEmailError)
+                        // setEmail(value)
+                    // }}
                     errorMsg={emailError}
                     appendComponent={
                         <View
@@ -83,7 +128,12 @@ const SignIn =({navigation}) => {
                     containerSyle={{
                         marginTop: SIZES.radius
                     }}
-                    onChange={(value) => setPassword(value)}
+                    
+                    onChange={(value) => {
+                        // utils.validatePassword(value, setPasswordError)
+                        setPassword(value)
+                    }
+                    }
                     appendComponent={
                         <TouchableOpacity
                             style={{
@@ -103,6 +153,7 @@ const SignIn =({navigation}) => {
                             />
                         </TouchableOpacity>
                     }
+                    errorMsg={passwordError}
                 />
 
                 {/* Save me & Forgot Password */}
@@ -135,13 +186,14 @@ const SignIn =({navigation}) => {
                 {/* Sign In */}
                 <TextButton 
                     label="Sign In"
-                    //disabled={isEnableSignIn() ? false : true}
+                    onPress={() => handleSignIn()}
+                    // disabled={isEnableSignIn() ? false : true}
                     buttonContainerStyle={{
                         height: 55,
                         alignItems: 'center',
                         marginTop: SIZES.padding,
                         borderRadius: SIZES.radius,
-                        //backgroundColor: isEnableSignIn() ? COLORS.primary : COLORS.transparentPrimary
+                        // backgroundColor: isEnableSignIn() ? COLORS.primary : COLORS.transparentPrimary
                         backgroundColor: COLORS.primary
                     }}
                 />

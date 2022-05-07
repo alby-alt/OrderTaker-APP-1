@@ -54,13 +54,14 @@ const FormInput  = ({
                             flex: 1,
                             ...inputStyle
                         }}
+                        // value={value}
                         placeholder={placeholder}
                         placeholderTextColor={COLORS.gray}
                         secureTextEntry={secureTextEntry}
                         keyboardType={keyboardType}
                         autoCompleteType={autoCompleteType}
                         autoCapitalize={autoCapitalize}
-                        onChange={(text) => onChange(text)}
+                        onChangeText={onChange}
                     
                         
                     />      
