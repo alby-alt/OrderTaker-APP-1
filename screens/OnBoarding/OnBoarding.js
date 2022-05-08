@@ -37,7 +37,7 @@ const OnBoarding = ({ navigation }) => {
                     constants.onboarding_screens.map(( item, index ) => {
                         const dotColor = dotPosition.interpolate({
                             inputRange: [index -1, index, index + 1],
-                            outputRange: [COLORS.lightOrange, COLORS.primary, COLORS.lightOrange],
+                            outputRange: [COLORS.transparentPrimary, COLORS.primary, COLORS.transparentPrimary],
                             extrapolate: "clamp"
                         })
 
@@ -99,14 +99,14 @@ const OnBoarding = ({ navigation }) => {
                 }}
             >
                 {/* Pagination / Dots */}
-                <View
+                {/* <View
                     style={{
                         flex: 1,
                         justifyContent: 'center'
                     }}
                 >
                     <Dots />
-                </View>
+                </View> */}
                 {/* Buttons */}
                 {currentIndex < constants.onboarding_screens.length - 1 &&
                 <View
@@ -117,7 +117,7 @@ const OnBoarding = ({ navigation }) => {
                         marginVertical: SIZES.padding
                     }}
                 >
-                <TextButton 
+                {/* <TextButton 
                 // Skip Button Container
                     label="Skip"
                     buttonContainerStyle={{
@@ -128,9 +128,9 @@ const OnBoarding = ({ navigation }) => {
                         ...FONTS.h3   
                     }}
                     onPress={() => navigation.replace("SignIn")}
-                />
+                /> */}
                 
-                <TextButton 
+                {/* <TextButton 
                 //Next button Container
                     label="Next"
                     buttonContainerStyle={{
@@ -145,7 +145,7 @@ const OnBoarding = ({ navigation }) => {
                             })
                         }} 
                     
-                />
+                /> */}
                 </View>
                 }
 

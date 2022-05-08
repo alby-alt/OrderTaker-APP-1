@@ -35,7 +35,7 @@ const SignIn =({navigation}) => {
       let err2 = utils.validatePassword(password, setPasswordError)
 
         // console.log(err1)
-        console.log(err2)
+        //console.log(err2)``
        new axios.post('https://solidbbm.online/api/auth/signin', {
             username: email,
             password: password
@@ -67,7 +67,7 @@ const SignIn =({navigation}) => {
     return (
         <AuthLayout
             title="Let's Sign You In"
-            subtitle={token}
+            subtitle="Welcome Back!"
         >
             <View
                 style={{
@@ -80,21 +80,11 @@ const SignIn =({navigation}) => {
                     label="Email"
                     keyboardType="email-address"
                     autoCompleteType="email"
-                    // value={email}
                     onChange={(value) => {
-                        // setText(newText)
-                        // utils.validateEmail(value, setEmailError)
-                        setEmail(value)
-                        // return newText
-                    }}
-                    // defaultValue={email}
-            
-                    // onChange={(value) => {
                         // Set Email
-                        // console.log(value.target.value)
-                        // utils.validateEmail(value, setEmailError)
-                        // setEmail(value)
-                    // }}
+                        utils.validateEmail(value, setEmailError)
+                        setEmail(value)
+                    }}
                     errorMsg={emailError}
                     appendComponent={
                         <View
@@ -114,9 +104,7 @@ const SignIn =({navigation}) => {
                                     emailError == "") ? COLORS.
                                     green : COLORS.red
                                 }}
-                                
                             /> 
-                            
                         </View>
                     }
                 />
@@ -126,7 +114,7 @@ const SignIn =({navigation}) => {
                     secureTextEntry={!showPass}
                     autoCompleteType="password"
                     containerSyle={{
-                        marginTop: SIZES.radius
+                        marginTop: SIZES.radius,
                     }}
                     
                     onChange={(value) => {
@@ -161,7 +149,7 @@ const SignIn =({navigation}) => {
                     style={{
                         flexDirection: 'row',
                         marginTop: SIZES.radius,
-                        justifyContent: 'space-around'
+                        justifyContent: 'space-between'
                     }}
                 > 
                 <CustomSwitch 

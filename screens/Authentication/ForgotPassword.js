@@ -8,7 +8,7 @@ import {
 
 import { AuthLayout } from "../";
 import { FONTS, SIZES, COLORS, icons } from "../../constants";
-import { FormInput, TextButton } from '../../components';
+import { Header, FormInput, TextButton } from '../../components';
 import { utils } from "../../utils";
 
 const ForgotPassword = ({navigation}) => {
@@ -16,14 +16,19 @@ const ForgotPassword = ({navigation}) => {
     const [ email, setEmail] = React.useState("")
     const [ emailError, setEmailError] = React.useState("")
 
+
+
+
     function isEnableSendEmail() {
         return email != "" && emailError == ""
     }
 
     return (
+
+        
         <AuthLayout
             title="Password Recovery"
-            subtitle="Please enter email address to recover your password"
+            subtitle="Please enter an email address where we can send your updated password"
             titleContainerStyle={{
                 marginTop: SIZES.padding * 2
             }}
@@ -63,9 +68,7 @@ const ForgotPassword = ({navigation}) => {
                                     emailError == "") ? COLORS.
                                     green : COLORS.red
                                 }}
-                                
                             /> 
-                            
                         </View>
                     }
                 />
@@ -73,11 +76,25 @@ const ForgotPassword = ({navigation}) => {
             {/* Button */}
             <TextButton 
                 label="Send Email"
-                //disabled={isEnableSendEmail() ? false : true }
+                disabled={isEnableSendEmail() ? false : true }
                 buttonContainerStyle={{
                     height: 55,
                     alignItems: 'center',
                     marginTop: SIZES.padding,
+                    borderRadius: SIZES.radius,
+                    backgroundColor: isEnableSendEmail() ? COLORS.primary : COLORS.transparentPrimary,
+                    // backgroundColor: COLORS.primary
+                }}
+                onPress={() => navigation.goBack()}
+            /> 
+
+            <TextButton 
+                label="Previous"
+                //disabled={isEnableSendEmail() ? false : true }
+                buttonContainerStyle={{
+                    height: 55,
+                    alignItems: 'center',
+                    marginTop: SIZES.radius,
                     borderRadius: SIZES.radius,
                     //backgroundColor: isEnableSendEmail() ?  COLORS.primary : COLORS.transparentPrimary
                     backgroundColor: COLORS.primary

@@ -31,7 +31,7 @@ const FormInput  = ({
                     justifyContent: 'space-between',
                 }}
             >
-                <Text style={{ color: COLORS.gray, ...FONTS.body4 }}>
+                <Text style={{ color: COLORS.black, ...FONTS.body4 }}>
                     {label}</Text>
                 <Text style={{ color: COLORS.red, ...FONTS.body4 }}>
                     {errorMsg}</Text>
@@ -48,7 +48,6 @@ const FormInput  = ({
                     }}
                 >
                     {prependComponent}
-
                     <TextInput 
                         style={{
                             flex: 1,
@@ -56,7 +55,7 @@ const FormInput  = ({
                         }}
                         // value={value}
                         placeholder={placeholder}
-                        placeholderTextColor={COLORS.gray}
+                        placeholderTextColor={COLORS.black}
                         secureTextEntry={secureTextEntry}
                         keyboardType={keyboardType}
                         autoCompleteType={autoCompleteType}

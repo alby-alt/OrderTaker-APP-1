@@ -35,7 +35,7 @@ const CustomSwitch = ({ value, onChange }) => {
                         marginLeft: SIZES.base, ...FONTS.body4
                     }}
                 >
-                    Remember             
+                    Remember Me      
                 </Text>
             </View>
         </TouchableWithoutFeedback>
@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     dot: {
-        width: 12,
-        height: 20,
-        borderRadius: 6,
+        width: 20,
+        height: 15,
+        borderRadius: 8,
     }
 })  
 
