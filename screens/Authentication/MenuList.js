@@ -4,7 +4,7 @@ import {
     Text
 } from 'react-native';
 
-const Otp = () => {
+const MenuList = () => {
     return (
         <View
             style={{
@@ -13,9 +13,9 @@ const Otp = () => {
                 justifyContent: 'center'
             }}
         >
-            <Text>Otp</Text>
+            <Text>MenuList</Text>
         </View>
     )
 }
 
-export default Otp;
+export default MenuList;

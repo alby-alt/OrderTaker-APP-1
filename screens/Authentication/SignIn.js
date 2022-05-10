@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import axios from 'axios';
 
-
 import { AuthLayout } from "../";
 import { FONTS, SIZES, COLORS, icons } from "../../constants";
 
@@ -77,6 +76,7 @@ const SignIn =({navigation}) => {
             >
                 {/* Form Input */}
                 <FormInput 
+                    style={{}}
                     label="Email"
                     keyboardType="email-address"
                     autoCompleteType="email"
@@ -174,7 +174,7 @@ const SignIn =({navigation}) => {
                 {/* Sign In */}
                 <TextButton 
                     label="Sign In"
-                    onPress={() => handleSignIn()}
+                    onPress={() => navigation.navigate("Otp")}
                     // disabled={isEnableSignIn() ? false : true}
                     buttonContainerStyle={{
                         height: 55,
