@@ -11,6 +11,7 @@ import {
     ForgotPassword,
     Otp
 } from './screens'
+import MainLayout from "./screens/MainLayout";
 
 const Stack = createStackNavigator();
 
@@ -39,9 +40,14 @@ const App = () => {
                 />
 
                 <Stack.Screen
+                    name="MainLayout"
+                    component={MainLayout}
+                />
+
+                {/* <Stack.Screen
                     name="SignUp"
                     component={SignUp}
-                />
+                /> */}
 
                 <Stack.Screen
                     name="ForgotPassword"

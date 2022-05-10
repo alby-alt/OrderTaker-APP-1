@@ -5,7 +5,7 @@ import {
 
 } from 'react-native';
 
-const Menu = () => {
+const MainLayout = () => {
     return (
         <View
             style={{
@@ -14,9 +14,9 @@ const Menu = () => {
                 justifyContent: 'center'
             }}
         >
-            <Text>Anosst imo ser?</Text>
+            <Text>Anot imo ser?</Text>
         </View>
     )
 }
 
-export default Menu;
+export default MainLayout;
