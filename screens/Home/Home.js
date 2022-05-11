@@ -15,6 +15,10 @@ import {
 } from "../../components";
 import { FONTS, SIZES, COLORS, icons, dummyData } from "../../constants";
 
+
+import { useDispatch, useSelector } from 'react-redux';
+import { CLEAR_CANDIDATES } from '../../stores/types';
+
 const Section = ({title, onPress, children }) => {
     return (
         <View>
@@ -47,7 +51,7 @@ const Section = ({title, onPress, children }) => {
 }
 
 const Home = () => {
-
+    const dispatch = useDispatch();
     const [selectedCategoryId, setSelectedCategoryId] = React.useState(1)
     const [selectedMenuType, setSelectedMenuType] = React.useState(1)
     const [popular, setPopular] = React.useState([])
@@ -58,6 +62,12 @@ const Home = () => {
 
     React.useEffect(() => {
         handleChangeCategory(selectedCategoryId, selectedMenuType )
+    }, [])
+
+    React.useEffect(() => {
+        dispatch({
+            type: CLEAR_CANDIDATES
+        })
     }, [])
 
     // Handler

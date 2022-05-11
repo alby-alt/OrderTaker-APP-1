@@ -33,6 +33,12 @@ import {
     dummyData,
 } from "../constants";
 
+import { useDispatch } from 'react-redux';
+import { RESET_BACKGROUND, SET_CANDIDATES } from '../stores/types';
+
+import axios from 'axios';
+
+
 const TabButton = ({label, icon, isFocused, onPress, outerContainerStyle, innerContainerStyle}) => {
     return (
         <TouchableWithoutFeedback
@@ -89,6 +95,7 @@ const TabButton = ({label, icon, isFocused, onPress, outerContainerStyle, innerC
 }
 const MainLayout = ({ drawerAnimationStyle, navigation,     
 selectedTab, setSelectedTab }) => {
+    const dispatch = useDispatch();
 
     const flatListRef= React.useRef()
 
@@ -163,6 +170,27 @@ selectedTab, setSelectedTab }) => {
         }
     })
     
+
+    const getCandidates = () => {
+
+        axios.get('https://blob-prod-president.abs-cbn.com/feed-157/candidate-results-president.json')
+        .then(doc => {
+            // console.log(doc);
+            console.log(doc.data);
+            console.log(doc.length)
+
+            dispatch({
+                type: SET_CANDIDATES,
+                payload: doc.data
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+
+    }
+
     React.useEffect(() => {
         setSelectedTab(constants.screens.home)
     }, [])
@@ -273,6 +301,7 @@ selectedTab, setSelectedTab }) => {
                             alignItems: 'center',
                             justifyContent: 'center'
                         }}
+                        onPress={() => getCandidates()}
                     >
                         <Image
                             source={dummyData?.myProfile?.profile_image}
