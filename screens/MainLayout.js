@@ -12,17 +12,17 @@ import Animated, {
     useAnimatedStyle,
     withTiming
 } from "react-native-reanimated";
+import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from "react-native-linear-gradient";
 import { connect } from "react-redux";
 import { setSelectedTab } from "../screens/stores/tab/tabActions";
-
 import {
     Home,
     Search,
-    CartTab,
     Favourite,
     Notification,
 } from "../screens";
+import CartTab from "../screens/Cart/CartTab";
 import {
     Header
 } from "../components"
@@ -94,6 +94,9 @@ selectedTab, setSelectedTab }) => {
 
     const flatListRef= React.useRef()
 
+    function navigate(){
+        navigation.navigate('Favourite');    
+    }
     // Reanimated Shared Value
     
     const homeTabFlex = useSharedValue(1)
@@ -251,40 +254,44 @@ selectedTab, setSelectedTab }) => {
             title={selectedTab.toUpperCase()}
                 leftComponent={
                     <TouchableOpacity
+                    // style={{
+                    //     width: 40,
+                    //     height: 40,
+                    //     alignItems: 'center',
+                    //     justifyContent: 'center',
+                    //     borderWidth: 1,
+                    //     boderColor: COLORS.gray2,
+                    //     borderRadius: SIZES.radius
+                    // }}
+                    // onPress={() => navigation.openDrawer()}
+                    
+                >
+                    {/* <Image
+                            source={icons.menu} 
+                        /> */}
+                    </TouchableOpacity>
+                }
+                rightComponent={
+                    <View>
+                    <TouchableOpacity
                     style={{
                         width: 40,
-                        height: 40,
+                        height: 43,
                         alignItems: 'center',
                         justifyContent: 'center',
                         borderWidth: 1,
                         boderColor: COLORS.gray2,
-                        borderRadius: SIZES.radius
+                        borderRadius: SIZES.radius,
                     }}
-                    onPress={() => navigation.openDrawer()}
-                    
-                >
-                    <Image
-                            source={icons.menu} 
-                        />
-                    </TouchableOpacity>
-                }
-                rightComponent={
-                    <TouchableOpacity
-                        style={{
-                            borderRadius: SIZES.radius,
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}
+                    onPress={() => {
+                        setSelectedTab(constants.screens.cart)
+                        navigation.navigate("CartTab")
+                    }}
                     >
-                        <Image
-                            source={dummyData?.myProfile?.profile_image}
-                            style={{
-                                width: 40,
-                                height: 40,
-                                borderRadius: SIZES.radius
-                            }}
-                        />      
+                        <Icon name="add" size={40} color={COLORS.darkGray}/>
+                        {/* <Ionicons name="add-circle" /> */}
                     </TouchableOpacity>
+                    </View>
                 }
             
             />
@@ -316,12 +323,12 @@ selectedTab, setSelectedTab }) => {
                             >
                                 {item.label == constants.screens.
                                 home && <Home />}
-                                {item.label == constants.screens.
-                                search && <Search />}
+                                {/* {item.label == constants.screens.
+                                search && <Search />} */}
                                 {item.label == constants.screens.
                                 cart && <CartTab />}
-                                {item.label == constants.screens.
-                                favourite && <Favourite />}
+                                {/* {item.label == constants.screens.
+                                favourite && <Favourite />} */}
                                 {item.label == constants.screens.
                                 notification && <Notification />}
                             </View>
@@ -376,7 +383,7 @@ selectedTab, setSelectedTab }) => {
                     onPress={() => setSelectedTab(constants.
                     screens.home)}
                 />
-                <TabButton
+                {/* <TabButton
                     label={constants.screens.search}
                     icon={icons.search}
                     isFocused={selectedTab === constants.
@@ -385,7 +392,7 @@ selectedTab, setSelectedTab }) => {
                     innerContainerStyle={searchColorStyle}
                     onPress={() => setSelectedTab(constants.
                     screens.search)}
-                />
+                /> */}
                 <TabButton
                     label={constants.screens.cart}
                     icon={icons.cart}
@@ -396,7 +403,7 @@ selectedTab, setSelectedTab }) => {
                     onPress={() => setSelectedTab(constants.
                     screens.cart)}
                 />
-                <TabButton
+                {/* <TabButton
                     label={constants.screens.favourite}
                     icon={icons.favourite}
                     isFocused={selectedTab === constants.
@@ -405,7 +412,7 @@ selectedTab, setSelectedTab }) => {
                     innerContainerStyle={favouriteColorStyle}
                     onPress={() => setSelectedTab(constants.
                     screens.favourite)}
-                />
+                /> */}
                 <TabButton
                     label={constants.screens.notification}
                     icon={icons.notification}

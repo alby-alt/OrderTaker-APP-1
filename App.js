@@ -17,6 +17,8 @@ import {
     Otp,
     Home,
 } from './screens'
+
+import CartTab from "./screens/Cart/CartTab.js";
 import MainLayout from "./screens/MainLayout";
 
 // import { createStore, applyMiddleware} from "redux";
@@ -44,7 +46,7 @@ const App = () => {
                 screenOptions={{
                     headerShown: false
                 }}
-                initialRouteName={'OnBoarding'}
+                initialRouteName={'Home'}
             >
                 <Stack.Screen
                     name="OnBoarding"
@@ -62,10 +64,10 @@ const App = () => {
                     name="Otp"
                     component={Otp}
                 />                
-                {/* <Stack.Screen 
-                    name="CustomDrawer"
-                    component={CustomDrawer}
-                /> */}
+                <Stack.Screen 
+                    name="CartTab"
+                    component={CartTab}
+                />
                 {/* <Stack.Screen
                     name="MainLayout"
                     component={CustomDrawer}

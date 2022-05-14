@@ -6,8 +6,8 @@ import {
     Image,
     TextInput,
     FlatList,
+    StatusBar
 } from 'react-native';
-
 import FilterModal from "./FilterModal";
 import {
     HorizontalFoodCard,
@@ -20,16 +20,20 @@ import { FONTS, SIZES, COLORS, icons, dummyData } from "../../constants";
 const Section = ({title, onPress, children }) => {
     return (
         <View>
+            <StatusBar 
+                animated={true}
+                backgroundColor="#61dafb"
+            />
             {/* Header */}
             <View
                 style={{
                     flexDirection: 'row',
                     marginHorizontal: SIZES.padding,
                     marginTop: 30,
-                    marginBottom: 20
+                    marginBottom: 20,
                 }}
             >
-                <Text style={{ flex: 1, ...FONTS.h3}}>
+                <Text style={{ flex: 1, ...FONTS.h1}}>
                     {title}
                 </Text>
 
@@ -59,29 +63,29 @@ const Home = () => {
     const [showFilterModal, setShowFilterModal] = React.useState(false)
 
     React.useEffect(() => {
-        handleChangeCategory(selectedCategoryId, selectedMenuType )
+        //handleChangeCategory(selectedCategoryId, selectedMenuType )
     }, [])
 
     // Handler
 
     function handleChangeCategory(categoryId, menuTypeId){
         // Retreive the popular menu
-        let selectedPopular= dummyData.menu.find(a => a.name == "Popular")
+        // let selectedPopular= dummyData.menu.find(a => a.name == "Popular")
         
         //Retreive the recommended menu
-        let selectedRecommend =dummyData.menu.find(a => a.name == "Recommended")
+        // let selectedRecommend =dummyData.menu.find(a => a.name == "Recommended")
         
         // Find the menu based on the menuTypeId
-        let selectedMenu = dummyData.menu.find(a => a.id == menuTypeId)
+        // let selectedMenu = dummyData.menu.find(a => a.id == menuTypeId)
 
         // Set the Popular menu based on the categoryId
-        setPopular(selectedPopular?.list.filter(a => a.categories.includes))
+        // setPopular(selectedPopular?.list.filter(a => a.categories.includes))
         
         // Set the recommended menu based on the categoryId
-        setRecommends(selectedRecommend?.list.filter(a => a.categories.includes(categoryId)))
+        // setRecommends(selectedRecommend?.list.filter(a => a.categories.includes(categoryId)))
 
         // Set the menu based on the categoryId
-        setMenuList(selectedMenu?.list.filter(a => a.categories.includes(categoryId)))
+        // setMenuList(selectedMenu?.list.filter(a => a.categories.includes(categoryId)))
     }
 
     // Render
@@ -97,15 +101,16 @@ const Home = () => {
                     marginVertical: SIZES.radius,
                     paddingHorizontal: SIZES.radius,
                     borederRadius: SIZES.radius,
-                    backgroundColor: COLORS.lightGray2
+                    backgroundColor: COLORS.lightGray2,
+                    borderRadius: SIZES.radius
                 }}    
             >
                 {/* Icon */}                
                 <Image
                     source={icons.search}
                     style={{
-                        height:25,
-                        width:20,
+                        height: 20,
+                        width: 15,
                         tintColor: COLORS.black
                     }}
                 />
@@ -114,9 +119,9 @@ const Home = () => {
                     style={{
                         flex: 1,
                         marginLeft: SIZES.radius,
-                        ...FONTS.body3
+                        ...FONTS.body4
                     }}
-                    placeholder="search food..."
+                    placeholder="Search Order ID number"
                 />
                 {/* Filter Buttom */}
                 <TouchableOpacity
@@ -178,114 +183,153 @@ const Home = () => {
         )
     }
 
-    function renderRecommendedSection() {
-        return (
-            <Section
-            title="Recommended"
-            onPress= {() => console.log("Show All Recommended")}
-            >
-                <FlatList
-                    data={recommends}
-                    keyExtractor={item => `${item.id}`}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    renderItem={({item, index}) => (
-                        <HorizontalFoodCard
-                            containerStyle={{
-                                height: 180,
-                                height: SIZES.width * 0.85,
-                                marginLeft: index == 0 ? SIZES.padding: 18,
-                                marginRight: index == recommends.length - 1 ? SIZES.padding: 0,
-                                paddingRight: SIZES.radius,
-                                alignItems: 'center'
-                            }}
-                            imageStyle={{
-                                marginTop: 35,
-                                height: 150,
-                                width: 150
-                            }}
-                            item= {item}
-                            onPress= {() => console.log("HorizontalFoodCard")}
-                        />
-                    )}
-                />
-            </Section>
-        )
-    }
+    // function renderRecommendedSection() {
+    //     return (
+    //         <Section
+    //         title="Recommended"
+    //         onPress= {() => console.log("Show All Recommended")}
+    //         >
+    //             <FlatList
+    //                 data={recommends}
+    //                 keyExtractor={item => `${item.id}`}
+    //                 horizontal
+    //                 showsHorizontalScrollIndicator={false}
+    //                 renderItem={({item, index}) => (
+    //                     <HorizontalFoodCard
+    //                         containerStyle={{
+    //                             height: 180,
+    //                             height: SIZES.width * 0.85,
+    //                             marginLeft: index == 0 ? SIZES.padding: 18,
+    //                             marginRight: index == recommends.length - 1 ? SIZES.padding: 0,
+    //                             paddingRight: SIZES.radius,
+    //                             alignItems: 'center'
+    //                         }}
+    //                         imageStyle={{
+    //                             marginTop: 35,
+    //                             height: 150,
+    //                             width: 150
+    //                         }}
+    //                         item= {item}
+    //                         onPress= {() => console.log("HorizontalFoodCard")}
+    //                     />
+    //                 )}
+    //             />
+    //         </Section>
+    //     )
+    // }
 
-    function renderPopularSection() {
-        return (
-            <Section
-            title="Popular Near You"
-            onPress={() => console.log("Show all popular items")}
-            >
-                <FlatList 
-                    data={popular}
-                    keyExtractor={item => `${item.id}`}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    renderItem={({ item, index}) => (
-                        <VerticalFoodCard
-                            containerStyle={{
-                                marginLeft: index == 0 ? SIZES.padding : 18,
-                                marginRight: index == popular.length - 1 ? SIZES.padding : 0
-                            }}
-                            item={item}
-                            onPress={() => console.log("Vertical Food Card")}
-                        />
-                    )}
-                />
+    // function renderPopularSection() {
+    //     return (
+    //         <Section
+    //         title="Popular Near You"
+    //         onPress={() => console.log("Show all popular items")}
+    //         >
+    //             <FlatList 
+    //                 data={popular}
+    //                 keyExtractor={item => `${item.id}`}
+    //                 horizontal
+    //                 showsHorizontalScrollIndicator={false}
+    //                 renderItem={({ item, index}) => (
+    //                     <VerticalFoodCard
+    //                         containerStyle={{
+    //                             marginLeft: index == 0 ? SIZES.padding : 18,
+    //                             marginRight: index == popular.length - 1 ? SIZES.padding : 0
+    //                         }}
+    //                         item={item}
+    //                         onPress={() => console.log("Vertical Food Card")}
+    //                     />
+    //                 )}
+    //             />
                 
-            </Section>
-        )
-    }
+    //         </Section>
+    //     )
+    // }
 
     function renderFoodCategories() {
         return (
-            <FlatList
-                data={dummyData.categories}
-                keyExtractor={item => `${item.id}`}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({item, index}) => (
-                    <TouchableOpacity
+            <View
+                style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    
+                }}
+            >
+                <TouchableOpacity
                         style={{
                             flexDirection: 'row',
-                            height: 55,
-                            marginTop: SIZES.padding,
-                            marginLeft: index == 0 ? SIZES.padding : SIZES.radius,
-                            marginRight: index == dummyData.categories.length - 1 ? SIZES.padding : 0,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: 35,
+                            display: 'flex',
+                            width: '40%',
                             paddingHorizontal: 8,
                             borderRadius: SIZES.radius,
-                            backgroundColor: selectedCategoryId == item.id ? COLORS.primary : COLORS.lightGray2
+                            backgroundColor: COLORS.primary 
                         }}
                         onPress={() => {
-                            setSelectedCategoryId(item.id)
-                            handleChangeCategory(item.id, selectedMenuType)
+                            setSelectedCategoryId(1)
                         }}
                     >
-                        <Image
+                        {/* <Image
                             source={item.icon}
                             style={{
                                 marginTop: 5,
                                 height: 50,
-                                width: 50
+                                width: 30
                             }}
-                        />
+                        /> */}
                         <Text
                         style={{
                             alignSelf: 'center',
-                            marginRight: SIZES.base,
-                            color: selectedCategoryId == item.id ? COLORS.white : COLORS.darkGray,
+                            color:  COLORS.white,
                             ...FONTS.h3
                             
                         }}
                         >
-                            {item.name}
+                            Pending
                         </Text>
                     </TouchableOpacity>
-                )}
-            />
+                   
+                
+                    <TouchableOpacity
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: 35,
+                            width: '40%',
+                            display: 'flex',
+                            paddingHorizontal: 8,
+                            borderRadius: SIZES.radius,
+                            backgroundColor: COLORS.primary 
+                        }}
+                        onPress={() => {
+                            setSelectedCategoryId(1)
+                        }}
+                    >
+                        {/* <Image
+                            source={item.icon}
+                            style={{
+                                marginTop: 5,
+                                height: 50,
+                                width: 30
+                            }}
+                        /> */}
+                        <Text
+                        style={{
+                            alignSelf: 'center',
+                            color:  COLORS.white,
+                            ...FONTS.h3
+                            
+                        }}
+                        >
+                            Completed
+                        </Text>
+                    </TouchableOpacity>
+            </View>
+                    
+
         )
 
     }
@@ -304,7 +348,6 @@ const Home = () => {
                         ...FONTS.body3
                     }}
                 >
-                    DELIVERY TO
                 </Text>
                 <TouchableOpacity
                 style={{
@@ -351,17 +394,16 @@ const Home = () => {
                 showsVerticalScrollIndicator={false}
                 ListHeaderComponent={
                     <View>
-                        {/* Delivery To */}
-                        {renderDeliveryTo()}
+                       
 
                         {/* Food Categories */}
                         {renderFoodCategories()}
 
                         {/* PopularSection */}
-                        {renderPopularSection()}
+                        {/* {renderPopularSection()} */}
 
                         {/* RecommendedSection */}
-                        {renderRecommendedSection()}
+                        {/* {renderRecommendedSection()} */}
                         
                         {/* Menu Type */}
                         {renderMenuType()}

@@ -4,7 +4,7 @@ import {
     Text
 } from 'react-native';
 
-const CartTab = () => {
+const Profile = () => {
     return (
         <View
             style={{
@@ -13,9 +13,9 @@ const CartTab = () => {
                 justifyContent: 'center'
             }}
         >
-            <Text>Cart</Text>
+            <Text>Profile</Text>
         </View>
     )
 }
 
-export default CartTab;
+export default Profile;

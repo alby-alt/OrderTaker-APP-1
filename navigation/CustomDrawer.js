@@ -37,7 +37,7 @@ const CustomDrawerItem = ({ label, icon, isFocused, onPress }) => {
             paddingLeft: SIZES.radius,
             borderRadius: SIZES.base,
             backgroundColor: isFocused ? COLORS.
-            transparentBlack1: null
+            transparentBlack1 : null
         }}
         onPress={onPress}
         >
@@ -102,7 +102,7 @@ const CustomDrawerContent =({navigation, selectedTab,
                         style={{
                         height: 35,
                         width: 35,
-                        tintColor: COLORS.white
+                        // tintColor: COLORS.white
                 }}
                 />
                 
@@ -140,7 +140,8 @@ const CustomDrawerContent =({navigation, selectedTab,
             <View
             style={{
                 flex: 1,
-                marginTop: SIZES.padding
+                marginTop: SIZES.padding,
+                color: COLORS.black
             }}    
         >
             <CustomDrawerItem
@@ -185,7 +186,7 @@ const CustomDrawerContent =({navigation, selectedTab,
             <View
                 style={{
                     height: 1,
-                    // marginVertical: SIZES.radius,
+                    marginVertical: SIZES.radius,
                     marginLeft: SIZES.radius,
                     backgroundColor: COLORS.lightGray1
                 }}
