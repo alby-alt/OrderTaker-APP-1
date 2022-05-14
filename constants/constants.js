@@ -5,7 +5,7 @@ const onboarding_screens = [
         //bannerImage: require("../assets/images/favourite_food.png"),
         title: "Project Order Taker.V1",
         description: "We got it all for you"
-    },
+    }
     // {
     //     id: 2,
     //     backgroundImage: require("../assets/images/background_02.png"),

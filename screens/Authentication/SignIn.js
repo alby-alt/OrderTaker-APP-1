@@ -17,7 +17,11 @@ import {
 } from "../../components";
 import { utils } from "../../utils";
 
-const SignIn =({navigation}) => {
+
+const SignIn =({ navigation }) => {
+    function  navigate(){
+        navigation.navigate('Home');    
+    }
 
     const [email, setEmail] = React.useState("")
     const [password, setPassword] = React.useState("")
@@ -174,6 +178,7 @@ const SignIn =({navigation}) => {
                 {/* Sign In */}
                 <TextButton 
                     label="Sign In"
+                    // onPress={navigate}
                     onPress={() => navigation.navigate("Home")}
                     // disabled={isEnableSignIn() ? false : true}
                     buttonContainerStyle={{
@@ -187,14 +192,14 @@ const SignIn =({navigation}) => {
                 />
 
                 {/* Sign Up */}
-                <View
+                {/* <View
                     style={{
                         flexDirection: 'row',
                         marginTop: SIZES.radius,
                         justifyContent: 'center'
                     }}
                 >
-                    {/* <Text
+                    <Text
                         style={{
                             color: COLORS.darkGray,
                             ...FONTS.body3
@@ -211,11 +216,11 @@ const SignIn =({navigation}) => {
                         labelStyle={{
                             color: COLORS.primary,
                             ...FONTS.h3,
-                                                        
-                        }}
-                        onPress={() => navigation.navigate("SignUp")}
-                    /> */}
-                </View>
+                                                         */}
+                        {/* }} */}
+                        {/* // onPress={() => navigation.navigate("SignUp")} */}
+                    {/* /> */}
+                {/* </View> */}
             </View>
             
             {/* Footer */}

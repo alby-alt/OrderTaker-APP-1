@@ -84,8 +84,6 @@ const Home = () => {
         setMenuList(selectedMenu?.list.filter(a => a.categories.includes(categoryId)))
     }
 
-    // Render
-
     function renderSearch() {
         return (
             <View
@@ -397,4 +395,4 @@ const Home = () => {
     )
 }
 
-// export default Home;
+export default Home;

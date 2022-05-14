@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, createRef } from 'react';
 import {
     View,
     Text,
     TouchableOpacity,
-    Image
+    Image, 
+    KeyboardAvoidingView
 } from 'react-native';
 
 import { AuthLayout } from "../";
@@ -11,22 +12,92 @@ import { FONTS, SIZES, COLORS, icons } from "../../constants";
 import { FormInput, TextButton, TextIconButton } from "../../components";
 import { utils } from "../../utils";
 
+import { AsyncStorage } from 'react-native';
+// import Loader from './Loader';
+
 const SignUp = ({navigation}) => {
-
-    const [email, setEmail] = React.useState("")
-    const [username, setUsername ] = React.useState("")
-    const [ password, setPassword ] = React.useState("")
-    const [ showPass, setShowPass ] = React.useState(false)
     
-    const [ emailError, setEmailError ] = React.useState("")
-    const [ usernameError, setUsernameError] = React.useState("")
-    const [ passwordError, setPasswordError] = React.useState("")
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [ showPass, setShowPass ] = useState(false)
+    
+    const [ emailError, setEmailError ] = useState("")
+    const [ usernameError, setUsernameError] = useState("")
+    const [ passwordError, setPasswordError] = useState("")
+    const [loading, setLoading] = useState(false);
+    const [errortext, setErrortext] = useState('');
+    const [
+      isRegistraionSuccess,
+      setIsRegistraionSuccess
+    ] = useState(false);
 
-    function isEnableSignUp() {
+    const usernameInputRef = createRef();
+    const emailInputRef = createRef();
+    const passwordInputRef = createRef();
+
+        function isEnableSignUp() {
         return email != "" && username != "" && password != "" &&
         emailError == "" && passwordError == "" && usernameError == ""
     }
-
+    const handleSubmitButton = () => {
+      setErrortext('');
+      if (!username) {
+        alert('Please fill Name');
+        return;
+      }
+      if (!email) {
+        alert('Please fill Email');
+        return;
+      }
+      if (!password) {
+        alert('Please fill Password');
+        return;
+      }
+          //Show Loader
+    setLoading(true);
+    var dataToSend = {
+      username: username,
+      email: email,
+      password: password,
+    };
+    var formBody = [];
+    for (var key in dataToSend) {
+      var encodedKey = encodeURIComponent(key);
+      var encodedValue = encodeURIComponent(dataToSend[key]);
+      formBody.push(encodedKey + '=' + encodedValue);
+    }
+    formBody = formBody.join('&');
+ 
+    fetch('http://localhost:3000/api/user/register', {
+      method: 'POST',
+      body: formBody,
+      headers: {
+        'Content-Type':
+        'application/x-www-form-urlencoded;charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        setLoading(false);
+        console.log(responseJson);
+        if (responseJson.status === 'success') {
+          setIsRegistraionSuccess(true);
+          console.log(
+            'Registration Successful. Please Login to proceed'
+          );
+        } else {
+          setErrortext(responseJson.msg);
+        }
+      })
+      .catch((error) => {
+        //Hide Loader
+        setLoading(false);
+        console.error(error);
+      });
+  };
+  if (isRegistraionSuccess) {
+    }
     return (
         <AuthLayout
         title="Getting Started"
@@ -35,22 +106,25 @@ const SignUp = ({navigation}) => {
             marginTop: SIZES.radius
         }}
         >
-            {/* Form Input and Sign Up  */}
-            <View
+            <KeyboardAvoidingView
                 style={{
                     flex: 1,
                     marginTop: SIZES.padding
                 }}
             >
                 <FormInput 
-                    label="Email"
+                    label="Emai/Username"
                     keyboardType="email-address"
                     autoCompleteType="email"
-                    onChange={(value) => {
-                        // Set Email
-                        utils.validateEmail(value, setEmailError)
-                        setEmail(value)
-                    }}
+                    // onChange={(value) => {
+                    //     utils.validateEmail(value)
+                    //     setEmail(value)
+                    // }}
+                    onChangeText={(email) => setEmail(email)}
+                    returnKeyType="next"
+                    onSubmitEditing={() =>
+                      emailInputRef.current && emailInputRef.current.focus()
+                    }
                     errorMsg={emailError}
                     appendComponent={
                         <View
@@ -76,39 +150,7 @@ const SignUp = ({navigation}) => {
                         </View>
                     }
                 />
-                <FormInput
-                    label="Username"
-                    containerSyle={{
-                        marginTop: SIZES.radius
-                    }}
-                    onChange={(value) => {
-                        setUsername(value)
-                    }}
-                    errorMsg={usernameError}
-                    appendComponent={
-                        <View
-                            style={{
-                                justifyContent: 'center'
-                            }}
-                        >
-                            {/* <Image 
-                                source={username = "" || 
-                                (username != "" && usernameError
-                                == "") ? icons.correct : icons.
-                                cross}
-                                style={{
-                                    height: 20,
-                                    width: 20,
-                                    tintColor: username == "" ? 
-                                    COLORS.gray : (username != "" &&
-                                    usernameError == "") ?
-                                    COLORS.green : COLORS.red
-                                }}
-                            />  */}
 
-                        </View>
-                    }
-                />
 
 <FormInput 
                     label="Password"
@@ -117,6 +159,13 @@ const SignUp = ({navigation}) => {
                     containerSyle={{
                         marginTop: SIZES.radius
                     }}
+                    onChangeText={(password) =>
+                        setPassword(password)
+                      }
+                    //   onSubmitEditing={() =>
+                    //     ageInputRef.current &&
+                    //     ageInputRef.current.focus()
+                    //   }
                     onChange={(value) => {
                         utils.validatePassword(value,
                             setPasswordError)
@@ -141,9 +190,29 @@ const SignUp = ({navigation}) => {
                                 }}
                             />
                         </TouchableOpacity>
+                        
                     }
+                    
                 />
-                {/* Sign Up & Sign In */}
+                       {/* <View
+                        style={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginTop: 10,
+                            marginBottom: 20
+                        }}
+                       >
+                                <TouchableOpacity
+                                    marginLeft={20}
+                        activeOpacity={0.5}
+                        onPress={handleSubmitButton}>
+                        <Text>REGISTER</Text>
+                    </TouchableOpacity>
+
+                       </View> */}
+
+
+
                 <TextButton 
                     label="Sign Up"
                     // disabled={isEnableSignUp() ? false : true }
@@ -179,9 +248,9 @@ const SignUp = ({navigation}) => {
                         />
                 </View>
                     
-            </View>
+            </KeyboardAvoidingView>
             {/* Footer */}
-            <View>
+            {/* <View>
             <TextIconButton 
                     containerStyle={{
                         height: 50,
@@ -220,9 +289,9 @@ const SignUp = ({navigation}) => {
                         marginLeft: SIZES.radius
                     }}
                     onPress={() => console.log("Google")}
-                />
+                /> */}
             
-            </View>
+            {/* </View> */}
         </AuthLayout>
     )
 }

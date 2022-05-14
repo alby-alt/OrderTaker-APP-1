@@ -14,7 +14,7 @@ import Animated, {
 } from "react-native-reanimated";
 import LinearGradient from "react-native-linear-gradient";
 import { connect } from "react-redux";
-import { setSelectedTab } from "../screens/stores/tab/tabActions";
+import { setSelectedTab } from "./stores/tab/tabActions";
 
 import {
     Home,
@@ -296,7 +296,7 @@ selectedTab, setSelectedTab }) => {
                     flex: 1,
                 }}
             >
-                <FlatList
+<FlatList
                     ref={flatListRef}
                     horizontal
                     scrollEnabled={false}
@@ -327,7 +327,7 @@ selectedTab, setSelectedTab }) => {
                             </View>
                         )
                     }} 
-                />
+                /> 
             </View>
             {/* Footer */}
             <View

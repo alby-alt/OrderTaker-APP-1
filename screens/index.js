@@ -10,7 +10,7 @@ import ForgotPassword from "./Authentication/ForgotPassword";
 import MainLayout from "./MainLayout";
 import FilterModal from "./Home/FilterModal";
 // Home
-import Home from "../screens/Home/Home";
+import Home from "./Home/Home";
 
 // Search
 import Search from "./Search/Search";
@@ -27,6 +27,7 @@ import Notification from "./Notification/Notification";
 
 
 export {
+    MainLayout,
     OnBoarding,
     
     AuthLayout,
@@ -35,7 +36,6 @@ export {
     Otp,
     ForgotPassword,
 
-    MainLayout,
     FilterModal,
     Home,
     Search,

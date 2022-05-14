@@ -3,11 +3,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import { CustomDrawer } from "./navigation/CustomDrawer";
+import CustomDrawer from "./navigation/CustomDrawer";
 
 import SplashScreen from 'react-native-splash-screen'
 
-// import { Home } from "./screens/Home";
 
 import {
     OnBoarding,
@@ -15,11 +14,9 @@ import {
     SignUp,
     ForgotPassword,
     Otp,
-    Home,
 } from './screens'
 import MainLayout from "./screens/MainLayout";
 
-// import { createStore, applyMiddleware} from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk"; 
 import rootReducer from "./screens/stores/rootReducer";
@@ -46,6 +43,11 @@ const App = () => {
                 }}
                 initialRouteName={'OnBoarding'}
             >
+                      <Stack.Screen
+                  
+                  name="Home"
+                  component={CustomDrawer}
+              />    
                 <Stack.Screen
                     name="OnBoarding"
                     component={OnBoarding}
@@ -55,6 +57,10 @@ const App = () => {
                     component={SignIn}
                 />
                 <Stack.Screen
+                    name="SignUp"
+                    component={SignUp}
+                />
+                <Stack.Screen
                     name="ForgotPassword"
                     component={ForgotPassword}
                 />
@@ -62,18 +68,7 @@ const App = () => {
                     name="Otp"
                     component={Otp}
                 />                
-                {/* <Stack.Screen 
-                    name="CustomDrawer"
-                    component={CustomDrawer}
-                /> */}
-                {/* <Stack.Screen
-                    name="MainLayout"
-                    component={CustomDrawer}
-                /> */}
-                <Stack.Screen
-                    name="Home"
-                    component={Home}
-                />                
+                      
                 
             </Stack.Navigator>
         </NavigationContainer>

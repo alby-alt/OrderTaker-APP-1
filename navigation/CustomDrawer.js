@@ -9,7 +9,6 @@ import {
     createDrawerNavigator,
     DrawerContentScrollView
 } from "@react-navigation/drawer";
-import { NavigationContainer } from '@react-navigation/native';
 
 import Animated from "react-native-reanimated";
 import {connect} from "react-redux";
@@ -279,10 +278,12 @@ const CustomDrawer = ({ selectedTab, setSelectedTab }) => {
                 )
             }}
         >
-            <Drawer.Screen name="MainLayout">
+            <Drawer.Screen name="MainLayout" 
+            options={{ headerShown: false }}>
                 {props => <MainLayout {...props} 
                 drawerAnimationStyle={animatedStyle} />}
             </Drawer.Screen>
+   
         </Drawer.Navigator>
 
     </View>
