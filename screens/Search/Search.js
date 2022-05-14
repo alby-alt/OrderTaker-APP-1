@@ -2,10 +2,9 @@ import React from 'react';
 import {
     View,
     Text
-
 } from 'react-native';
 
-const Screen3 = () => {
+const Search = () => {
     return (
         <View
             style={{
@@ -14,9 +13,9 @@ const Screen3 = () => {
                 justifyContent: 'center'
             }}
         >
-            <Text>Screen1</Text>
+            <Text>Search</Text>
         </View>
     )
 }
 
-export default Screen3;
+export default Search

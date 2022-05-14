@@ -4,7 +4,7 @@ import {
     Text
 } from 'react-native';
 
-const MenuList = () => {
+const Notification = () => {
     return (
         <View
             style={{
@@ -13,9 +13,9 @@ const MenuList = () => {
                 justifyContent: 'center'
             }}
         >
-            <Text>MenuList</Text>
+            <Text>Notification</Text>
         </View>
     )
 }
 
-export default MenuList;
+export default Notification;

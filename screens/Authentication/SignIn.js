@@ -26,40 +26,40 @@ const SignIn =({navigation}) => {
     const [showPass, setShowPass] = React.useState(false)
     const [saveMe, setSaveMe] = React.useState(false)
     const [token, setToken] = React.useState("");
-    function handleSignIn() {
-        setToken("")
-        setEmailError("")
-        setPassword("")
-    //   let err1 = utils.validateEmail(email, setEmailError)
-      let err2 = utils.validatePassword(password, setPasswordError)
+    // // function handleSignIn() {
+    // //     setToken("")
+    // //     setEmailError("")
+    // //     setPassword("")
+    // // //   let err1 = utils.validateEmail(email, setEmailError)
+    // //   let err2 = utils.validatePassword(password, setPasswordError)
 
-        // console.log(err1)
-        //console.log(err2)``
-       new axios.post('https://solidbbm.online/api/auth/signin', {
-            username: email,
-            password: password
-        })
-        .then(doc => {
-            console.log(doc)
-            let { accessToken } = doc.data;
-            // console.log(doc.data)
-            // console.log(accessToken)
+    //     // console.log(err1)
+    //     //console.log(err2)``
+    //    new axios.post('https://solidbbm.online/api/auth/signin', {
+    //         username: email,
+    //         password: password
+    //     })
+    //     .then(doc => {
+    //         console.log(doc)
+    //         let { accessToken } = doc.data;
+    //         // console.log(doc.data)
+    //         // console.log(accessToken)
 
-            setToken(accessToken)
-                  navigation.navigate("ForgotPassword");
+    //         setToken(accessToken)
+    //               navigation.navigate("ForgotPassword");
 
-        })
-        .catch(err => {
-            console.log(err.response.data)
-            let { message, errors } = err.response.data;
-            setToken(message.text)
-            console.log(errors)
-            errors.username && setEmailError(errors.username);
-            errors.password && setPasswordError(errors.password)
-        })
+    //     })
+    //     .catch(err => {
+    //         console.log(err.response.data)
+    //         let { message, errors } = err.response.data;
+    //         setToken(message.text)
+    //         console.log(errors)
+    //         errors.username && setEmailError(errors.username);
+    //         errors.password && setPasswordError(errors.password)
+    //     })
 
 
-    }
+    // }
 
 
 
@@ -174,7 +174,7 @@ const SignIn =({navigation}) => {
                 {/* Sign In */}
                 <TextButton 
                     label="Sign In"
-                    onPress={() => navigation.navigate("MainLayout")}
+                    onPress={() => navigation.navigate("Home")}
                     // disabled={isEnableSignIn() ? false : true}
                     buttonContainerStyle={{
                         height: 55,

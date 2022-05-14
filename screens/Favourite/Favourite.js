@@ -2,10 +2,9 @@ import React from 'react';
 import {
     View,
     Text
-
 } from 'react-native';
 
-const Screen1 = () => {
+const Favourite = () => {
     return (
         <View
             style={{
@@ -14,9 +13,9 @@ const Screen1 = () => {
                 justifyContent: 'center'
             }}
         >
-            <Text>Screen1</Text>
+            <Text>Favourite</Text>
         </View>
     )
 }
 
-export default Screen1;
+export default Favourite

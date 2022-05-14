@@ -4,7 +4,7 @@ import {
     Text
 } from 'react-native';
 
-const Screen2 = () => {
+const CartTab = () => {
     return (
         <View
             style={{
@@ -13,9 +13,9 @@ const Screen2 = () => {
                 justifyContent: 'center'
             }}
         >
-            <Text>Screen1</Text>
+            <Text>Cart</Text>
         </View>
     )
 }
 
-export default Screen2;
+export default CartTab
