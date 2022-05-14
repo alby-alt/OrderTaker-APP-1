@@ -279,7 +279,9 @@ const CustomDrawer = ({ selectedTab, setSelectedTab }) => {
                 )
             }}
         >
-            <Drawer.Screen name="MainLayout">
+            <Drawer.Screen 
+                options={{headerShown: false}}
+                name="MainLayout">    
                 {props => <MainLayout {...props} 
                 drawerAnimationStyle={animatedStyle} />}
             </Drawer.Screen>

@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import { CustomDrawer } from "./navigation/CustomDrawer";
+import CustomDrawer from "./navigation/CustomDrawer";
 
 import SplashScreen from 'react-native-splash-screen'
 
@@ -72,7 +72,7 @@ const App = () => {
                 /> */}
                 <Stack.Screen
                     name="Home"
-                    component={Home}
+                    component={CustomDrawer}
                 />                
                 
             </Stack.Navigator>

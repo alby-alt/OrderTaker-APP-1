@@ -8,7 +8,7 @@ import {
     FlatList,
 } from 'react-native';
 
-import { FilterModal } from "./FilterModal";
+import FilterModal from "./FilterModal";
 import {
     HorizontalFoodCard,
     VerticalFoodCard
@@ -397,4 +397,4 @@ const Home = () => {
     )
 }
 
-// export default Home;
+export default Home;
