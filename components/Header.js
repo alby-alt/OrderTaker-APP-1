@@ -18,20 +18,22 @@ const Header = ({
             style={{
                 height: 60,
                 flexDirection: 'row',
+                // marginLeft: 1,
                 ...containerStyle
             }}
         >
+            
+
             {leftComponent}
 
             <View
                 style={{
                     flex: 1,
-                    alignItems: 'center',
+                    alignItems: 'flex-end',
                     justifyContent: 'center'
                 }}
             >
 
-                <Text style={{...FONTS.h3, ...titleStyle}}>{title}</Text>
             </View>
             {rightComponent}
         </View>

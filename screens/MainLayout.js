@@ -23,6 +23,8 @@ import {
     Notification,
 } from "../screens";
 import CartTab from "../screens/Cart/CartTab";
+
+import Profile from "./Profile/Profile";
 import {
     Header
 } from "../components"
@@ -94,9 +96,9 @@ selectedTab, setSelectedTab }) => {
 
     const flatListRef= React.useRef()
 
-    function navigate(){
-        navigation.navigate('Favourite');    
-    }
+    // function navigate(){
+    //     navigation.navigate();    
+    // }
     // Reanimated Shared Value
     
     const homeTabFlex = useSharedValue(1)
@@ -105,8 +107,8 @@ selectedTab, setSelectedTab }) => {
     const searchTabColor = useSharedValue(COLORS.white)
     const cartTabFlex = useSharedValue(1)
     const cartTabColor = useSharedValue(COLORS.white)
-    const favouriteTabFlex = useSharedValue(1)
-    const favouriteTabColor = useSharedValue(COLORS.white)
+    const profileTabFlex = useSharedValue(1)
+    const profileTabColor = useSharedValue(COLORS.white)
     const notificationTabFlex = useSharedValue(1)
     const notificationTabColor = useSharedValue(COLORS.white)
     
@@ -145,15 +147,15 @@ selectedTab, setSelectedTab }) => {
             backgroundColor: cartTabColor.value
         }
     })
-    const favouriteFlexStyle = useAnimatedStyle(() => {
+    const profileFlexStyle = useAnimatedStyle(() => {
         return {
-            flex: favouriteTabFlex.value
+            flex: profileTabFlex.value
         }
     })
 
-    const favouriteColorStyle = useAnimatedStyle(() => {
+    const profileColorStyle = useAnimatedStyle(() => {
         return {
-            backgroundColor: favouriteTabColor.value
+            backgroundColor: profileTabColor.value
         }
     })
     const notificationFlexStyle = useAnimatedStyle(() => {
@@ -210,16 +212,16 @@ selectedTab, setSelectedTab }) => {
             cartTabColor.value = withTiming(COLORS.white, {
             duration: 500 })
         }
-        if (selectedTab === constants.screens.favourite) {            flatListRef?.current?.scrollToIndex({
+        if (selectedTab === constants.screens.profile) {            flatListRef?.current?.scrollToIndex({
                 index: 3,
                 animated: false
             })
-            favouriteTabFlex.value = withTiming(4, { duration: 500 })
-            favouriteTabColor.value = withTiming(COLORS.primary, {
+            profileTabFlex.value = withTiming(4, { duration: 500 })
+            profileTabColor.value = withTiming(COLORS.primary, {
             duration: 500 })
         } else {
-            favouriteTabFlex.value = withTiming(1 , { duration: 500 })
-            favouriteTabColor.value = withTiming(COLORS.white, {
+            profileTabFlex.value = withTiming(1 , { duration: 500 })
+            profileTabColor.value = withTiming(COLORS.white, {
             duration: 500 })
         }
         if (selectedTab === constants.screens.notification) {            flatListRef?.current?.scrollToIndex({
@@ -244,31 +246,28 @@ selectedTab, setSelectedTab }) => {
             }}
         >
             {/* Header */}
-            <Header
+            {/* <Header
                 containerStyle={{
                     height: 50,
                     paddingHorizontal: SIZES.padding,
                     marginTop: 40,
-                    alignItem: 'center'
-                }}
-            title={selectedTab.toUpperCase()}
-                leftComponent={
+                    alignItem: 'center',
+                    }}
+                    title={selectedTab.toUpperCase()}
+                    leftComponent={
                     <TouchableOpacity
-                    // style={{
-                    //     width: 40,
-                    //     height: 40,
-                    //     alignItems: 'center',
-                    //     justifyContent: 'center',
-                    //     borderWidth: 1,
-                    //     boderColor: COLORS.gray2,
-                    //     borderRadius: SIZES.radius
-                    // }}
-                    // onPress={() => navigation.openDrawer()}
+                    style={{
+                        width: 40,
+                        height: 40,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderWidth: 1,
+                        boderColor: COLORS.gray2,
+                        borderRadius: SIZES.radius
+                    }}
+                    onPress={() => navigation.openDrawer()}
                     
                 >
-                    {/* <Image
-                            source={icons.menu} 
-                        /> */}
                     </TouchableOpacity>
                 }
                 rightComponent={
@@ -289,12 +288,11 @@ selectedTab, setSelectedTab }) => {
                     }}
                     >
                         <Icon name="add" size={40} color={COLORS.darkGray}/>
-                        {/* <Ionicons name="add-circle" /> */}
                     </TouchableOpacity>
                     </View>
                 }
             
-            />
+            /> */}
 
 
             {/* Content */}
@@ -323,12 +321,12 @@ selectedTab, setSelectedTab }) => {
                             >
                                 {item.label == constants.screens.
                                 home && <Home />}
-                                {/* {item.label == constants.screens.
-                                search && <Search />} */}
+                                {item.label == constants.screens.
+                                search && <Search />}
                                 {item.label == constants.screens.
                                 cart && <CartTab />}
-                                {/* {item.label == constants.screens.
-                                favourite && <Favourite />} */}
+                                {item.label == constants.screens.
+                                profile && <Profile />}
                                 {item.label == constants.screens.
                                 notification && <Notification />}
                             </View>
@@ -393,26 +391,17 @@ selectedTab, setSelectedTab }) => {
                     onPress={() => setSelectedTab(constants.
                     screens.search)}
                 /> */}
+                
                 <TabButton
-                    label={constants.screens.cart}
-                    icon={icons.cart}
+                    label={constants.screens.profile}
+                    icon={icons.profile}
                     isFocused={selectedTab === constants.
-                    screens.cart}
-                    outerContainerStyle={cartFlexStyle}
-                    innerContainerStyle={cartColorStyle}
+                    screens.profile}
+                    outerContainerStyle={profileFlexStyle}
+                    innerContainerStyle={profileColorStyle}
                     onPress={() => setSelectedTab(constants.
-                    screens.cart)}
+                    screens.profile)}
                 />
-                {/* <TabButton
-                    label={constants.screens.favourite}
-                    icon={icons.favourite}
-                    isFocused={selectedTab === constants.
-                    screens.favourite}
-                    outerContainerStyle={favouriteFlexStyle}
-                    innerContainerStyle={favouriteColorStyle}
-                    onPress={() => setSelectedTab(constants.
-                    screens.favourite)}
-                /> */}
                 <TabButton
                     label={constants.screens.notification}
                     icon={icons.notification}

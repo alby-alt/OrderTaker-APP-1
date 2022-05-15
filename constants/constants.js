@@ -26,10 +26,11 @@ const screens = {
     main_layout: "MainLayout",
     home: "Home",
     search: "Search",
-    cart: "Cart",
+    cart: "CartTab",
     favourite: "Favourite",
     notification: "Notification",
     my_wallet: "My Wallet",
+    profile: "Profile",
 }
 
 const bottom_tabs = [

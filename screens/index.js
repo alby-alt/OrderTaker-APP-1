@@ -23,7 +23,8 @@ import Favourite from "./Favourite/Favourite";
 
 // Notification
 import Notification from "./Notification/Notification";
-
+// Profile
+import Profile from "./Profile/Profile";
 
 
 export {
@@ -41,5 +42,6 @@ export {
     Search,
     CartTab,
     Favourite,
-    Notification
+    Notification,
+    Profile
 }

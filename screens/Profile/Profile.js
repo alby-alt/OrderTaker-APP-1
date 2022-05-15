@@ -2,18 +2,19 @@ import React from 'react';
 import {
     View,
     Text
+
 } from 'react-native';
 
 const Profile = () => {
     return (
         <View
-            style={{
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center'
-            }}
+        style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center'
+        }}
         >
-            <Text>Profile</Text>
+            <Text>Anosst imo ser?</Text>
         </View>
     )
 }

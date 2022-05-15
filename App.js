@@ -17,7 +17,7 @@ import {
     Otp,
     Home,
 } from './screens'
-
+import Profile from "./screens/Profile/Profile";
 import CartTab from "./screens/Cart/CartTab.js";
 import MainLayout from "./screens/MainLayout";
 
@@ -46,7 +46,7 @@ const App = () => {
                 screenOptions={{
                     headerShown: false
                 }}
-                initialRouteName={'Home'}
+                initialRouteName={'OnBoarding'}
             >
                 <Stack.Screen
                     name="OnBoarding"
@@ -64,6 +64,10 @@ const App = () => {
                     name="Otp"
                     component={Otp}
                 />                
+                <Stack.Screen 
+                    name="Profile"
+                    component={Profile}
+                />
                 <Stack.Screen 
                     name="CartTab"
                     component={CartTab}

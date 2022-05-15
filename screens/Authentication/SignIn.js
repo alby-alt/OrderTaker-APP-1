@@ -166,7 +166,7 @@ const SignIn =({navigation}) => {
                         color: COLORS.black,
                         ...FONTS.body4
                     }}
-                    onPress={() => navigation.navigate("ForgotPassword")}
+                    onPress={() => navigation.navigate("RecoverPassword")}
                 />
                 
                 </View>
