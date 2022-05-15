@@ -244,7 +244,7 @@ selectedTab, setSelectedTab }) => {
             }}
         >
             {/* Header */}
-            <Header
+            {/* <Header
                 containerStyle={{
                     height: 50,
                     paddingHorizontal: SIZES.padding,
@@ -254,7 +254,7 @@ selectedTab, setSelectedTab }) => {
             title={selectedTab.toUpperCase()}
                 leftComponent={
                     <TouchableOpacity
-                    // style={{
+                     style={{
                     //     width: 40,
                     //     height: 40,
                     //     alignItems: 'center',
@@ -268,7 +268,7 @@ selectedTab, setSelectedTab }) => {
                 >
                     {/* <Image
                             source={icons.menu} 
-                        /> */}
+                        /> 
                     </TouchableOpacity>
                 }
                 rightComponent={
@@ -289,12 +289,12 @@ selectedTab, setSelectedTab }) => {
                     }}
                     >
                         <Icon name="add" size={40} color={COLORS.darkGray}/>
-                        {/* <Ionicons name="add-circle" /> */}
+                        {/* <Ionicons name="add-circle" /> 
                     </TouchableOpacity>
                     </View>
                 }
             
-            />
+            />*/}
 
 
             {/* Content */}

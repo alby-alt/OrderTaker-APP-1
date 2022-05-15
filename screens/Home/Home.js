@@ -7,6 +7,7 @@ import {
     TextInput,
     FlatList,
     StatusBar
+    
 } from 'react-native';
 import FilterModal from "./FilterModal";
 import {
@@ -14,8 +15,10 @@ import {
     VerticalFoodCard
 } from "../../components";
 
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import { FONTS, SIZES, COLORS, icons, dummyData } from "../../constants";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Section = ({title, onPress, children }) => {
     return (
@@ -90,55 +93,73 @@ const Home = () => {
 
     // Render
 
-    function renderSearch() {
-        return (
-            <View
+function renderSearch() {
+    return (
+        <SafeAreaView
                 style={{
+                    // flex: 1,
+                    justifyContent: 'space-around',
                     flexDirection: 'row',
-                    height: 45,
-                    alignItems: 'center',
-                    marginHorizontal: SIZES.padding,
-                    marginVertical: SIZES.radius,
-                    paddingHorizontal: SIZES.radius,
-                    borederRadius: SIZES.radius,
-                    backgroundColor: COLORS.lightGray2,
-                    borderRadius: SIZES.radius
-                }}    
+                    marginVertical: SIZES.dyes,
+                    marginRight: 15
+                }}
             >
-                {/* Icon */}                
+                
+            
+        <View
+            style={{
+                flexDirection: 'row',
+                height: 45,
+                alignItems: 'center',
+                width: '80%',
+                marginHorizontal: SIZES.padding,
+                marginVertical: 4,
+                paddingHorizontal: SIZES.radius,
+                borederRadius: SIZES.radius,
+                backgroundColor: COLORS.lightGray2,
+                borderRadius: SIZES.radius
+            }}    
+        >
+            {/* Icon */}                
+            <Image
+                source={icons.search}
+                style={{
+                    height: 20,
+                    width: 15,
+                    tintColor: COLORS.black
+                }}
+            />
+            {/* Text Input */}
+            <TextInput
+                style={{
+                    flex: 1,
+                    marginLeft: SIZES.radius,
+                    ...FONTS.body4
+                }}
+                placeholder="Search Order ID number"
+            />
+            {/* Filter Button */}
+            <TouchableOpacity
+                onPress={() => setShowFilterModal(true)}
+            >
                 <Image
-                    source={icons.search}
+                    source={icons.filter}
                     style={{
                         height: 20,
-                        width: 15,
+                        width: 20,
                         tintColor: COLORS.black
                     }}
-                />
-                {/* Text Input */}
-                <TextInput
-                    style={{
-                        flex: 1,
-                        marginLeft: SIZES.radius,
-                        ...FONTS.body4
-                    }}
-                    placeholder="Search Order ID number"
-                />
-                {/* Filter Buttom */}
-                <TouchableOpacity
-                    onPress={() => setShowFilterModal(true)}
-                >
-                   <Image
-                        source={icons.filter}
-                        style={{
-                            height: 20,
-                            width: 20,
-                            tintColor: COLORS.black
-                        }}
-                   /> 
-                </TouchableOpacity>
-            </View>
-        )
-    }
+                /> 
+            
+            </TouchableOpacity>    
+        </View>
+        <TouchableOpacity>
+        <Ionicon name="add-circle-outline" size={45} color={COLORS.darkGray}/>
+        </TouchableOpacity>
+        </SafeAreaView>
+        
+    )
+}
 
 
     function renderMenuType(){
@@ -302,7 +323,7 @@ const Home = () => {
                             display: 'flex',
                             paddingHorizontal: 8,
                             borderRadius: SIZES.radius,
-                            backgroundColor: COLORS.primary 
+                            backgroundColor: COLORS.lightOrange 
                         }}
                         onPress={() => {
                             setSelectedCategoryId(1)
