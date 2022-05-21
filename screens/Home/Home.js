@@ -6,6 +6,8 @@ import { HomeContent } from '../../screens';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 
+import { FilterModal } from "../";
+
 export default function Home({navigation}) {
     const tabRef = useRef()
     const [selectedMenuId, setSelectedMenuId] = useState(0);
@@ -36,46 +38,6 @@ export default function Home({navigation}) {
 //         // flexGrow: "100%"
 //       },
 // })
-// function renderDetails() {
-//     return (
-//         <View
-//             style={{
-//                 marginTop: SIZES.radius,
-//                 marginBottom: SIZES.padding,
-//                 paddingHorizontal: SIZES.padding
-//             }}
-//         >
-//             {/* Food Card */}
-//             <View
-//                 style={{
-//                     height: 190,
-//                     borderRadius: 15,
-//                     backgroundColor: COLORS.lightGray2
-//                 }}
-//             >
-//                 {/* Calories & Favourite */}
-//                 <View
-//                     style={{
-//                         flexDirection: 'row',
-//                         justifyContent: 'space-between',
-//                         marginTop: SIZES.base,
-//                         paddingHorizontal: SIZES.radius
-//                     }}
-//                 >
-//                     {/* Calories */}
-// //                     <View
-// //                         style={{
-// //                             flexDirection: 'row'
-// //                         }}
-// //                     >
-//                         <Image 
-//                             source={icons.calories}
-//                             style={{
-//                                 width: 30,
-//                                 height: 30
-//                             }}
-//                         />
-
 
     function renderHomeMenuList() {
         return (

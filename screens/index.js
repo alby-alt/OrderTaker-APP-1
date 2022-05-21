@@ -39,6 +39,7 @@ import ServicesProvided from "./Setup/ServicesProvided";
 import TermsAndCondition from './TermsAndCondition';
 import Success from './Setup/Success';
 import Home from "./Home/Home";
+import FilterModal from "./Home/FilterModal";
 import MainLayout from './MainLayout'; 
 import HomeContent from './Home/HomeContent';
 import OrderDetails from "./Home/OrderDetails";
@@ -51,6 +52,7 @@ import Menu from './Menu/Menu';
 
 export {
     Home,
+    FilterModal,
     HomeContent,
     MainLayout,
     Menu,
