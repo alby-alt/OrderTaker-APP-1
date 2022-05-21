@@ -187,7 +187,7 @@ const menuColorStyle = useAnimatedStyle(() => {
 
 
 useEffect(() => {
-    setSelectedTab(constants.screens.home)
+    setSelectedTab(constants.screens.menu)
 }, [])
 
 
