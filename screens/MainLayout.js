@@ -452,6 +452,12 @@ function renderMainContent() {
         }}
     >
 
+        {/* Header */}
+        {/* {renderHeader()} */}
+        {/* {renderSearch()} */}
+        {/* Content */}
+            {/* <Home/> */}
+        {/* {renderMainContent()} */}
         <View
                 style={{
                     flex: 1,

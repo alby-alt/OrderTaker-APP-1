@@ -23,7 +23,7 @@ const onboarding_screens = [
 ]
 
 const screens = {
-    home: "Orders",
+    home: "Sales",
     account: "My Account",
     menu: "Menu",
 }
