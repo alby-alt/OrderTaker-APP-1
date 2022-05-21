@@ -4,7 +4,7 @@ import {
     View,
 } from 'react-native';
 import { AppRegistry } from 'react-native';
-import { Provider as PaperProvider } from 'react-native-paper';
+// import { Provider as PaperProvider } from 'react-native-paper';
 import App from '../App';
 
 function MyCardAction() {

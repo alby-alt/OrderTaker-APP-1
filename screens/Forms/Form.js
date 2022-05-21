@@ -7,4 +7,4 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import Regform from './app/'
+// import Regform from './app/'

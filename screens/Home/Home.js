@@ -63,11 +63,11 @@ export default function Home({navigation}) {
 //                     }}
 //                 >
 //                     {/* Calories */}
-//                     <View
-//                         style={{
-//                             flexDirection: 'row'
-//                         }}
-//                     >
+// //                     <View
+// //                         style={{
+// //                             flexDirection: 'row'
+// //                         }}
+// //                     >
 //                         <Image 
 //                             source={icons.calories}
 //                             style={{
@@ -251,7 +251,7 @@ export default function Home({navigation}) {
             >
                 {/* {renderOrderCards()} */}
             </HomeContent>
-            {/* {renderOrderCards()} */}
+            {renderOrderCards()}
 
         </View>
     )

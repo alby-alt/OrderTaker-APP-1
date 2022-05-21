@@ -25,7 +25,7 @@ import Favourite from "./Favourite/Favourite";
 // import Notification from "./Notification/Notification";
 
 // Menu && Summary
-import Menu from "./Food/Menu";
+// import Menu from "./Food/Menu";
 import Summary from "./Food/Summary";
 
 
