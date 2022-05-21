@@ -249,9 +249,9 @@ export default function Home({navigation}) {
                 }
                 currentIndex={selectedMenuId}
             >
-                {/* {renderOrderCards()} */}
+                {renderOrderCards()}
             </HomeContent>
-            {/* {renderOrderCards()} */}
+            {renderOrderCards()}
 
         </View>
     )
