@@ -23,35 +23,23 @@ const onboarding_screens = [
 ]
 
 const screens = {
-    main_layout: "MainLayout",
-    home: "Home",
-    search: "Search",
-    cart: "Cart",
-    favourite: "Favourite",
-    notification: "Notification",
-    my_wallet: "My Wallet",
+    home: "Orders",
+    account: "My Account",
+    menu: "Menu",
 }
 
 const bottom_tabs = [
     {
         id: 0,
-        label: screens.home,
+        label: screens.menu,
     },
     {
         id: 1,
-        label: screens.search,
+        label: screens.home,
     },
     {
         id: 2,
-        label: screens.cart,
-    },
-    {
-        id: 3,
-        label: screens.favourite,
-    },
-    {
-        id: 4,
-        label: screens.notification,
+        label: screens.account,
     },
 ]
 
@@ -128,11 +116,89 @@ const tags = [
     }
 ]
 
+const homeMenu = [
+    {
+        id: 0,
+        name: "TODAY SALES"
+    },
+    {
+        id: 1,
+        name: "RECENT SALES"
+    },
+    {
+        id: 2,
+        name: "DRAFT",
+        isExpress: true,
+        isStandard: true
+    }
+    
+]
+
+const orders = [
+    {
+        id: 0,
+        customerName: "Benjamin Hemmings",
+        orderId: 420230,
+        deliveryBy: "Lillian Fisher",
+        TotalAmmount: 1000,
+        status: 0,
+        serviceTimeType: "standard"  ,
+        bookedAt: "Mon, 23 June 2021",
+        serviceDuration: "24 hours."
+    },
+    {
+        id: 1,
+        customerName: "Jason Statham",
+        orderId: 230420,
+        deliveryBy: "Lillian Fisher",
+        TotalAmmount: 1000,
+        status: 0,
+        serviceTimeType: "express" ,
+        bookedAt: "Mon, 23 June 2021",
+        serviceDuration: "3 hours."
+    },
+    {
+        id: 2,
+        customerName: "Jeff Ly",
+        orderId: 420230,
+        deliveryBy: "Lillian Fisher",
+        TotalAmmount: 1000,
+        status: 1,
+        serviceTimeType: "express" ,
+        bookedAt: "Mon, 23 June 2021",
+        serviceDuration: "3 hours."
+    },
+    {
+        id: 3,
+        customerName: "Jackie Chua",
+        orderId: 420230,
+        deliveryBy: "Lillian Fisher",
+        TotalAmmount: 1100,
+        status: 1,
+        serviceTimeType: "standard",
+        bookedAt: "Mon, 23 June 2021",
+        serviceDuration: "24 hours."
+    },
+    {
+        id: 4,
+        customerName: "Jeborin Santiago",
+        orderId: 421000,
+        deliveryBy: "Lil Fisher",
+        TotalAmmount: 2000,
+        status: 2,
+        serviceTimeType: "express",
+        bookedAt: "Mon, 23 June 2021",
+        serviceDuration: "3 Hrs."
+    },
+]
+
 export default {
+    homeMenu,
     onboarding_screens,
     screens,
     bottom_tabs,
     delivery_time,
     ratings,
-    tags
+    tags,
+    orders
 }
