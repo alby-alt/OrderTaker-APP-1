@@ -8,18 +8,18 @@ const categories = [
     {
         id: 1,
         name: "Pending Orders",
-        //icon: require("../assets/icons/burger.png")
+        icon: require("../assets/icons/burger.png")
     },
     {
         id: 2,
         name: "Completed Orders",
-        //icon: require("../assets/icons/cherry.png")
+        icon: require("../assets/icons/cherry.png")
     },
-    // {
-    //     id: 3,
-    //     name: "Rice Item",
-    //     icon: require("../assets/icons/rice.png")
-    // }
+    {
+        id: 3,
+        name: "Rice Item",
+        icon: require("../assets/icons/rice.png")
+    }
 ]
 
 const hamburger = {

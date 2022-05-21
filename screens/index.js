@@ -24,6 +24,14 @@ import Favourite from "./Favourite/Favourite";
 // Notification
 import Notification from "./Notification/Notification";
 
+// Menu && Summary
+import Menu from "./Food/Menu";
+import Summary from "./Food/Summary";
+
+
+import Form from "./Forms/Form";
+
+
 
 
 export {
@@ -41,5 +49,9 @@ export {
     Search,
     CartTab,
     Favourite,
-    Notification
+    Notification,
+    Form,
+
+    Menu,
+    Summary
 }

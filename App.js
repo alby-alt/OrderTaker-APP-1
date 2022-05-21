@@ -16,9 +16,11 @@ import {
     ForgotPassword,
     Otp,
     Home,
+    CartTab,
+    Form
 } from './screens'
 
-import CartTab from "./screens/Cart/CartTab.js";
+// import CartTab from "./screens/Cart/CartTab.js";
 import MainLayout from "./screens/MainLayout";
 
 // import { createStore, applyMiddleware} from "redux";
@@ -75,7 +77,11 @@ const App = () => {
                 <Stack.Screen
                     name="Home"
                     component={CustomDrawer}
-                />                
+                />
+                <Stack.Screen 
+                    name="SignUp"
+                    component={SignUp}
+                />
                 
             </Stack.Navigator>
         </NavigationContainer>

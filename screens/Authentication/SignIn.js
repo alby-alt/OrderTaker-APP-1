@@ -14,6 +14,7 @@ import {
     FormInput,
     CustomSwitch,
     TextButton,
+    TextIconButton
 } from "../../components";
 import { utils } from "../../utils";
 
@@ -194,7 +195,7 @@ const SignIn =({navigation}) => {
                         justifyContent: 'center'
                     }}
                 >
-                    {/* <Text
+                     <Text
                         style={{
                             color: COLORS.darkGray,
                             ...FONTS.body3
@@ -214,7 +215,7 @@ const SignIn =({navigation}) => {
                                                         
                         }}
                         onPress={() => navigation.navigate("SignUp")}
-                    /> */}
+                    /> 
                 </View>
             </View>
             
@@ -266,4 +267,4 @@ const SignIn =({navigation}) => {
     )
 }
 
-export default SignIn;         
+export default SignIn;

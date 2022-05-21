@@ -16,6 +16,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from "react-native-linear-gradient";
 import { connect } from "react-redux";
 import { setSelectedTab } from "../screens/stores/tab/tabActions";
+import Profile from "../screens/Profile/Profile";
 import {
     Home,
     Search,
@@ -24,7 +25,8 @@ import {
 } from "../screens";
 import CartTab from "../screens/Cart/CartTab";
 import {
-    Header
+    Header,
+    TextButton
 } from "../components"
 import {
     COLORS,
@@ -94,17 +96,17 @@ selectedTab, setSelectedTab }) => {
 
     const flatListRef= React.useRef()
 
-    function navigate(){
-        navigation.navigate('Favourite');    
-    }
+    // function navigate(){
+    //     navigation.navigate('Favourite');    
+    // }
     // Reanimated Shared Value
     
     const homeTabFlex = useSharedValue(1)
     const homeTabColor = useSharedValue(COLORS.white)
     const searchTabFlex = useSharedValue(1)
     const searchTabColor = useSharedValue(COLORS.white)
-    const cartTabFlex = useSharedValue(1)
-    const cartTabColor = useSharedValue(COLORS.white)
+    const profileTabFlex = useSharedValue(1)
+    const profileTabColor = useSharedValue(COLORS.white)
     const favouriteTabFlex = useSharedValue(1)
     const favouriteTabColor = useSharedValue(COLORS.white)
     const notificationTabFlex = useSharedValue(1)
@@ -134,15 +136,15 @@ selectedTab, setSelectedTab }) => {
             backgroundColor: searchTabColor.value
         }
     })
-    const cartFlexStyle = useAnimatedStyle(() => {
+    const profileFlexStyle = useAnimatedStyle(() => {
         return {
-            flex: cartTabFlex.value
+            flex: profileTabFlex.value
         }
     })
 
-    const cartColorStyle = useAnimatedStyle(() => {
+    const profileColorStyle = useAnimatedStyle(() => {
         return {
-            backgroundColor: cartTabColor.value
+            backgroundColor: profileTabColor.value
         }
     })
     const favouriteFlexStyle = useAnimatedStyle(() => {
@@ -198,16 +200,16 @@ selectedTab, setSelectedTab }) => {
             searchTabColor.value = withTiming(COLORS.white, {
             duration: 500 })
         }
-        if (selectedTab === constants.screens.cart) {            flatListRef?.current?.scrollToIndex({
+        if (selectedTab === constants.screens.profile) {            flatListRef?.current?.scrollToIndex({
                 index: 2,
                 animated: false
             })
-            cartTabFlex.value = withTiming(4, { duration: 500 })
-            cartTabColor.value = withTiming(COLORS.primary, {
+            profileTabFlex.value = withTiming(4, { duration: 500 })
+            profileTabColor.value = withTiming(COLORS.primary, {
             duration: 500 })
         } else {
-            cartTabFlex.value = withTiming(1 , { duration: 500 })
-            cartTabColor.value = withTiming(COLORS.white, {
+            profileTabFlex.value = withTiming(1 , { duration: 500 })
+            profileTabColor.value = withTiming(COLORS.white, {
             duration: 500 })
         }
         if (selectedTab === constants.screens.favourite) {            flatListRef?.current?.scrollToIndex({
@@ -236,6 +238,7 @@ selectedTab, setSelectedTab }) => {
         }
     }, [selectedTab])
     return (
+        
         <Animated.View
             style={{
                 flex: 1,
@@ -298,11 +301,13 @@ selectedTab, setSelectedTab }) => {
 
 
             {/* Content */}
+
+            
             <View
                 style={{
                     flex: 1,
                 }}
-            >
+            >  
                 <FlatList
                     ref={flatListRef}
                     horizontal
@@ -326,7 +331,7 @@ selectedTab, setSelectedTab }) => {
                                 {/* {item.label == constants.screens.
                                 search && <Search />} */}
                                 {item.label == constants.screens.
-                                cart && <CartTab />}
+                                profile && <Profile />}
                                 {/* {item.label == constants.screens.
                                 favourite && <Favourite />} */}
                                 {item.label == constants.screens.
@@ -339,7 +344,7 @@ selectedTab, setSelectedTab }) => {
             {/* Footer */}
             <View
             style={{
-                height: 100,
+                height: 100, 
                 justifyContent: 'flex-end',
             }}
             >
@@ -362,7 +367,7 @@ selectedTab, setSelectedTab }) => {
                 }}
             />
             {/* Tabs */}
-            <View
+        <View
             style={{
                 flex: 1,
                 flexDirection: 'row',
@@ -383,36 +388,6 @@ selectedTab, setSelectedTab }) => {
                     onPress={() => setSelectedTab(constants.
                     screens.home)}
                 />
-                {/* <TabButton
-                    label={constants.screens.search}
-                    icon={icons.search}
-                    isFocused={selectedTab === constants.
-                    screens.search}
-                    outerContainerStyle={searchFlexStyle}
-                    innerContainerStyle={searchColorStyle}
-                    onPress={() => setSelectedTab(constants.
-                    screens.search)}
-                /> */}
-                <TabButton
-                    label={constants.screens.cart}
-                    icon={icons.cart}
-                    isFocused={selectedTab === constants.
-                    screens.cart}
-                    outerContainerStyle={cartFlexStyle}
-                    innerContainerStyle={cartColorStyle}
-                    onPress={() => setSelectedTab(constants.
-                    screens.cart)}
-                />
-                {/* <TabButton
-                    label={constants.screens.favourite}
-                    icon={icons.favourite}
-                    isFocused={selectedTab === constants.
-                    screens.favourite}
-                    outerContainerStyle={favouriteFlexStyle}
-                    innerContainerStyle={favouriteColorStyle}
-                    onPress={() => setSelectedTab(constants.
-                    screens.favourite)}
-                /> */}
                 <TabButton
                     label={constants.screens.notification}
                     icon={icons.notification}
@@ -423,8 +398,40 @@ selectedTab, setSelectedTab }) => {
                     onPress={() => setSelectedTab(constants.
                     screens.notification)}
                 />
-            </View>
-            </View>
+                <TabButton
+                    label={constants.screens.profile}
+                    icon={icons.profile}
+                    isFocused={selectedTab === constants.
+                    screens.profile}
+                    outerContainerStyle={profileFlexStyle}
+                    innerContainerStyle={profileColorStyle}
+                    onPress={() => setSelectedTab(constants.
+                    screens.profile)}
+                /> 
+                 {/* <TabButton
+                    label={constants.screens.search}
+                    icon={icons.search}
+                    isFocused={selectedTab === constants.
+                    screens.search}
+                    outerContainerStyle={searchFlexStyle}
+                    innerContainerStyle={searchColorStyle}
+                    onPress={() => setSelectedTab(constants.
+                    screens.search)}
+                />  */}
+                 
+                 {/* <TabButton
+                    label={constants.screens.favourite}
+                    icon={icons.favourite}
+                    isFocused={selectedTab === constants.
+                    screens.favourite}
+                    outerContainerStyle={favouriteFlexStyle}
+                    innerContainerStyle={favouriteColorStyle}
+                    onPress={() => setSelectedTab(constants.
+                    screens.favourite)}
+                />  */}
+                 
+            </View> 
+            </View> 
         </Animated.View>
     )
 }

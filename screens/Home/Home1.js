@@ -7,7 +7,7 @@ import {
     TextInput,
     FlatList,
     StatusBar,
-    StyleSheet
+    
 } from 'react-native';
 import FilterModal from "./FilterModal";
 import {
@@ -35,7 +35,26 @@ const Section = ({title, onPress, children }) => {
                 backgroundColor="#61dafb"
             />
             {/* Header */}
-            
+            {/* <View
+                style={{
+                    flexDirection: 'row',
+                    marginHorizontal: SIZES.padding,
+                    marginTop: 30,
+                    marginBottom: 20,
+                }}
+            >
+                <Text style={{ flex: 1, ...FONTS.h1}}>
+                    {title}
+                </Text>
+
+            <TouchableOpacity
+                onPress={onPress}
+            >
+                <Text style={{color: COLORS.primary, ...FONTS.body3}}>
+                    Show All
+                </Text>
+            </TouchableOpacity>
+        </View> */}
             
         {/* content */}
         {children}
@@ -49,15 +68,15 @@ const Home = ({navigation,
 
     
     const [selectedCategoryId, setSelectedCategoryId] = React.useState(1)
-    const [selectedMenuType, setSelectedMenuType] = React.useState(1)
-    const [popular, setPopular] = React.useState([])
-    const [ recommends, setRecommends] = React.useState([])
+    // const [selectedMenuType, setSelectedMenuType] = React.useState(1)
+    // const [popular, setPopular] = React.useState([])
+    // const [ recommends, setRecommends] = React.useState([])
     const [menuList, setMenuList] = React.useState([])
     
     const [showFilterModal, setShowFilterModal] = React.useState(false)
 
     React.useEffect(() => {
-        handleChangeCategory(selectedCategoryId, selectedMenuType )
+        //handleChangeCategory(selectedCategoryId, selectedMenuType )
     }, [])
 
     // Handler
@@ -79,7 +98,7 @@ const Home = ({navigation,
         // setRecommends(selectedRecommend?.list.filter(a => a.categories.includes(categoryId)))
 
         // Set the menu based on the categoryId
-        // setMenuList(selectedMenu?.list.filter(a => a.categories.includes(categoryId)))
+        setMenuList(selectedMenu?.list.filter(a => a.categories.includes(categoryId)))
     }
 
     // Render
@@ -96,6 +115,7 @@ function renderSearch() {
                 }}
             >
                 
+            
         <View
             style={{
                 flexDirection: 'row',
@@ -139,11 +159,10 @@ function renderSearch() {
                         width: 20,
                         tintColor: COLORS.black
                     }}
-                />
-                 
+                /> 
+            
             </TouchableOpacity>    
         </View>
-        
         <TouchableOpacity
             // style={{
             //     justifyContent: 'space-around',
@@ -151,215 +170,203 @@ function renderSearch() {
             //         marginVertical: SIZES.dyes,
             //         marginRight: 15
             // }}
-            onPress={() =>navigation.navigate("Form")}
+            onPress={() => navigation.navigate("CartTab")}
         >
         <Ionicon name="add-circle-outline" size={45} color={COLORS.black}/>
         </TouchableOpacity>
         </SafeAreaView>
         
-
-        
     )
 }
 
-// const styles = StyleSheet.create({
-//     top: {
-//         flex: 1,
-//         backgroundColor: "pink",
-//         borderWidth: 5,
-//         borderBottomLeftRadius: 20,
-//         borderBottomRightRadius: 20,
-//         // flexGrow: "100%"
-//       },
-// })
-// function renderDetails() {
-//     return (
-//         <View
-//             style={{
-//                 marginTop: SIZES.radius,
-//                 marginBottom: SIZES.padding,
-//                 paddingHorizontal: SIZES.padding
-//             }}
-//         >
-//             {/* Food Card */}
-//             <View
-//                 style={{
-//                     height: 190,
-//                     borderRadius: 15,
-//                     backgroundColor: COLORS.lightGray2
-//                 }}
-//             >
-//                 {/* Calories & Favourite */}
-//                 <View
-//                     style={{
-//                         flexDirection: 'row',
-//                         justifyContent: 'space-between',
-//                         marginTop: SIZES.base,
-//                         paddingHorizontal: SIZES.radius
-//                     }}
-//                 >
-//                     {/* Calories */}
-//                     <View
-//                         style={{
-//                             flexDirection: 'row'
-//                         }}
-//                     >
-//                         <Image 
-//                             source={icons.calories}
-//                             style={{
-//                                 width: 30,
-//                                 height: 30
-//                             }}
-//                         />
+function renderDetails() {
+    return (
+        <View
+            style={{
+                marginTop: SIZES.radius,
+                marginBottom: SIZES.padding,
+                paddingHorizontal: SIZES.padding
+            }}
+        >
+            {/* Food Card */}
+            <View
+                style={{
+                    height: 190,
+                    borderRadius: 15,
+                    backgroundColor: COLORS.lightGray2
+                }}
+            >
+                {/* Calories & Favourite */}
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        marginTop: SIZES.base,
+                        paddingHorizontal: SIZES.radius
+                    }}
+                >
+                    {/* Calories */}
+                    <View
+                        style={{
+                            flexDirection: 'row'
+                        }}
+                    >
+                        <Image 
+                            source={icons.calories}
+                            style={{
+                                width: 30,
+                                height: 30
+                            }}
+                        />
 
-//                         <Text
-//                             style={{
-//                                 color: COLORS.darkGray2,
-//                                 ...FONTS.body4
-//                             }}
-//                         >
-//                             {foodItem?.calories} calories
-//                         </Text>
-//                     </View>
-//                     {/* Favourite */}
-//                     <Image 
-//                         source={icons.love}
-//                         style={{
-//                             width: 20,
-//                             height: 20,
-//                             tintColor: foodItem?.isFavourite ? COLORS.primary : COLORS.gray
-//                         }}
-//                     />
-//                 </View>
-//                 {/* Food Image */}
-//                 <Image 
-//                     source={foodItem?.image}
-//                     resizeMode="contain"
-//                     style={{
-//                         height: 170,
-//                         width: '100%'
-//                     }}
-//                 />
-//             </View>
-//             {/* Food Info */}
-//             <View
-//                 style={{
-//                     marginTop: SIZES.padding
-//                 }}
-//             >
+                        <Text
+                            style={{
+                                color: COLORS.darkGray2,
+                                ...FONTS.body4
+                            }}
+                        >
+                            {foodItem?.calories} calories
+                        </Text>
+                    </View>
+                    {/* Favourite */}
+                    <Image 
+                        source={icons.love}
+                        style={{
+                            width: 20,
+                            height: 20,
+                            tintColor: foodItem?.isFavourite ? COLORS.primary : COLORS.gray
+                        }}
+                    />
+                </View>
+                {/* Food Image */}
+                <Image 
+                    source={foodItem?.image}
+                    resizeMode="contain"
+                    style={{
+                        height: 170,
+                        width: '100%'
+                    }}
+                />
+            </View>
+            {/* Food Info */}
+            <View
+                style={{
+                    marginTop: SIZES.padding
+                }}
+            >
 
-//                 {/* Name & description */}
-//                 <Text
-//                     style={{
-//                         ...FONTS.h1 
-//                     }} 
-//                 >
-//                     {foodItem?.name}
-//                 </Text>
-//                 <Text
-//                     style={{
-//                         marginTop: SIZES.base,
-//                         color: COLORS.darkGray,
-//                         textAlign: 'justify',
-//                         ...FONTS.body3
-//                     }}
-//                 >
-//                     {foodItem?.description}
-//                 </Text>
+                {/* Name & description */}
+                <Text
+                    style={{
+                        ...FONTS.h1 
+                    }} 
+                >
+                    {foodItem?.name}
+                </Text>
+                <Text
+                    style={{
+                        marginTop: SIZES.base,
+                        color: COLORS.darkGray,
+                        textAlign: 'justify',
+                        ...FONTS.body3
+                    }}
+                >
+                    {foodItem?.description}
+                </Text>
                 
-//                 {/* Ratings, Duration & Shipping */}
-//                 <View
-//                     style={{
-//                         flexDirection: 'row',
-//                         marginTop: SIZES.padding
-//                     }}
-//                 >
-//                     {/* Ratings */}
-//                     <IconLabel 
-//                         containerStyle={{
-//                             backgroundColor: COLORS.primary
-//                         }}
-//                         icon={icons.star}
-//                         label="4.5"
-//                         labelStyle={{
-//                             color: COLORS.white
-//                         }}
-//                     /> 
-//                     {/* Duration */}
-//                     <IconLabel 
-//                         containerStyle={{
-//                             marginLeft: SIZES.radius,
-//                             paddingHorizontal: 0
-//                         }}
-//                         icon={icons.star}
-//                         iconStyle={{
-//                             tintColor: COLORS.black
-//                         }}
-//                         label="30 Mins"
-//                     />
-//                     {/* Shipping */} 
-//                     <IconLabel 
-//                         containerStyle={{
-//                             marginLeft: SIZES.radius,
-//                             paddingHorizontal: 0
-//                         }}
-//                         icon={icons.dollar}
-//                         iconStyle={{
-//                             tintColor: COLORS.black
-//                         }}
-//                         label="Free Shipping"
+                {/* Ratings, Duration & Shipping */}
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        marginTop: SIZES.padding
+                    }}
+                >
+                    {/* Ratings */}
+                    <IconLabel 
+                        containerStyle={{
+                            backgroundColor: COLORS.primary
+                        }}
+                        icon={icons.star}
+                        label="4.5"
+                        labelStyle={{
+                            color: COLORS.white
+                        }}
+                    /> 
+                    {/* Duration */}
+                    <IconLabel 
+                        containerStyle={{
+                            marginLeft: SIZES.radius,
+                            paddingHorizontal: 0
+                        }}
+                        icon={icons.star}
+                        iconStyle={{
+                            tintColor: COLORS.black
+                        }}
+                        label="30 Mins"
+                    />
+                    {/* Shipping */} 
+                    <IconLabel 
+                        containerStyle={{
+                            marginLeft: SIZES.radius,
+                            paddingHorizontal: 0
+                        }}
+                        icon={icons.dollar}
+                        iconStyle={{
+                            tintColor: COLORS.black
+                        }}
+                        label="Free Shipping"
 
-//                     />
-//                 </View>
-//                 {/* SIZES */}
-//                  <View
-//                     style={{
-//                         flexDirection: 'row',
-//                         marginTop: SIZES.padding,
-//                         alignItems: 'center'
-//                     }}
-//                 >
-//                     <Text
-//                         style={{
-//                             ...FONTS.h3 
-//                         }}
-//                     >
-//                         SIZES:
-//                     </Text>
-//                      <View
-//                         style={{
-//                             flexDirection: 'row',   
-//                             flexWrap: 'wrap',
-//                             marginLeft: SIZES.padding
-//                         }}
-//                     >
-//                         {dummyData.sizes.map((item, index) => {
-//                             return (
-//                                 <TextButton 
-//                                     key={`Sizes-${index}`}
-//                                     buttonContainerStyle={{
-//                                         width: 55,
-//                                         height: 55,
-//                                         margin: SIZES.base,
-//                                         borderRadius: SIZES.radius,
-//                                         borderColor: selectedSize == item.id ? COLORS.primary : COLORS.gray2,
-//                                         backgroundColor: selectedSize == item.id? COLORS.primary : null
-//                                     }}
-//                                     label={item.label}
-//                                     labelStyle={{
-//                                         color: selectedSize == item.id ? COLORS.white : COLORS.gray2,
-//                                         ...FONTS.body2
-//                                     }}
-//                                     onPress={() => setSelectedSize(item.id)}
-//                                  />
-//                             )
-//                         })}
-//                     </View> 
-//                 </View> 
-//             </View>
-//         </View>
-//     )
-// } 
+                    />
+                </View>
+                {/* SIZES */}
+                 <View
+                    style={{
+                        flexDirection: 'row',
+                        marginTop: SIZES.padding,
+                        alignItems: 'center'
+                    }}
+                >
+                    <Text
+                        style={{
+                            ...FONTS.h3 
+                        }}
+                    >
+                        SIZES:
+                    </Text>
+                     <View
+                        style={{
+                            flexDirection: 'row',   
+                            flexWrap: 'wrap',
+                            marginLeft: SIZES.padding
+                        }}
+                    >
+                        {dummyData.sizes.map((item, index) => {
+                            return (
+                                <TextButton 
+                                    key={`Sizes-${index}`}
+                                    buttonContainerStyle={{
+                                        width: 55,
+                                        height: 55,
+                                        margin: SIZES.base,
+                                        borderRadius: SIZES.radius,
+                                        borderColor: selectedSize == item.id ? COLORS.primary : COLORS.gray2,
+                                        backgroundColor: selectedSize == item.id? COLORS.primary : null
+                                    }}
+                                    label={item.label}
+                                    labelStyle={{
+                                        color: selectedSize == item.id ? COLORS.white : COLORS.gray2,
+                                        ...FONTS.body2
+                                    }}
+                                    onPress={() => setSelectedSize(item.id)}
+                                 />
+                            )
+                        })}
+                    </View> 
+                </View> 
+            </View>
+        </View>
+    )
+} 
 
     // function renderMenuType(){
     //     return (
@@ -594,10 +601,9 @@ function renderSearch() {
         <View
             style={{
                 flex: 1,
-                backgroundColor: COLORS.white,
+                backgroundColor: COLORS.white
             }}
         >
-        
             {/*Search*/ }
             {renderSearch()}
             {showFilterModal &&
@@ -607,13 +613,12 @@ function renderSearch() {
             
                 />
             }
-            
             {/* List */ }
             <FlatList
                 data={menuList}
                 keyExtractor={(item) => `${item.id}`}
                 showsVerticalScrollIndicator={false}
-                ListHeaderComponent={ 
+                ListHeaderComponent={
                     <View>
                        
 
@@ -621,7 +626,7 @@ function renderSearch() {
                         {renderFoodCategories()}
 
                         {/* Details */}
-                        {/* {renderDetails} */}
+                        {renderDetails}
                         {/* {renderPopularSection()} */}
 
                         {/* RecommendedSection */}
@@ -657,7 +662,6 @@ function renderSearch() {
                     <View style={{ height: 200 }} />
                 }
             />
-            
         </View>
     )
 }
