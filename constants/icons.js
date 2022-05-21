@@ -32,6 +32,9 @@ const star = require("../assets/icons/star.png")
 const wallet = require("../assets/icons/wallet.png")
 const help = require("../assets/icons/help.png")
 const back = require("../assets/icons/back.png")
+const minus = require("../assets/icons/minus.png")
+const plus = require("../assets/icons/plus.png")
+const delete_icon = require("../assets/icons/plus.png")
 
 export default {
     account,
@@ -66,5 +69,8 @@ export default {
     star,
     wallet,
     help,
-    back
+    back,
+    minus,
+    plus,
+    delete_icon
 }

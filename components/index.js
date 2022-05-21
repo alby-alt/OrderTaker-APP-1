@@ -11,12 +11,18 @@ import TwoPointSlider from "./TwoPointSlider";
 import VerticalFoodCard from "./VerticalFoodCard";
 import CardAction from "./CardAction";
 import SubHeader from "./SubHeader";
+import CartQuantityButton from "./CartQuantityButton";
+import StepperInput from "./StepperInput";
+import FooterTotal from "./FooterTotal";
+import LineDivider from "./LineDivider";
+
 
 export {
     CustomSwitch, 
     FormInput,
     TextButton,
     TextIconButton,
+    CartQuantityButton,
     Header,
     HorizontalFoodCard,
     IconButton,
@@ -25,6 +31,9 @@ export {
     CardAction,
     SubHeader,
     FlagBadge,
-    LabeledText
+    LabeledText,
+    StepperInput,
+    FooterTotal,
+    LineDivider
 
 }
