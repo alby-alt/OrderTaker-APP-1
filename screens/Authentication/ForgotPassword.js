@@ -10,6 +10,7 @@ import { AuthLayout } from "../";
 import { FONTS, SIZES, COLORS, icons } from "../../constants";
 import { Header, FormInput, TextButton } from '../../components';
 import { utils } from "../../utils";
+import SignIn from "../Authentication/SignIn";
 
 const ForgotPassword = ({navigation}) => {
 
@@ -77,6 +78,7 @@ const ForgotPassword = ({navigation}) => {
             <TextButton 
                 label="Send Email"
                 disabled={isEnableSendEmail() ? false : true }
+                onPress={() => navigation.navigate("SignIn")}
                 buttonContainerStyle={{
                     height: 55,
                     alignItems: 'center',
@@ -85,7 +87,7 @@ const ForgotPassword = ({navigation}) => {
                     backgroundColor: isEnableSendEmail() ? COLORS.primary : COLORS.transparentPrimary,
                     // backgroundColor: COLORS.primary
                 }}
-                onPress={() => navigation.goBack()}
+                
             /> 
 
             <TextButton 
@@ -99,7 +101,7 @@ const ForgotPassword = ({navigation}) => {
                     //backgroundColor: isEnableSendEmail() ?  COLORS.primary : COLORS.transparentPrimary
                     backgroundColor: COLORS.primary
                 }}
-                onPress={() => navigation.goBack()}
+                onPress={() => navigation.navigate("SignIn")}
             /> 
         </AuthLayout>
     )

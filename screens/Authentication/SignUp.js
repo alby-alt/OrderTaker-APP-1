@@ -3,7 +3,8 @@ import {
     View,
     Text,
     TouchableOpacity,
-    Image
+    Image,
+    ScrollView
 } from 'react-native';
 
 import { AuthLayout } from "../";
@@ -11,6 +12,7 @@ import { FONTS, SIZES, COLORS, icons } from "../../constants";
 import { FormInput, TextButton, TextIconButton } from "../../components";
 import { utils } from "../../utils";
 
+import Ionicon from 'react-native-vector-icons/Ionicons';
 const SignUp = ({navigation}) => {
 
     const [email, setEmail] = React.useState("")
@@ -36,12 +38,193 @@ const SignUp = ({navigation}) => {
         }}
         >
             {/* Form Input and Sign Up  */}
-            <View
+            <ScrollView
                 style={{
                     flex: 1,
                     marginTop: SIZES.padding
                 }}
             >
+                <FormInput
+                    label="Name"
+                    containerSyle={{
+                        marginTop: SIZES.radius
+                    }}
+                    onChange={(value) => {
+                        setUsername(value)
+                    }}
+                    errorMsg={usernameError}
+                    appendComponent={
+                        <View
+                            style={{
+                                justifyContent: 'center'
+                            }}
+                        >
+                            {/* <Image 
+                                source={username = "" || 
+                                (username != "" && usernameError
+                                == "") ? icons.correct : icons.
+                                cross}
+                                style={{
+                                    height: 20,
+                                    width: 20,
+                                    tintColor: username == "" ? 
+                                    COLORS.gray : (username != "" &&
+                                    usernameError == "") ?
+                                    COLORS.green : COLORS.red
+                                }}
+                            />  */}
+
+                        </View>
+                    }
+                />
+                <FormInput
+                    label="Last Name"
+                    containerSyle={{
+                        marginTop: SIZES.radius
+                    }}
+                    onChange={(value) => {
+                        setUsername(value)
+                    }}
+                    errorMsg={usernameError}
+                    appendComponent={
+                        <View
+                            style={{
+                                justifyContent: 'center'
+                            }}
+                        >
+                            {/* <Image 
+                                source={username = "" || 
+                                (username != "" && usernameError
+                                == "") ? icons.correct : icons.
+                                cross}
+                                style={{
+                                    height: 20,
+                                    width: 20,
+                                    tintColor: username == "" ? 
+                                    COLORS.gray : (username != "" &&
+                                    usernameError == "") ?
+                                    COLORS.green : COLORS.red
+                                }}
+                            />  */}
+
+                        </View>
+                    }
+                />
+                <FormInput
+                    label="Address"
+                    containerSyle={{
+                        marginTop: SIZES.radius
+                    }}
+                    onChange={(value) => {
+                        setUsername(value)
+                    }}
+                    errorMsg={usernameError}
+                    appendComponent={
+                        <View
+                            style={{
+                                justifyContent: 'center'
+                            }}
+                        >
+                            {/* <Image 
+                                source={username = "" || 
+                                (username != "" && usernameError
+                                == "") ? icons.correct : icons.
+                                cross}
+                                style={{
+                                    height: 20,
+                                    width: 20,
+                                    tintColor: username == "" ? 
+                                    COLORS.gray : (username != "" &&
+                                    usernameError == "") ?
+                                    COLORS.green : COLORS.red
+                                }}
+                            />  */}
+
+                        </View>
+                    }
+                />
+                <View
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-evenly',
+                    }}
+                >
+                    <TouchableOpacity>
+                <FormInput
+                    label="Gender"
+                    placeholder="M/F"
+                    containerSyle={{
+                        marginTop: SIZES.radius
+                    }}
+                    onChange={(value) => {
+                        setUsername(value)
+                    }}
+                    errorMsg={usernameError}
+                    appendComponent={
+                        <View
+                            style={{
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <Ionicon name="chevron-down-circle-outline" size={15}></Ionicon>
+                            {/* <Image 
+                                source={username = "" || 
+                                (username != "" && usernameError
+                                == "") ? icons.correct : icons.
+                                cross}
+                                style={{
+                                    height: 20,
+                                    width: 20,
+                                    tintColor: username == "" ? 
+                                    COLORS.gray : (username != "" &&
+                                    usernameError == "") ?
+                                    COLORS.green : COLORS.red
+                                }}
+                            />  */}
+
+                        </View>
+                    }
+                /> 
+                </TouchableOpacity>
+                <TouchableOpacity>
+                <FormInput
+                    label="Birth Date"
+                    placeholder="M/D/Y"
+                    containerSyle={{
+                        marginTop: SIZES.radius
+                    }}
+                    onChange={(value) => {
+                        setUsername(value)
+                    }}
+                    errorMsg={usernameError}
+                    appendComponent={
+                        <View
+                            style={{
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <Ionicon name="calendar-outline" size={15}></Ionicon>
+                            {/* <Image 
+                                source={username = "" || 
+                                (username != "" && usernameError
+                                == "") ? icons.correct : icons.
+                                cross}
+                                style={{
+                                    height: 20,
+                                    width: 20,
+                                    tintColor: username == "" ? 
+                                    COLORS.gray : (username != "" &&
+                                    usernameError == "") ?
+                                    COLORS.green : COLORS.red
+                                }}
+                            />  */}
+
+                        </View>
+                    }
+                />
+                </TouchableOpacity>
+                </View>
                 <FormInput 
                     label="Email"
                     keyboardType="email-address"
@@ -110,8 +293,41 @@ const SignUp = ({navigation}) => {
                     }
                 />
 
-<FormInput 
+            <FormInput 
                     label="Password"
+                    secureTextEntry={!showPass}
+                    autoCompleteType="password"
+                    containerSyle={{
+                        marginTop: SIZES.radius
+                    }}
+                    onChange={(value) => {
+                        utils.validatePassword(value,
+                            setPasswordError)
+                        setPassword(value)
+                    }}
+                    errorMsg={passwordError}
+                    appendComponent={
+                        <TouchableOpacity
+                            style={{
+                                width: 40,
+                                alignItems: 'flex-end',
+                                justifyContent: 'center',
+                            }}
+                            onPress={() => setShowPass(!showPass)}
+                        >
+                            <Image 
+                                source={showPass ? icons.eye_close : icons.eye}
+                                style={{
+                                    height: 20,
+                                    width: 20,
+                                    tintColor: COLORS.gray
+                                }}
+                            />
+                        </TouchableOpacity>
+                    }
+                />
+                <FormInput 
+                    label="Confirm Password"
                     secureTextEntry={!showPass}
                     autoCompleteType="password"
                     containerSyle={{
@@ -155,7 +371,7 @@ const SignUp = ({navigation}) => {
                         // backgroundColor: isEnableSignUp() ? COLORS.primary
                         // : COLORS.transparentPrimary
                     }}
-                    onPress={() => navigation.navigate("Otp")}
+                    onPress={() => navigation.navigate("SignIn")}
                 />
                 <View
                     style={{
@@ -175,13 +391,13 @@ const SignUp = ({navigation}) => {
                                 color: COLORS.primary,
                                 ...FONTS.h3
                             }}
-                            onPress={() => navigation.goBack()}
+                            onPress={() => navigation.navigate("SignIn")}
                         />
                 </View>
                     
-            </View>
+            </ScrollView>
             {/* Footer */}
-            <View>
+            {/* <View>
             <TextIconButton 
                     containerStyle={{
                         height: 50,
@@ -222,7 +438,7 @@ const SignUp = ({navigation}) => {
                     onPress={() => console.log("Google")}
                 />
             
-            </View>
+            </View> */}
         </AuthLayout>
     )
 }

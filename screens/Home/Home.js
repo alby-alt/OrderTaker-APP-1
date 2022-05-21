@@ -26,6 +26,55 @@ export default function Home({navigation}) {
         handleChangeHomeMenu(selectedMenuId)
     }, [])
 
+// const styles = StyleSheet.create({
+//     top: {
+//         flex: 1,
+//         backgroundColor: "pink",
+//         borderWidth: 5,
+//         borderBottomLeftRadius: 20,
+//         borderBottomRightRadius: 20,
+//         // flexGrow: "100%"
+//       },
+// })
+// function renderDetails() {
+//     return (
+//         <View
+//             style={{
+//                 marginTop: SIZES.radius,
+//                 marginBottom: SIZES.padding,
+//                 paddingHorizontal: SIZES.padding
+//             }}
+//         >
+//             {/* Food Card */}
+//             <View
+//                 style={{
+//                     height: 190,
+//                     borderRadius: 15,
+//                     backgroundColor: COLORS.lightGray2
+//                 }}
+//             >
+//                 {/* Calories & Favourite */}
+//                 <View
+//                     style={{
+//                         flexDirection: 'row',
+//                         justifyContent: 'space-between',
+//                         marginTop: SIZES.base,
+//                         paddingHorizontal: SIZES.radius
+//                     }}
+//                 >
+//                     {/* Calories */}
+//                     <View
+//                         style={{
+//                             flexDirection: 'row'
+//                         }}
+//                     >
+//                         <Image 
+//                             source={icons.calories}
+//                             style={{
+//                                 width: 30,
+//                                 height: 30
+//                             }}
+//                         />
 
 
     function renderHomeMenuList() {

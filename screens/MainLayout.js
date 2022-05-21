@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from "react-native-linear-gradient";
 import { connect } from "react-redux";
 import { setSelectedTab } from "../screens/stores/tab/tabActions";
+import Profile from "../screens/Profile/Profile";
 import {
     Home,
     Menu,
@@ -25,7 +26,8 @@ import {
 import CartTab from "../screens/Cart/CartTab";
 import {
     Header,
-    HorizontalFoodCard
+    HorizontalFoodCard,
+    TextButton
 } from "../components"
 import {
     COLORS,
@@ -233,6 +235,85 @@ function renderSearch() {
                     flexDirection: 'row',
                     marginVertical: SIZES.dyes,
                     marginRight: 15
+    React.useEffect(() => {
+        if (selectedTab === constants.screens.home) { 
+            flatListRef?.current?.scrollToIndex({
+                index: 0,
+                animated: false
+            })
+            homeTabFlex.value = withTiming(4, { duration: 500 })
+            homeTabColor.value = withTiming(COLORS.primary, {
+            duration: 500 })
+        } else {
+            homeTabFlex.value = withTiming(1 , { duration: 500 })
+            homeTabColor.value = withTiming(COLORS.white, {
+            duration: 500 })
+        }
+        if (selectedTab === constants.screens.search) {            flatListRef?.current?.scrollToIndex({
+                index: 1,
+                animated: false
+        })
+            searchTabFlex.value = withTiming(4, { duration: 500 })
+            searchTabColor.value = withTiming(COLORS.primary, {
+            duration: 500 })
+        } else {
+            searchTabFlex.value = withTiming(1 , { duration: 500 })
+            searchTabColor.value = withTiming(COLORS.white, {
+            duration: 500 })
+        }
+        if (selectedTab === constants.screens.profile) {            flatListRef?.current?.scrollToIndex({
+                index: 2,
+                animated: false
+            })
+            profileTabFlex.value = withTiming(4, { duration: 500 })
+            profileTabColor.value = withTiming(COLORS.primary, {
+            duration: 500 })
+        } else {
+            profileTabFlex.value = withTiming(1 , { duration: 500 })
+            profileTabColor.value = withTiming(COLORS.white, {
+            duration: 500 })
+        }
+        if (selectedTab === constants.screens.favourite) {            flatListRef?.current?.scrollToIndex({
+                index: 3,
+                animated: false
+            })
+            favouriteTabFlex.value = withTiming(4, { duration: 500 })
+            favouriteTabColor.value = withTiming(COLORS.primary, {
+            duration: 500 })
+        } else {
+            favouriteTabFlex.value = withTiming(1 , { duration: 500 })
+            favouriteTabColor.value = withTiming(COLORS.white, {
+            duration: 500 })
+        }
+        if (selectedTab === constants.screens.notification) {            flatListRef?.current?.scrollToIndex({
+                index: 4,
+                animated: false
+            })
+            notificationTabFlex.value = withTiming(4, { duration: 500 })
+            notificationTabColor.value = withTiming(COLORS.primary, {
+            duration: 500 })
+        } else {
+            notificationTabFlex.value = withTiming(1 , { duration: 500 })
+            notificationTabColor.value = withTiming(COLORS.white, {
+            duration: 500 })
+        }
+    }, [selectedTab])
+    return (
+        
+        <Animated.View
+            style={{
+                flex: 1,
+                backgroundColor: COLORS.white,
+                ...drawerAnimationStyle
+            }}
+        >
+            {/* Header */}
+            {/* <Header
+                containerStyle={{
+                    height: 50,
+                    paddingHorizontal: SIZES.padding,
+                    marginTop: 40,
+                    alignItem: 'center'
                 }}
             >
                 
@@ -468,12 +549,52 @@ function renderMainContent() {
                  {selectedTab == constants.screens.
                                 menu && <Menu />}
                  {selectedTab == constants.screens.account && <MyAccount />}
+            {/* Content */}
+
+            
+            <View
+                style={{
+                    flex: 1,
+                }}
+            >  
+                <FlatList
+                    ref={flatListRef}
+                    horizontal
+                    scrollEnabled={false}
+                    pagingEnabled
+                    snapToAlignment='center'
+                    snapToInterval={SIZES.width}
+                    showsHorizontalScrollIndicator={false}
+                    data={constants.bottom_tabs}
+                    keyExtractor={item => `${item.id}`}
+                    renderItem={({ item, index }) => {
+                        return (
+                            <View
+                                style={{
+                                  height: SIZES.height,
+                                    width: SIZES.width,
+                                }}
+                            >
+                                {item.label == constants.screens.
+                                home && <Home />}
+                                {/* {item.label == constants.screens.
+                                search && <Search />} */}
+                                {item.label == constants.screens.
+                                profile && <Profile />}
+                                {/* {item.label == constants.screens.
+                                favourite && <Favourite />} */}
+                                {item.label == constants.screens.
+                                notification && <Notification />}
+                            </View>
+                        )
+                    }} 
+                />
             </View>
 
             <View
             style={{
-                height: 80,
-                justifyContent: 'center'                
+                height: 100, 
+                justifyContent: 'flex-end',
             }}
             >
             {/* Shadow */}
@@ -495,47 +616,71 @@ function renderMainContent() {
                 }}
             />
             {/* Tabs */}
-                <View 
-                    style={{
-                        flex: 1,
-                        flexDirection: 'row',
-                        paddingHorizontal: SIZES.radius,
-                        paddingBottom: 5,
-                        borderTopLeftRadius: 20,
-                        borderTopRightRadius: 20,
-                        backgroundColor: COLORS.white
-                    }}
-                >
-                      <TabButton
-                        label={constants.screens.menu}
-                        icon={icons.menu}
-                        isFocused={selectedTab == constants.screens.menu}
-                        outerContainerStyle={menuFlexStyle}
-                        innerContainerStyle={menuColorStyle}
-                        onPress={() => setSelectedTab(constants.screens.menu)}
-                    />
-                    <TabButton
-                        label={constants.screens.home}
-                        icon={icons.coupon}
-                        isFocused={selectedTab == constants.screens.home}
-                        outerContainerStyle={homeFlexStyle}
-                        innerContainerStyle={homeColorStyle}
-                        onPress={() => setSelectedTab(constants.screens.home)}
-                    />
-                     
-                            <TabButton
-                        label={constants.screens.account}
-                        icon={icons.account4}
-                        isFocused={selectedTab == constants.screens.account}
-                        outerContainerStyle={accountFlexStyle}
-                        innerContainerStyle={accountColorStyle}
-                        onPress={() => {
-                            setSelectedTab(constants.screens.account)
-                        }}
-                    />
-                </View>
-            </View>
-
+        <View
+            style={{
+                flex: 1,
+                flexDirection: 'row',
+                paddingHorizontal: SIZES.radius,
+                paddingBottom: 10,
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
+                backgroundColor: COLORS.white
+            }}
+            >
+                <TabButton
+                    label={constants.screens.home}
+                    icon={icons.home}
+                    isFocused={selectedTab === constants.
+                    screens.home}
+                    outerContainerStyle={homeFlexStyle}
+                    innerContainerStyle={homeColorStyle}
+                    onPress={() => setSelectedTab(constants.
+                    screens.home)}
+                />
+                <TabButton
+                    label={constants.screens.notification}
+                    icon={icons.notification}
+                    isFocused={selectedTab === constants.
+                    screens.notification}
+                    outerContainerStyle={notificationFlexStyle}
+                    innerContainerStyle={notificationColorStyle}
+                    onPress={() => setSelectedTab(constants.
+                    screens.notification)}
+                />
+                <TabButton
+                    label={constants.screens.profile}
+                    icon={icons.profile}
+                    isFocused={selectedTab === constants.
+                    screens.profile}
+                    outerContainerStyle={profileFlexStyle}
+                    innerContainerStyle={profileColorStyle}
+                    onPress={() => setSelectedTab(constants.
+                    screens.profile)}
+                /> 
+                 {/* <TabButton
+                    label={constants.screens.search}
+                    icon={icons.search}
+                    isFocused={selectedTab === constants.
+                    screens.search}
+                    outerContainerStyle={searchFlexStyle}
+                    innerContainerStyle={searchColorStyle}
+                    onPress={() => setSelectedTab(constants.
+                    screens.search)}
+                />  */}
+                 
+                 {/* <TabButton
+                    label={constants.screens.favourite}
+                    icon={icons.favourite}
+                    isFocused={selectedTab === constants.
+                    screens.favourite}
+                    outerContainerStyle={favouriteFlexStyle}
+                    innerContainerStyle={favouriteColorStyle}
+                    onPress={() => setSelectedTab(constants.
+                    screens.favourite)}
+                />  */}
+                 
+            </View> 
+            </View> 
         </Animated.View>
     )
 }

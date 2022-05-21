@@ -7,6 +7,8 @@ import HorizontalFoodCard from "./HorizontalFoodCard";
 import IconButton from "./IconButton";
 import TwoPointSlider from "./TwoPointSlider";
 import VerticalFoodCard from "./VerticalFoodCard";
+import CardAction from "./CardAction";
+import SubHeader from "./SubHeader";
 
 export {
     CustomSwitch, 
@@ -17,5 +19,8 @@ export {
     HorizontalFoodCard,
     IconButton,
     TwoPointSlider,
-    VerticalFoodCard
+    VerticalFoodCard,
+    CardAction,
+    SubHeader
+
 }
