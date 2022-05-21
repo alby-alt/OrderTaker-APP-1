@@ -8,11 +8,12 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import { FilterModal } from "../";
 
+
 export default function Home({navigation}) {
     const tabRef = useRef()
     const [selectedMenuId, setSelectedMenuId] = useState(0);
     const [myList, setMyList] = useState([]);
-
+    const [showFilterModal, setShowFilterModal] = React.useState(false)
 
     function handleChangeHomeMenu(menuId) {
         //Find the menu based on the menuTypeId
@@ -199,6 +200,13 @@ export default function Home({navigation}) {
         >
             {/* Search Filter */}
             {renderSearch()}
+            {showFilterModal &&
+            <FilterModal
+                 isVisible={showFilterModal}
+                 onClose={() => setShowFilterModal(false)}
+            
+                />
+            }
          
             {/* Home Menu */}
             {renderHomeMenuList()}
