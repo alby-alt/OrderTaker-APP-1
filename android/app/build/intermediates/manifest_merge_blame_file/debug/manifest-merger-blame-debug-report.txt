@@ -50,8 +50,8 @@
 29-->C:\Users\jaybee\Desktop\systeams\systest\AlbyProjects\OrderTaker-APP\android\app\src\main\AndroidManifest.xml:15:9-41
 30            android:launchMode="singleTask"
 30-->C:\Users\jaybee\Desktop\systeams\systest\AlbyProjects\OrderTaker-APP\android\app\src\main\AndroidManifest.xml:17:9-40
-31            android:windowSoftInputMode="adjustResize" >
-31-->C:\Users\jaybee\Desktop\systeams\systest\AlbyProjects\OrderTaker-APP\android\app\src\main\AndroidManifest.xml:18:9-51
+31            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
+31-->C:\Users\jaybee\Desktop\systeams\systest\AlbyProjects\OrderTaker-APP\android\app\src\main\AndroidManifest.xml:18:9-66
 32            <intent-filter>
 32-->C:\Users\jaybee\Desktop\systeams\systest\AlbyProjects\OrderTaker-APP\android\app\src\main\AndroidManifest.xml:19:9-22:25
 33                <action android:name="android.intent.action.MAIN" />

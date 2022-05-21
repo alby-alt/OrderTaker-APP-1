@@ -433,33 +433,6 @@ function renderOrderCards() {
 
 
 
-function renderMainContent() {
-    return (
-        <View
-        style={{
-            flex: 1            
-        }}
-    >
-        {/* Home Menu */}
-        {renderHomeMenuList()}
-
-        {/* Order Card List */}
-        <HomeContent 
-           setCurrentIndex={(e) => {
-                handleChangeHomeMenu(e)
-            }
-            }
-            currentIndex={selectedMenuId}
-        >
-            {renderOrderCards()}
-        </HomeContent>
-        {/* {renderOrderCards()} */}
-
-    </View>
-    )
-}
-
-    console.log(selectedTab)
     return (
         <Animated.View
         style={{
@@ -469,31 +442,23 @@ function renderMainContent() {
         }}
     >
 
-        {/* Header */}
-        {/* {renderHeader()} */}
-        {/* {renderSearch()} */}
-        {/* Content */}
-            {/* <Home/> */}
-        {/* {renderMainContent()} */}
         <View
                 style={{
                     flex: 1,
                 }}
             >
+
                  {selectedTab == constants.screens.
-                                home && <Home />}
+                                home && <Home navigation={navigation}/>}
                  {selectedTab == constants.screens.
-                                menu && <Menu />}
-                 {selectedTab == constants.screens.account && <MyAccount />}
+                                menu && <Menu navigation={navigation}/>}
+                 {selectedTab == constants.screens.account && <MyAccount navigation={navigation} />}
             {/* Content */}
 
             </View>
-
-          
-
             <View
             style={{
-                height: 100, 
+                height: 80, 
                 justifyContent: 'flex-end',
             }}
             >

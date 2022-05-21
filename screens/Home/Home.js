@@ -9,6 +9,7 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 export default function Home({navigation}) {
     const tabRef = useRef()
     const [selectedMenuId, setSelectedMenuId] = useState(0);
+    const [showFilterModal, setShowFilterModal] = React.useState(false)
     const [myList, setMyList] = useState([]);
 
 
@@ -63,11 +64,11 @@ export default function Home({navigation}) {
 //                     }}
 //                 >
 //                     {/* Calories */}
-//                     <View
-//                         style={{
-//                             flexDirection: 'row'
-//                         }}
-//                     >
+// //                     <View
+// //                         style={{
+// //                             flexDirection: 'row'
+// //                         }}
+// //                     >
 //                         <Image 
 //                             source={icons.calories}
 //                             style={{
@@ -251,7 +252,6 @@ export default function Home({navigation}) {
             >
                 {renderOrderCards()}
             </HomeContent>
-            {renderOrderCards()}
 
         </View>
     )

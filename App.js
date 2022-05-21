@@ -66,6 +66,10 @@ const App = () => {
                     component={SignIn}
                 />
                 <Stack.Screen
+                    name="SignUp"
+                    component={SignUp}
+                />
+                <Stack.Screen
                     name="ForgotPassword"
                     component={ForgotPassword}
                 />
@@ -125,8 +129,7 @@ const App = () => {
                     <Stack.Screen
                     name="TrackDriver"
                     component={TrackDriver}
-                    />            
-                
+                    />           
             </Stack.Navigator>
         </NavigationContainer>
         </Provider>

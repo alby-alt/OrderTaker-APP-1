@@ -25,7 +25,7 @@ import Favourite from "./Favourite/Favourite";
 // import Notification from "./Notification/Notification";
 
 // Menu && Summary
-import Menu from "./Food/Menu";
+// import Menu from "./Food/Menu";
 import Summary from "./Food/Summary";
 
 
@@ -46,7 +46,7 @@ import VerifyOrder from './Home/VerifyOrder';
 import Notification from "./Notification";
 import TrackDriver from './TrackDriver'
 import MyAccount from './MyAccount';
-// import Menu from './Menu/Menu';
+import Menu from './Menu/Menu';
 
 
 export {
