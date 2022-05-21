@@ -1,3 +1,9 @@
+const account = require("../assets/icons/account.png")
+const account1 = require("../assets/icons/account1.png")
+const account2 = require("../assets/icons/account2.png")
+const account3 = require("../assets/icons/account3.png")
+const account4 = require("../assets/icons/account4.png")
+
 const coupon = require("../assets/icons/coupon.png")
 const cross = require("../assets/icons/cross.png")
 const cart = require("../assets/icons/cart.png")
@@ -28,6 +34,11 @@ const help = require("../assets/icons/help.png")
 const back = require("../assets/icons/back.png")
 
 export default {
+    account,
+    account1,
+    account2,
+    account3,
+    account4,
     coupon,
     cross,
     cart,

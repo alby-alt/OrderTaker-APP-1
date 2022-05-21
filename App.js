@@ -16,12 +16,21 @@ import {
     ForgotPassword,
     Otp,
     Home,
-    CartTab,
-    Form
+    MerchantDetails,
+    TypesAndPricing,
+    ServicesProvided,
+    TermsAndCondition,
+    Success,
+    MainLayout,
+    VerifyOrder,
+    Notification,
+    Menu,
+    TrackDriver,
+    OrderDetails,
+    MyAccount
 } from './screens'
 
-// import CartTab from "./screens/Cart/CartTab.js";
-import MainLayout from "./screens/MainLayout";
+import CartTab from "./screens/Cart/CartTab.js";
 
 // import { createStore, applyMiddleware} from "redux";
 import { Provider } from "react-redux";
@@ -74,14 +83,51 @@ const App = () => {
                     name="MainLayout"
                     component={CustomDrawer}
                 /> */}
+         {/* Setup */}
+         <Stack.Screen
+                    name="MerchantDetails"
+                    component={MerchantDetails}
+                />
                 <Stack.Screen
+                    name="ServicesProvided"
+                    component={ServicesProvided}
+                />
+                <Stack.Screen
+                    name="TypesAndPricing"
+                    component={TypesAndPricing}
+                />
+                  <Stack.Screen
+                    name="Success"
+                    component={Success}
+                />
+                <Stack.Screen
+                    name="TermsAndCondition"
+                    component={TermsAndCondition}
+                />
+                 <Stack.Screen
                     name="Home"
-                    component={CustomDrawer}
+                    component={MainLayout}
                 />
-                <Stack.Screen 
-                    name="SignUp"
-                    component={SignUp}
-                />
+                    <Stack.Screen
+                    name="OrderDetails"
+                    component={OrderDetails}
+                    />
+                     <Stack.Screen
+                    name="VerifyOrder"
+                    component={VerifyOrder}
+                    />
+                     <Stack.Screen
+                    name="Menu"
+                    component={Menu}
+                    />
+                     <Stack.Screen
+                    name="MyAccount"
+                    component={MyAccount}
+                    />
+                    <Stack.Screen
+                    name="TrackDriver"
+                    component={TrackDriver}
+                    />            
                 
             </Stack.Navigator>
         </NavigationContainer>
