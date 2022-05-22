@@ -274,6 +274,37 @@ const orders = [
     },
 ]
 
+const operatingHours = [
+    {
+        id: 0,
+        label: "Mon"
+    },
+    {
+        id: 1,
+        label: "Tue"
+    },
+    {
+        id: 2,
+        label: "Wed"
+    },
+    {
+        id: 3,
+        label: "Thu"
+    },
+    {
+        id: 4,
+        label: "Fri"
+    },
+    {
+        id: 5,
+        label: "Sat"
+    },
+    {
+        id: 6,
+        label: "Sun"
+    }
+]
+
 export default {
     homeMenu,
     onboarding_screens,
@@ -283,5 +314,6 @@ export default {
     ratings,
     tags,
     orders,
-    orderDetails
+    orderDetails,
+    operatingHours
 }

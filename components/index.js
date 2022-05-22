@@ -15,7 +15,7 @@ import CartQuantityButton from "./CartQuantityButton";
 import StepperInput from "./StepperInput";
 import FooterTotal from "./FooterTotal";
 import LineDivider from "./LineDivider";
-
+import ProfilePhotoContainer from "./ProfilePhotoContainer";
 
 export {
     CustomSwitch, 
@@ -34,6 +34,6 @@ export {
     LabeledText,
     StepperInput,
     FooterTotal,
-    LineDivider
-
+    LineDivider,
+    ProfilePhotoContainer
 }

@@ -31,6 +31,7 @@ export const COLORS = {
 };
 export const SIZES = {
     // global sizes
+    semiBase: 4,
     base: 8,
     font: 14,
     radius: 12,

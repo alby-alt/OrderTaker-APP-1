@@ -9,7 +9,7 @@ import { FilterModal } from "../";
 
 import { SwipeListView } from 'react-native-swipe-list-view'; 
 
-const Menu = () => {
+const Menu = ({navigation}) => {
 
     const [showFilterModal, setShowFilterModal] = React.useState(false)
 
@@ -86,6 +86,7 @@ const Menu = () => {
             <TouchableOpacity>
             <CartQuantityButton
                         quantity={3}
+                        onPress={()=> navigation.navigate("CartTab")}
             />
             </TouchableOpacity>
             </SafeAreaView>
@@ -177,7 +178,6 @@ const Menu = () => {
         )
     }
 
-
     return (
         <View
             style={{
@@ -192,7 +192,6 @@ const Menu = () => {
             <FilterModal
                  isVisible={showFilterModal}
                  onClose={() => setShowFilterModal(false)}
-            
                 />
             }
             {/* Cart List */}
@@ -203,7 +202,7 @@ const Menu = () => {
             subTotal={37.97}
             shippingFee={0.00}
             total={37.97}
-            // onPress={() => navigation.navigate("MyCard")}
+            // onPress={() => navigation.navigate("CartTab")}
             />
         </View>
     )

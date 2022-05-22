@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import { COLORS, FONTS, SIZES, icons } from "../constants";
- const CartQuantityButton = ({ containerStyle, iconStyle, quantity, onPress}) => {
+ const CartQuantityButton = ({ navigation ,containerStyle, iconStyle, quantity, onPress}) => {
      return (
          <TouchableOpacity
             style={{
@@ -30,6 +30,7 @@ import { COLORS, FONTS, SIZES, icons } from "../constants";
                     tintColor: COLORS.black,
                     ...iconStyle
                 }}
+                onPress={() => navigation.navigate("CartTab")}
             /> 
             <View
                 style={{
