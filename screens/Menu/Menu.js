@@ -1,15 +1,47 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, FlatList, TextInput, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, TextInput, Image, StyleSheet, Animated } from 'react-native';
 import { SIZES, FONTS, COLORS, constants, icons, dummyData } from '../../constants';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import { CartQuantityButton, StepperInput, IconButton, FooterTotal} from "../../components";
+import { CartQuantityButton, StepperInput, IconButton, FooterTotal, Header} from "../../components";
 
 import { FilterModal } from "../";
 
 import { SwipeListView } from 'react-native-swipe-list-view'; 
 
-const Menu = ({navigation}) => {
+
+// const Section = ({title, onPress, children }) => {
+//     return (
+//         <View>
+//             {/* Header */}
+//             <View
+//                 style={{
+//                     flexDirection: 'row',
+//                     marginHorizontal: SIZES.padding,
+//                     marginTop: 30,
+//                     marginBottom: 20
+//                 }}
+//             >
+//                 <Text style={{ flex: 1, ...FONTS.h3}}>
+//                     {title}
+//                 </Text>
+
+//             <TouchableOpacity
+//                 onPress={onPress}
+//             >
+//                 <Text style={{color: COLORS.primary, ...FONTS.body3}}>
+//                     Show All
+//                 </Text>
+//             </TouchableOpacity>
+//         </View>
+            
+//         {/* content */}
+//         {/* {children} */}
+//         </View>
+//     )
+// }
+
+const Menu = ({navigation, drawerAnimationStyle, }) => {
 
     const [showFilterModal, setShowFilterModal] = React.useState(false)
 
@@ -22,6 +54,66 @@ const Menu = ({navigation}) => {
     }
 
     const [myCartList, setMyCartList] = React.useState(dummyData.myCart)
+
+    function renderHeader() {
+        return (
+            <Animated.View
+            style={{
+                flex: 1,
+                backgroundColor: COLORS.white,
+                ...drawerAnimationStyle
+            }}
+        >
+            <Header
+                containerStyle={{
+                    height: 50,
+                    paddingHorizontal: SIZES.padding,
+                    marginTop: 40,
+                    alignItem: 'center'
+                }}
+            // title={selectedTab.toUpperCase()}
+                leftComponent={
+                    <TouchableOpacity
+                    style={{
+                        width: 40,
+                        height: 40,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderWidth: 1,
+                        boderColor: COLORS.gray2,
+                        borderRadius: SIZES.radius
+                    }}
+                    onPress={() => navigation.openDrawer()}
+                    
+                >
+                    <Image
+                            source={icons.menu} 
+                        />
+                    </TouchableOpacity>
+                }
+                rightComponent={
+                    <TouchableOpacity
+                        style={{
+                            borderRadius: SIZES.radius,
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Image
+                            source={dummyData?.myProfile?.profile_image}
+                            style={{
+                                width: 40,
+                                height: 40,
+                                borderRadius: SIZES.radius
+                            }}
+                        />      
+                    </TouchableOpacity>
+                }
+            
+            />
+            </Animated.View>
+        )
+    }
 
     function renderSearch() {
         return (
@@ -83,12 +175,12 @@ const Menu = ({navigation}) => {
                 
                 </TouchableOpacity>    
             </View>
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
             <CartQuantityButton
                         quantity={3}
                         onPress={()=> navigation.navigate("CartTab")}
             />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             </SafeAreaView>
             
         )
@@ -186,6 +278,8 @@ const Menu = ({navigation}) => {
                 // justifyContent: 'center'
             }}
         >
+            {/* Header */}
+            {renderHeader()}
             {/* Search Input */}
             {renderSearch()}
             {showFilterModal &&
@@ -195,7 +289,7 @@ const Menu = ({navigation}) => {
                 />
             }
             {/* Cart List */}
-            {renderCartList()}
+            {/* {renderCartList()} */}
 
             {/* Footer */}
             <FooterTotal 

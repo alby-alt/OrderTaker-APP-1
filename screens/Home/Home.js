@@ -39,6 +39,46 @@ export default function Home({navigation}) {
 //         // flexGrow: "100%"
 //       },
 // })
+// function renderDetails() {
+//     return (
+//         <View
+//             style={{
+//                 marginTop: SIZES.radius,
+//                 marginBottom: SIZES.padding,
+//                 paddingHorizontal: SIZES.padding
+//             }}
+//         >
+//             {/* Food Card */}
+//             <View
+//                 style={{
+//                     height: 190,
+//                     borderRadius: 15,
+//                     backgroundColor: COLORS.lightGray2
+//                 }}
+//             >
+//                 {/* Calories & Favourite */}
+//                 <View
+//                     style={{
+//                         flexDirection: 'row',
+//                         justifyContent: 'space-between',
+//                         marginTop: SIZES.base,
+//                         paddingHorizontal: SIZES.radius
+//                     }}
+//                 >
+//                     {/* Calories */}
+//                     <View
+//                         style={{
+//                             flexDirection: 'row'
+//                         }}
+//                     >
+//                         <Image 
+//                             source={icons.calories}
+//                             style={{
+//                                 width: 30,
+//                                 height: 30
+//                             }}
+//                         />
+
 
     function renderHomeMenuList() {
         return (
@@ -219,7 +259,7 @@ export default function Home({navigation}) {
                 }
                 currentIndex={selectedMenuId}
             >
-                {/* {renderOrderCards()} */}
+                {renderOrderCards()}
             </HomeContent>
             {renderOrderCards()}
 

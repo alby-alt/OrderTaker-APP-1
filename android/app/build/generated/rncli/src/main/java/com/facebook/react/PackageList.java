@@ -27,6 +27,8 @@ import com.zoontek.rnpermissions.RNPermissionsPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 // react-native-safe-area-context
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
+// react-native-screens
+import com.swmansion.rnscreens.RNScreensPackage;
 // react-native-splash-screen
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 // react-native-vector-icons
@@ -84,6 +86,7 @@ public class PackageList {
       new RNPermissionsPackage(),
       new ReanimatedPackage(),
       new SafeAreaContextPackage(),
+      new RNScreensPackage(),
       new SplashScreenReactPackage(),
       new VectorIconsPackage()
     ));

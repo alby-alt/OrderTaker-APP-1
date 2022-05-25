@@ -26,7 +26,8 @@ import {
 import CartTab from "../screens/Cart/CartTab";
 import {
     Header,
-    HorizontalFoodCard
+    HorizontalFoodCard,
+    TextButton
 } from "../components"
 import {
     COLORS,
@@ -188,7 +189,7 @@ const menuColorStyle = useAnimatedStyle(() => {
 
 
 useEffect(() => {
-    setSelectedTab(constants.screens.home)
+    setSelectedTab(constants.screens.menu)
 }, [])
 
 
@@ -225,15 +226,31 @@ useEffect(() => {
 
 }, [selectedTab])
 
+
+
+
 function renderSearch() {
     return (
+ 
+
         <SafeAreaView
-                style={{
-                    // flex: 1,
-                    justifyContent: 'space-around',
-                    flexDirection: 'row',
-                    marginVertical: SIZES.dyes,
-                    marginRight: 15
+        style={{
+            // flex: 1,
+            justifyContent: 'space-around',
+            flexDirection: 'row',
+            marginVertical: SIZES.dyes,
+            marginRight: 15
+
+        }}
+        >
+      
+            {/* Header */}
+            {/* <Header
+                containerStyle={{
+                    height: 50,
+                    paddingHorizontal: SIZES.padding,
+                    marginTop: 40,
+                    alignItem: 'center'
                 }}
             >
                 
@@ -284,7 +301,6 @@ function renderSearch() {
                 /> 
             
             </TouchableOpacity>    
-        </View>
         <TouchableOpacity>
         <Ionicon name="add-circle-outline" size={45} color={COLORS.darkGray}/>
         </TouchableOpacity>
@@ -469,12 +485,16 @@ function renderMainContent() {
                  {selectedTab == constants.screens.
                                 menu && <Menu />}
                  {selectedTab == constants.screens.account && <MyAccount />}
+            {/* Content */}
+
             </View>
+
+          
 
             <View
             style={{
-                height: 80,
-                justifyContent: 'center'                
+                height: 100, 
+                justifyContent: 'flex-end',
             }}
             >
             {/* Shadow */}
