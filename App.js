@@ -106,10 +106,10 @@ const App = () => {
                     name="TermsAndCondition"
                     component={TermsAndCondition}
                 />
-                 <Stack.Screen
+                 {/* <Stack.Screen
                     name="Home"
                     component={MainLayout}
-                />
+                /> */}
                     <Stack.Screen
                     name="OrderDetails"
                     component={OrderDetails}

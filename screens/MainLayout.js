@@ -491,14 +491,14 @@ function renderMainContent() {
 
           
 
-            <View
+            {/* <View
             style={{
                 height: 100, 
                 justifyContent: 'flex-end',
             }}
-            >
+            > */}
             {/* Shadow */}
-            <LinearGradient
+            {/* <LinearGradient
                 start={{x: 0, y: 0}}
                 end={{x: 0, y: 4}}
                 colors={[
@@ -514,9 +514,9 @@ function renderMainContent() {
                     borderTopLeftRadius: 15,
                     borderTopRightRadius: 15
                 }}
-            />
+            /> */}
             {/* Tabs */}
-                <View 
+                {/* <View 
                     style={{
                         flex: 1,
                         flexDirection: 'row',
@@ -555,7 +555,7 @@ function renderMainContent() {
                         }}
                     />
                 </View>
-            </View>
+            </View> */}
 
         </Animated.View>
     )
