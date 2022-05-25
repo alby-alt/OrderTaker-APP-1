@@ -175,7 +175,7 @@ const SignIn =({navigation}) => {
                 {/* Sign In */}
                 <TextButton 
                     label="Sign In"
-                    onPress={() => navigation.navigate("Home")}
+                    onPress={() => navigation.navigate("Menu")}
                     // disabled={isEnableSignIn() ? false : true}
                     buttonContainerStyle={{
                         height: 55,

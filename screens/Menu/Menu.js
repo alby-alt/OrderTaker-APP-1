@@ -3,11 +3,13 @@ import { View, Text, TouchableOpacity, FlatList, TextInput, Image, StyleSheet, A
 import { SIZES, FONTS, COLORS, constants, icons, dummyData } from '../../constants';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import { CartQuantityButton, StepperInput, IconButton, FooterTotal, Header} from "../../components";
+import { CartQuantityButton, StepperInput, IconButton, FooterTotal, Header, TextButton, iconStyle} from "../../components";
 
 import { FilterModal } from "../";
 
 import { SwipeListView } from 'react-native-swipe-list-view'; 
+import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 // const Section = ({title, onPress, children }) => {
@@ -59,7 +61,7 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
         return (
             <Animated.View
             style={{
-                flex: 1,
+                // flex: 1,
                 backgroundColor: COLORS.white,
                 ...drawerAnimationStyle
             }}
@@ -68,10 +70,10 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
                 containerStyle={{
                     height: 50,
                     paddingHorizontal: SIZES.padding,
-                    marginTop: 40,
+                    marginTop: 10,
                     alignItem: 'center'
                 }}
-            // title={selectedTab.toUpperCase()}
+            title="Menu"
                 leftComponent={
                     <TouchableOpacity
                     style={{
@@ -80,14 +82,15 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         borderWidth: 1,
-                        boderColor: COLORS.gray2,
-                        borderRadius: SIZES.radius
+                        boderColor: COLORS.lightGray2,
+                        borderRadius: SIZES.radius,
                     }}
                     onPress={() => navigation.openDrawer()}
                     
                 >
                     <Image
                             source={icons.menu} 
+
                         />
                     </TouchableOpacity>
                 }
@@ -96,17 +99,12 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
                         style={{
                             borderRadius: SIZES.radius,
                             alignItems: 'center',
-                            justifyContent: 'center'
+                            marginTop: -5                            
                         }}
                     >
-                        <Image
-                            source={dummyData?.myProfile?.profile_image}
-                            style={{
-                                width: 40,
-                                height: 40,
-                                borderRadius: SIZES.radius
-                            }}
-                        />      
+                        <CartQuantityButton
+                        quantity={3}
+                        />
                     </TouchableOpacity>
                 }
             
@@ -120,10 +118,10 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
             <SafeAreaView
                     style={{
                         // flex: 1,
-                        justifyContent: 'space-around',
+                        justifyContent: 'flex-start',
                         flexDirection: 'row',
-                        marginVertical: SIZES.dyes,
-                        marginRight: 15
+                        // marginVertical: SIZES.dyes,
+                        // marginRight: 15
                     }}
                 >
                     
@@ -133,7 +131,7 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
                     flexDirection: 'row',
                     height: 45,
                     alignItems: 'center',
-                    width: '80%',
+                    width: '75%',
                     marginHorizontal: SIZES.padding,
                     marginVertical: 4,
                     paddingHorizontal: SIZES.radius,
@@ -175,12 +173,18 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
                 
                 </TouchableOpacity>    
             </View>
-            {/* <TouchableOpacity>
-            <CartQuantityButton
-                        quantity={3}
-                        onPress={()=> navigation.navigate("CartTab")}
-            />
-            </TouchableOpacity> */}
+            <TextButton 
+                            label="Go"
+                            buttonContainerStyle={{
+                                height: 40,
+                                width: 40,
+                                borderRadius: SIZES.radius,
+                                marginTop: 7,
+                                marginHorizontal: -15,
+                                backgroundColor: COLORS.green
+                            }}
+                            onPress={() => navigation.replace("SignIn")}
+                        />
             </SafeAreaView>
             
         )
@@ -192,9 +196,9 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
                 data={myCartList}
                 keyExtractor={item => `${item.id}`}
                 contentContainerStyle={{
-                    marginTop:SIZES.radius,
-                    paddingHorizontal: SIZES.padding,
-                    paddingBottom: SIZES.padding * 2
+                    // marginTop:SIZES.radius,
+                    // paddingHorizontal: SIZES.padding,
+                    // paddingBottom: SIZES.padding * 2
                 }}
                 disableRightSwipe={true}
                 rightOpenValue={-75}
@@ -274,13 +278,19 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
         <View
             style={{
                 flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
                 // alignItems: 'center',
-                // justifyContent: 'center'
+                justifyContent: 'center',
+                backgroundColor: COLORS.white
             }}
         >
+            
             {/* Header */}
             {renderHeader()}
+        
             {/* Search Input */}
+          
             {renderSearch()}
             {showFilterModal &&
             <FilterModal
@@ -288,9 +298,17 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
                  onClose={() => setShowFilterModal(false)}
                 />
             }
+        <ScrollView
+             contentContainerStyle={{
+                // flexGrow: 1,
+                marginTop: 10,
+                paddingHorizontal: SIZES.padding,
+                paddingBottom: SIZES.radius
+            }}
+        >
             {/* Cart List */}
             {/* {renderCartList()} */}
-
+        </ScrollView>
             {/* Footer */}
             <FooterTotal 
             subTotal={37.97}

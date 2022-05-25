@@ -456,14 +456,21 @@ function renderOrderCards() {
             {/* Content */}
 
             </View>
+<<<<<<< HEAD
             <View
+=======
+
+          
+
+            {/* <View
+>>>>>>> f32f88b0f01350d3eee1e9b9f9fee4587f63aaef
             style={{
                 height: 100, 
                 justifyContent: 'flex-end',
             }}
-            >
+            > */}
             {/* Shadow */}
-            <LinearGradient
+            {/* <LinearGradient
                 start={{x: 0, y: 0}}
                 end={{x: 0, y: 4}}
                 colors={[
@@ -479,9 +486,9 @@ function renderOrderCards() {
                     borderTopLeftRadius: 15,
                     borderTopRightRadius: 15
                 }}
-            />
+            /> */}
             {/* Tabs */}
-                <View 
+                {/* <View 
                     style={{
                         flex: 1,
                         flexDirection: 'row',
@@ -520,7 +527,7 @@ function renderOrderCards() {
                         }}
                     />
                 </View>
-            </View>
+            </View> */}
 
         </Animated.View>
     )

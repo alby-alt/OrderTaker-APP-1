@@ -143,7 +143,19 @@ const myCart = [
     {
         ...vegBiryani,
         qty: 1
-    }
+    },
+    {
+        ...wrapSandwich,
+        qty: 1
+    },
+    {
+        ...vegBiryani,
+        qty: 1
+    },{
+        ...vegBiryani,
+        qty: 1
+    },
+    
 ]
 
 // const myCards = [
