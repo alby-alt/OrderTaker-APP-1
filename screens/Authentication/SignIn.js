@@ -214,7 +214,7 @@ const SignIn =({navigation}) => {
                             ...FONTS.h3,
                                                         
                         }}
-                        onPress={() => navigation.navigate("SignUp")}
+                        onPress={() => navigation.navigate("SignUpBD")}
                     /> 
                 </View>
             </View>

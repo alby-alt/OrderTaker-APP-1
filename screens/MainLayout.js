@@ -451,14 +451,14 @@ function renderOrderCards() {
                  {selectedTab == constants.screens.
                                 home && <Home navigation={navigation}/>}
                  {selectedTab == constants.screens.
-                                menu && <Menu navigation={navigation}/>}
-                 {selectedTab == constants.screens.account && <MyAccount navigation={navigation} />}
+                                menu && <Menu />}
+                 {selectedTab == constants.screens.account && <MyAccount />}
             {/* Content */}
 
             </View>
             <View
             style={{
-                height: 80, 
+                height: 100, 
                 justifyContent: 'flex-end',
             }}
             >

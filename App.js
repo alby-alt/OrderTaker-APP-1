@@ -9,8 +9,11 @@ import SplashScreen from 'react-native-splash-screen'
 
 import {
     OnBoarding,
+
+    //Auth - Signup
+    SignUpBD,
+
     SignIn,
-    SignUp,
     ForgotPassword,
     Otp,
     Home,
@@ -40,7 +43,6 @@ const  store = createStore(
     applyMiddleware(thunk)
 )
 const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
 
 const App = () => {
     
@@ -66,8 +68,8 @@ const App = () => {
                     component={SignIn}
                 />
                 <Stack.Screen
-                    name="SignUp"
-                    component={SignUp}
+                    name="SignUpBD"
+                    component={SignUpBD}
                 />
                 <Stack.Screen
                     name="ForgotPassword"
@@ -129,7 +131,8 @@ const App = () => {
                     <Stack.Screen
                     name="TrackDriver"
                     component={TrackDriver}
-                    />           
+                    />            
+                
             </Stack.Navigator>
         </NavigationContainer>
         </Provider>

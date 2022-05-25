@@ -3,14 +3,12 @@ import OnBoarding from "./OnBoarding/OnBoarding";
 // Authentication
 import AuthLayout from "./Authentication/AuthLayout";
 import SignIn from "./Authentication/SignIn";
-import SignUp from "./Authentication/SignUp";
+
+
+//Auth - Signup
+import SignUpBD from "./Authentication/Signup/SignUpBD";
 import Otp from "./Authentication/Otp";
 import ForgotPassword from "./Authentication/ForgotPassword";
-
-// import MainLayout from "./MainLayout";
-// import FilterModal from "./Home1/FilterModal";
-// Home
-// import Home from "./Home/Home";
 
 // Search
 import Search from "./Search/Search";
@@ -39,6 +37,7 @@ import ServicesProvided from "./Setup/ServicesProvided";
 import TermsAndCondition from './TermsAndCondition';
 import Success from './Setup/Success';
 import Home from "./Home/Home";
+import FilterModal from "./Home/FilterModal";
 import MainLayout from './MainLayout'; 
 import HomeContent from './Home/HomeContent';
 import OrderDetails from "./Home/OrderDetails";
@@ -47,10 +46,17 @@ import Notification from "./Notification";
 import TrackDriver from './TrackDriver'
 import MyAccount from './MyAccount';
 import Menu from './Menu/Menu';
+import CustomDrawer from '../navigation/CustomDrawer';
 
 
 export {
+    //Auth - Signup
+    SignUpBD,
+
+
+    
     Home,
+    FilterModal,
     HomeContent,
     MainLayout,
     Menu,
@@ -58,7 +64,6 @@ export {
     OnBoarding,
     AuthLayout,
     SignIn,
-    SignUp,
     Otp,
     ForgotPassword,
     Search,
@@ -74,5 +79,6 @@ export {
     MyAccount,
     Success,
     Form,
-    Summary
+    Summary,
+    CustomDrawer
 }

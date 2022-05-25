@@ -9,7 +9,7 @@ import {
     createDrawerNavigator,
     DrawerContentScrollView
 } from "@react-navigation/drawer";
-import { NavigationContainer } from '@react-navigation/native';
+// import { NavigationContainer } from '@react-navigation/native';
 
 import Animated from "react-native-reanimated";
 import {connect} from "react-redux";
