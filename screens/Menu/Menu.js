@@ -286,12 +286,15 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
             <View
                 style={{
                     // flex: 1,
-                    flexDirection: 'row',
-                    height: 80,
-                    alignItems: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    height: 100,
+                    alignItems: 'flex-end',
                     paddingHorizontal: SIZES.padding,
-                    paddingBottom: SIZES.radius,
-                    // marginTop: -5
+                    // paddingBottom: SIZES.radius,
+                    // marginBottom: -135
+                    marginHorizontal: 20
                 }}
             >
                 {/* Stepper Input */}
@@ -309,16 +312,37 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
                     buttonContainerStyle={{
                         flex: 1,
                         flexDirection: 'row',
-                        height: 50,
+                        height: 20,
                         marginLeft: SIZES.radius,
+                        // marginTop: -20,
                         paddingHorizontal: SIZES.radius,
                         borderRadius: SIZES.radius,
                         backgroundColor: COLORS.transparentPrimary
                     }}
-                    label="Add to cart"
+                    label="Add to Cart"
                     label2="₱420"
                 />
+                <View
+                    style={{
+                        width: 30,
+                        height: 50,
+                        // marginLeft: -10
+
+                    }}
+                >
+                    <Image 
+                        source={constants.item.image}
+                        resizeMode="contain"
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            position: 'absolute',
+                            top: 10
+                        }}
+                />
+                </View>
             </View>
+            
         )
     }
 
@@ -327,14 +351,14 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
             <View
                 style={{
                     // flex: 1,
-                    display: 'flex',
-                    flexDirection: 'row',
-                    height: 20,
+                    // display: 'flex',
+                    // flexDirection: 'row',
+                    height: 10,
                     // alignItems: 'flex-start',
                     // justifyContent: 'space-between',
                     paddingHorizontal: SIZES.padding,
                     // marginTop: -15,
-                    marginBottom: 15,
+                    // marginBottom: 15,
                     marginRight: -15,
                     marginLeft: -7,
                                         
@@ -396,6 +420,7 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
         <ScrollView
              contentContainerStyle={{
                 // flexGrow: 1,
+                // flex: 1,
                 marginTop: 10,
                 paddingHorizontal: SIZES.padding,
                 paddingBottom: SIZES.radius

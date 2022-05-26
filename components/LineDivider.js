@@ -26,19 +26,19 @@ const LineDivider = ({lineStyle}) => {
     }
     
     return (
-        <SafeAreaView
+        <View
             style={{
-                height: 2,
+                height: 1.5,
                 width: "100%",
-                backgroundColor: COLORS.primary,
+                backgroundColor: COLORS.transparentPrimary,
                 ...lineStyle,
                 // paddingBottom: 20,
                 marginBottom: 20,
-                borderRadius: 100
+                borderRadius: 50
             }}
         > 
-        {renderText()}
-        </SafeAreaView>
+        {/* {renderText()} */}
+        </View>
         
     )
 }

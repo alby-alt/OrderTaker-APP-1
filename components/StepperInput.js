@@ -18,30 +18,34 @@ const StepperInput = ({
         <SafeAreaView
             style={{
                 flex: 1,
-                marginTop: -50,
+                // marginTop: -10,
                 marginBottom: 20,
             // textAlign: 'center',
-            flexDirection: 'column',
+            flexDirection: 'row',
             ...FONTS.h1,
-            // alignItems: 'center',
-            // justifyContent: 'flex-start'
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+            borderRadius: 50,
+            backgroundColor: COLORS.lightGray2
             }}
         >
-        <Text
+        {/* <Text
             style={{
                 marginBottom: 35,
-                ...FONTS.h1
+                ...FONTS.h3,
+                width: "100%",
             }}
         >
-            asdsada
-        </Text>
+            Adobong Manok
+        </Text> */}
             
         
         <View
             style={{
                 flexDirection: 'row',
                 height: 30,
-                width: 125,
+                width: 130,
+                // marginRight: 20,
                 backgroundColor: COLORS.lightGray2,
                 borderRadius: SIZES.radius,
                 ...containerStlye
@@ -57,7 +61,7 @@ const StepperInput = ({
                 iconStyle={{
                     height: 25,
                     width: 25,
-                    tintColor: value > 1 ? COLORS.primary : COLORS.gray
+                    tintColor: value > 1 ? COLORS.transparentPrimary : COLORS.gray
                 }}
                 onPress={onMinus}
             />
@@ -70,7 +74,9 @@ const StepperInput = ({
             >
                 <Text
                     style={{
-                        ...FONTS.h2
+                        ...FONTS.h2,
+                        marginRight: 10,
+                        
                     }}
                 >
                     {value}
@@ -80,13 +86,15 @@ const StepperInput = ({
                 containerStyle={{
                     width: 50,
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    backgroundColor: COLORS.orange,
+                    borderRadius: SIZES.radius
                 }}
                 icon={icons.plus}
                 iconStyle={{
                     height: 25,
                     width: 25,
-                    tintColor: value > 1 ? COLORS.primary : COLORS.gray
+                    tintColor: value > 1 ? COLORS.white : COLORS.white2
                 }}
                 onPress={onAdd}
             />
