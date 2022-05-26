@@ -86,7 +86,7 @@ const App = () => {
                     component={CustomDrawer}
                 /> */}
          {/* Setup */}
-         <Stack.Screen
+                <Stack.Screen
                     name="MerchantDetails"
                     component={MerchantDetails}
                 />
@@ -106,10 +106,10 @@ const App = () => {
                     name="TermsAndCondition"
                     component={TermsAndCondition}
                 />
-                 {/* <Stack.Screen
+                 <Stack.Screen
                     name="Home"
-                    component={MainLayout}
-                /> */}
+                    component={Menu}
+                />
                     <Stack.Screen
                     name="OrderDetails"
                     component={OrderDetails}
@@ -120,7 +120,7 @@ const App = () => {
                     />
                      <Stack.Screen
                     name="Menu"
-                    component={Menu}
+                    component={CartTab}
                     />
                      <Stack.Screen
                     name="MyAccount"
@@ -130,7 +130,7 @@ const App = () => {
                     name="TrackDriver"
                     component={TrackDriver}
                     />            
-                
+                    
             </Stack.Navigator>
         </NavigationContainer>
         </Provider>

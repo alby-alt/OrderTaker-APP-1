@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { FONTS, COLORS } from "../constants";
 
-const TextButton = ({ buttonContainerStyle, disabled, label, labelStyle, onPress }) => {
+const TextButton = ({ buttonContainerStyle, disabled, label, labelStyle, label2 = "", label2Style, onPress }) => {
     return (
         <TouchableOpacity
             style={{
@@ -27,6 +27,17 @@ const TextButton = ({ buttonContainerStyle, disabled, label, labelStyle, onPress
             >
                 {label}
             </Text>
+                {label2 != "" && 
+                <Text
+                    style={{
+                        flex: 1,
+                        textAlign: 'right',
+                        color: COLORS.white,
+                        ...FONTS.h4, ...label2Style
+                    }}
+                >
+                {label2}
+                </Text>}
         </TouchableOpacity>
     )
 }

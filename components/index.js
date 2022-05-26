@@ -16,6 +16,8 @@ import StepperInput from "./StepperInput";
 import FooterTotal from "./FooterTotal";
 import LineDivider from "./LineDivider";
 import ProfilePhotoContainer from "./ProfilePhotoContainer";
+// import MultiSelector from "./MultiSelector";
+
 
 export {
     CustomSwitch, 
@@ -35,5 +37,6 @@ export {
     StepperInput,
     FooterTotal,
     LineDivider,
-    ProfilePhotoContainer
+    ProfilePhotoContainer,
+    // MultiSelector
 }

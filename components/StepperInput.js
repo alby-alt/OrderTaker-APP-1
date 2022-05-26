@@ -1,7 +1,8 @@
 import React from 'react';
 import {
     View,
-    Text
+    Text,
+    SafeAreaView
 } from 'react-native';
 
 import { IconButton } from "../components";
@@ -14,11 +15,33 @@ const StepperInput = ({
     onMinus
 }) => {
     return (
+        <SafeAreaView
+            style={{
+                flex: 1,
+                marginTop: -50,
+                marginBottom: 20,
+            // textAlign: 'center',
+            flexDirection: 'column',
+            ...FONTS.h1,
+            // alignItems: 'center',
+            // justifyContent: 'flex-start'
+            }}
+        >
+        <Text
+            style={{
+                marginBottom: 35,
+                ...FONTS.h1
+            }}
+        >
+            asdsada
+        </Text>
+            
+        
         <View
             style={{
                 flexDirection: 'row',
-                height: 60,
-                width: 130,
+                height: 30,
+                width: 125,
                 backgroundColor: COLORS.lightGray2,
                 borderRadius: SIZES.radius,
                 ...containerStlye
@@ -68,6 +91,7 @@ const StepperInput = ({
                 onPress={onAdd}
             />
         </View>
+        </SafeAreaView>
     )
 }
 

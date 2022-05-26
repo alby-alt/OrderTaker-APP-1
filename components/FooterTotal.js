@@ -65,7 +65,7 @@ import {
                         marginTop: SIZES.padding
                     }}
                 >
-                    <Text style={{ flex: 1, ...FONTS.h3}}>Total</Text>
+                    <Text style={{ flex: 1, ...FONTS.h3}}>Ginisa</Text>
                     <Text style={{ ...FONTS.h3 }}>${total.toFixed(2)}</Text>
                 </View>
                 {/* Order */}
@@ -89,7 +89,7 @@ import {
                     onPress={onPress}
                 />
                 
-                <TextButton 
+                {/* <TextButton 
                     buttonContainerStyle={{
                         height: 35,
                         width: "40%",
@@ -99,7 +99,7 @@ import {
                     }}
                     label="Cancel"
                     onPress={onPress}
-                />
+                /> */}
                 </View>
             </View>
          </View>

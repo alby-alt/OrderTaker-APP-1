@@ -3,13 +3,15 @@ import { View, Text, TouchableOpacity, FlatList, TextInput, Image, StyleSheet, A
 import { SIZES, FONTS, COLORS, constants, icons, dummyData } from '../../constants';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import { CartQuantityButton, StepperInput, IconButton, FooterTotal, Header, TextButton, iconStyle} from "../../components";
+import { CartQuantityButton, StepperInput, IconButton, FooterTotal, Header, TextButton, iconStyle, LineDivider} from "../../components";
 
 import { FilterModal } from "../";
 
 import { SwipeListView } from 'react-native-swipe-list-view'; 
 import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 import { ScrollView } from 'react-native-gesture-handler';
+import { icon } from '@fortawesome/fontawesome-svg-core';
+import { black } from 'react-native-paper/lib/typescript/styles/colors';
 
 
 // const Section = ({title, onPress, children }) => {
@@ -46,6 +48,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 const Menu = ({navigation, drawerAnimationStyle, }) => {
 
     const [showFilterModal, setShowFilterModal] = React.useState(false)
+    const [qty, setQty] = React.useState(1)
 
     // handler section
     function updateQuantityHander(newQty, id) {
@@ -102,9 +105,12 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
                             marginTop: -5                            
                         }}
                     >
+                        
                         <CartQuantityButton
                         quantity={3}
+                        onPress={() => navigation.navigate("CartTab")}
                         />
+                        
                     </TouchableOpacity>
                 }
             
@@ -183,7 +189,7 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
                                 marginHorizontal: -15,
                                 backgroundColor: COLORS.green
                             }}
-                            onPress={() => navigation.replace("SignIn")}
+                            onPress={() => navigation.navigate("CartTab")}
                         />
             </SafeAreaView>
             
@@ -274,6 +280,95 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
         )
     }
 
+
+    function renderFooter() {
+        return (
+            <View
+                style={{
+                    // flex: 1,
+                    flexDirection: 'row',
+                    height: 80,
+                    alignItems: 'center',
+                    paddingHorizontal: SIZES.padding,
+                    paddingBottom: SIZES.radius,
+                    // marginTop: -5
+                }}
+            >
+                {/* Stepper Input */}
+                    <StepperInput 
+                        value={qty}
+                        onAdd={() => setQty(qty + 1)}
+                        onMinus={() => {
+                            if (qty > 1) {
+                                setQty(qty - 1)
+                            }
+                        }}
+                    />
+                {/* Text Button */}
+                <TextButton 
+                    buttonContainerStyle={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        height: 50,
+                        marginLeft: SIZES.radius,
+                        paddingHorizontal: SIZES.radius,
+                        borderRadius: SIZES.radius,
+                        backgroundColor: COLORS.transparentPrimary
+                    }}
+                    label="Add to cart"
+                    label2="₱420"
+                />
+            </View>
+        )
+    }
+
+    function renderStepHeader() {
+        return (
+            <View
+                style={{
+                    // flex: 1,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    height: 20,
+                    // alignItems: 'flex-start',
+                    // justifyContent: 'space-between',
+                    paddingHorizontal: SIZES.padding,
+                    // marginTop: -15,
+                    marginBottom: 15,
+                    marginRight: -15,
+                    marginLeft: -7,
+                                        
+                }}
+            >
+                <TouchableOpacity
+                    style={{
+                        // display: 'flex',
+                        flex: 1,
+                        flexDirection: 'row',
+                        // alignItems: 'baseline',
+                        justifyContent: 'flex-end',
+                        marginVertical: -15,
+                        marginHorizontal: -5
+                    }}
+                >
+                <Image 
+                        source={icons.cross}
+                        style={{
+                            // flexDirection: 'row-reverse',
+                            height: 20,
+                            width: 20,
+                            backgroundColor: COLORS.lightGray1,
+                            borderRadius: SIZES.radius,
+                            // flex: 1
+                        }}
+                    />
+                </TouchableOpacity>
+                    
+            </View>
+        )
+    }
+
+
     return (
         <View
             style={{
@@ -310,12 +405,12 @@ const Menu = ({navigation, drawerAnimationStyle, }) => {
             {/* {renderCartList()} */}
         </ScrollView>
             {/* Footer */}
-            <FooterTotal 
-            subTotal={37.97}
-            shippingFee={0.00}
-            total={37.97}
+            <LineDivider/>
+            {renderStepHeader()}
+            {renderFooter()}
+            {/* <FooterTotal 
             // onPress={() => navigation.navigate("CartTab")}
-            />
+            /> */}
         </View>
     )
 }
