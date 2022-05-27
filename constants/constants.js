@@ -23,35 +23,23 @@ const onboarding_screens = [
 ]
 
 const screens = {
-    main_layout: "MainLayout",
-    home: "Home",
-    search: "Search",
-    cart: "Cart",
-    favourite: "Favourite",
-    notification: "Notification",
-    my_wallet: "My Wallet",
+    home: "Sales",
+    account: "My Account",
+    menu: "Menu",
 }
 
 const bottom_tabs = [
     {
         id: 0,
-        label: screens.home,
+        label: screens.menu,
     },
     {
         id: 1,
-        label: screens.search,
+        label: screens.home,
     },
     {
         id: 2,
-        label: screens.cart,
-    },
-    {
-        id: 3,
-        label: screens.favourite,
-    },
-    {
-        id: 4,
-        label: screens.notification,
+        label: screens.account,
     },
 ]
 
@@ -128,11 +116,204 @@ const tags = [
     }
 ]
 
+let orderDetails = [
+    {
+        id: 0,
+        orderId: 1,
+        services: [
+            {
+                id: 0,
+                name: "Ironing",
+               
+            },
+            {
+                id: 1,
+                name: "Dry Cleaning",
+                isExpress: true,
+                isStandard: true,
+            },
+        ],
+        orderItems: [
+            {
+                id: 0,
+                serviceId: 0,
+                itemName: 'TShirt',
+                qty: 2,
+                rate: 5,
+                pricingType: 'pc',
+            },
+            {
+                id: 1,
+                serviceId: 0,
+                itemName: 'Short',
+                qty: 5,
+                rate: 15,
+                pricingType: 'pc',
+            },
+            {
+                id: 2,
+                serviceId: 1,
+                itemName: 'Brep',
+                qty: 5,
+                rate: 10,
+                pricingType: 'pc',
+            },
+        ]
+    },
+    {
+        id: 1,
+        orderId: 0,
+        services: [
+            {
+                id: 0,
+                name: "Steam Iron",
+                isExpress: true,
+                isStandard: true
+            },
+            {
+                id: 1,
+                name: "Petrol Wash",
+                isExpress: false,
+                isStandard: true
+            },
+        ],
+        orderItems: [
+            {
+                id: 0,
+                serviceId: 0,
+                itemName: 'Taklap',
+                qty: 3,
+                rate: 50,
+                pricingType: 'kls',
+            },
+            {
+                id: 1,
+                serviceId: 1,
+                itemName: 'Mantel',
+                qty: 10,
+                rate: 5,
+                pricingType: 'kls',
+            }
+        ]
+    }
+]
+
+const homeMenu = [
+    {
+        id: 0,
+        name: "TODAY SALES"
+    },
+    {
+        id: 1,
+        name: "RECENT SALES"
+    },
+    {
+        id: 2,
+        name: "DRAFT",
+        isExpress: true,
+        isStandard: true
+    }
+    
+]
+
+const orders = [
+    {
+        id: 0,
+        customerName: "Benjamin Hemmings",
+        orderId: 420230,
+        deliveryBy: "Lillian Fisher",
+        TotalAmmount: 1000,
+        status: 0,
+        serviceTimeType: "standard"  ,
+        bookedAt: "Mon, 23 June 2021",
+        serviceDuration: "24 hours."
+    },
+    {
+        id: 1,
+        customerName: "Jason Statham",
+        orderId: 230420,
+        deliveryBy: "Lillian Fisher",
+        TotalAmmount: 1000,
+        status: 0,
+        serviceTimeType: "express" ,
+        bookedAt: "Mon, 23 June 2021",
+        serviceDuration: "3 hours."
+    },
+    {
+        id: 2,
+        customerName: "Jeff Ly",
+        orderId: 420230,
+        deliveryBy: "Lillian Fisher",
+        TotalAmmount: 1000,
+        status: 1,
+        serviceTimeType: "express" ,
+        bookedAt: "Mon, 23 June 2021",
+        serviceDuration: "3 hours."
+    },
+    {
+        id: 3,
+        customerName: "Jackie Chua",
+        orderId: 420230,
+        deliveryBy: "Lillian Fisher",
+        TotalAmmount: 1100,
+        status: 1,
+        serviceTimeType: "standard",
+        bookedAt: "Mon, 23 June 2021",
+        serviceDuration: "24 hours."
+    },
+    {
+        id: 4,
+        customerName: "Jeborin Santiago",
+        orderId: 421000,
+        deliveryBy: "Lil Fisher",
+        TotalAmmount: 2000,
+        status: 2,
+        serviceTimeType: "express",
+        bookedAt: "Mon, 23 June 2021",
+        serviceDuration: "3 Hrs."
+    },
+]
+
+const operatingHours = [
+    {
+        id: 0,
+        label: "Mon"
+    },
+    {
+        id: 1,
+        label: "Tue"
+    },
+    {
+        id: 2,
+        label: "Wed"
+    },
+    {
+        id: 3,
+        label: "Thu"
+    },
+    {
+        id: 4,
+        label: "Fri"
+    },
+    {
+        id: 5,
+        label: "Sat"
+    },
+    {
+        id: 6,
+        label: "Sun"
+    }
+]
+
 export default {
+    homeMenu,
     onboarding_screens,
     screens,
     bottom_tabs,
     delivery_time,
     ratings,
-    tags
+    tags,
+    orders,
+    orderDetails,
+    operatingHours
 }

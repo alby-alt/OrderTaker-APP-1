@@ -8,18 +8,18 @@ const categories = [
     {
         id: 1,
         name: "Pending Orders",
-        //icon: require("../assets/icons/burger.png")
+        icon: require("../assets/icons/burger.png")
     },
     {
         id: 2,
         name: "Completed Orders",
-        //icon: require("../assets/icons/cherry.png")
+        icon: require("../assets/icons/cherry.png")
     },
-    // {
-    //     id: 3,
-    //     name: "Rice Item",
-    //     icon: require("../assets/icons/rice.png")
-    // }
+    {
+        id: 3,
+        name: "Rice Item",
+        icon: require("../assets/icons/rice.png")
+    }
 ]
 
 const hamburger = {
@@ -112,9 +112,92 @@ const menu = [
 
 ]
 
+const sizes = [
+    {
+        id: 1,
+        label: '12"'
+    },
+    {
+        id: 2,
+        label: '14"'
+    },
+    {
+        id: 3,
+        label: '16"'
+    },
+    {
+        id: 4,
+        label: '18"'
+    }
+]
+
+const myCart = [
+    {
+        ...hamburger,
+        qty: 1
+    },
+    {
+        ...hotTacos,
+        qty: 1
+    },
+    {
+        ...vegBiryani,
+        qty: 1
+    }
+]
+
+// const myCards = [
+//     {
+//         id: 1,
+//         name: "Master Card",
+//         icon: require("../assets/icons/mastercard.png"),
+//         card_no: "1234"
+//     },
+//     {
+//         id: 2,
+//         name: "Google Pay",
+//         icon: require("../assets/icons/google.png"),
+//         card_no: "1234"
+//     },
+// ]
+
+// const allCards = [
+//     {
+//         id: 1,
+//         name: "Apple Pay",
+//         icon: require("../assets/icons/apple.png")
+//     },
+//     {
+//         id: 2,
+//         name: "Visa",
+//         icon: require("../assets/icons/visa.png"),
+//     },
+//     {
+//         id: 3,
+//         name: "PayPal",
+//         icon: require("../assets/icons/paypal.png"),
+//     },
+//     {
+//         id: 4,
+//         name: "Google Pay",
+//         icon: require("../assets/icons/google.png"),
+//     },
+//     {
+//         id: 5,
+//         name: "Master Card",
+//         icon: require("../assets/icons/mastercard.png"),
+//     },
+// ]
+
 
 export default {
+    vegBiryani,
+    
     myProfile,
     categories,
     menu,
+    sizes,
+    myCart,
+    // myCards,
+    // allCards,
 }

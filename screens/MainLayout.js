@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
     View,
     Text,
+    TextInput,
     TouchableOpacity,
     TouchableWithoutFeedback,
     Image,
@@ -16,15 +17,17 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from "react-native-linear-gradient";
 import { connect } from "react-redux";
 import { setSelectedTab } from "../screens/stores/tab/tabActions";
+import Profile from "../screens/Profile/Profile";
 import {
     Home,
-    Search,
-    Favourite,
-    Notification,
+    Menu,
+    HomeContent
 } from "../screens";
 import CartTab from "../screens/Cart/CartTab";
 import {
-    Header
+    Header,
+    HorizontalFoodCard,
+    TextButton
 } from "../components"
 import {
     COLORS,
@@ -34,6 +37,9 @@ import {
     constants,
     dummyData,
 } from "../constants";
+import MyAccount from './MyAccount';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
 const TabButton = ({label, icon, isFocused, onPress, outerContainerStyle, innerContainerStyle}) => {
     return (
@@ -91,158 +97,153 @@ const TabButton = ({label, icon, isFocused, onPress, outerContainerStyle, innerC
 }
 const MainLayout = ({ drawerAnimationStyle, navigation,     
 selectedTab, setSelectedTab }) => {
+    const [progress, setProgress] = useState(new Animated.Value(0))
+    const [showFilterModal, setShowFilterModal] = React.useState(false)
 
-    const flatListRef= React.useRef()
+const flatListRef = useRef()
+const tabRef = useRef()
+const homeTabFlex = useSharedValue(1)
+const homeTabColor = useSharedValue(COLORS.white)
+const accountTabFlex = useSharedValue(1)
+const accountTabColor = useSharedValue(COLORS.white)
+const menuTabFlex = useSharedValue(1)
+const menuTabColor = useSharedValue(COLORS.white)
+const [selectedMenuId, setSelectedMenuId] = useState(0);
+const [myList, setMyList] = useState([]);
+const [isOnline, setIsOnline] = useState(false);
 
-    function navigate(){
-        navigation.navigate('Favourite');    
+
+
+
+
+function handleChangeHomeMenu(menuId) {
+    //Find the menu based on the menuTypeId
+    tabRef.current.scrollToIndex({ index: menuId, animated: true });
+
+    let selectedMenu = constants.orders.filter(a => a.status == menuId)
+    setMyList(selectedMenu)
+    setSelectedMenuId(menuId)
+}
+
+
+
+
+
+
+
+
+//Reanimated Animated Style
+const scale = Animated.interpolateNode(progress,  {
+    inputRange:     [0, 1],
+      outputRange: [1, 0.8],
+    
+})
+
+const borderRadius = Animated.interpolateNode(progress,  {
+    inputRange: [0, 1],
+    outputRange: [0, 26]
+})
+
+
+const animatedStyle = {borderRadius, transform: [{scale}] }
+
+
+const homeFlexStyle = useAnimatedStyle(() => {
+    return {
+        flex: homeTabFlex.value
     }
-    // Reanimated Shared Value
+})
+
+const homeColorStyle = useAnimatedStyle(() => {
+    return {
+        backgroundColor: homeTabColor.value
+    }
+})
+
+const accountFlexStyle = useAnimatedStyle(() => {
+    return {
+        flex: accountTabFlex.value
+    }
+})
+
+const accountColorStyle = useAnimatedStyle(() => {
+    return {
+        backgroundColor: accountTabColor.value
+    }
+})
+
+
+const menuFlexStyle = useAnimatedStyle(() => {
+    return {
+        flex: menuTabFlex.value
+    }
+})
+
+const menuColorStyle = useAnimatedStyle(() => {
+    return {
+        backgroundColor: menuTabColor.value
+    }
+})
+
     
-    const homeTabFlex = useSharedValue(1)
-    const homeTabColor = useSharedValue(COLORS.white)
-    const searchTabFlex = useSharedValue(1)
-    const searchTabColor = useSharedValue(COLORS.white)
-    const cartTabFlex = useSharedValue(1)
-    const cartTabColor = useSharedValue(COLORS.white)
-    const favouriteTabFlex = useSharedValue(1)
-    const favouriteTabColor = useSharedValue(COLORS.white)
-    const notificationTabFlex = useSharedValue(1)
-    const notificationTabColor = useSharedValue(COLORS.white)
-    
-    // Reanimited Animated Style
 
-    const homeFlexStyle = useAnimatedStyle(() => {
-        return {
-            flex: homeTabFlex.value
-        }
-    })
 
-    const homeColorStyle = useAnimatedStyle(() => {
-        return {
-            backgroundColor: homeTabColor.value
-        }
-    })
-    const searchFlexStyle = useAnimatedStyle(() => {
-        return {
-            flex: searchTabFlex.value
-        }
-    })
+useEffect(() => {
+    setSelectedTab(constants.screens.menu)
+}, [])
 
-    const searchColorStyle = useAnimatedStyle(() => {
-        return {
-            backgroundColor: searchTabColor.value
-        }
-    })
-    const cartFlexStyle = useAnimatedStyle(() => {
-        return {
-            flex: cartTabFlex.value
-        }
-    })
 
-    const cartColorStyle = useAnimatedStyle(() => {
-        return {
-            backgroundColor: cartTabColor.value
-        }
-    })
-    const favouriteFlexStyle = useAnimatedStyle(() => {
-        return {
-            flex: favouriteTabFlex.value
-        }
-    })
+useEffect(() => {
+    if(selectedTab == constants.screens.home){
+        homeTabFlex.value = withTiming(4, { duration: 500, useNativeDriver: false})
+        homeTabColor.value = withTiming(COLORS.primary, { duration: 10, useNativeDriver: false })
+    } else {
+        homeTabFlex.value = withTiming(1, { duration: 500, useNativeDriver: false })
+        homeTabColor.value = withTiming(COLORS.white, { duration: 10, useNativeDriver: false })
+    }
 
-    const favouriteColorStyle = useAnimatedStyle(() => {
-        return {
-            backgroundColor: favouriteTabColor.value
-        }
-    })
-    const notificationFlexStyle = useAnimatedStyle(() => {
-        return {
-            flex: notificationTabFlex.value
-        }
-    })
 
-    const notificationColorStyle = useAnimatedStyle(() => {
-        return {
-            backgroundColor: notificationTabColor.value
-        }
-    })
-    
-    React.useEffect(() => {
-        setSelectedTab(constants.screens.home)
-    }, [])
+    if(selectedTab == constants.screens.account){
+        accountTabFlex.value = withTiming(4, { duration: 500, useNativeDriver: false })
+        accountTabColor.value = withTiming(COLORS.primary, { duration: 10, useNativeDriver: false })
+    } else {
+        accountTabFlex.value = withTiming(1, { duration: 500, useNativeDriver: false})
+        accountTabColor.value = withTiming(COLORS.white, { duration: 10, useNativeDriver: false })
+    }
 
-    React.useEffect(() => {
-        if (selectedTab === constants.screens.home) { 
-            flatListRef?.current?.scrollToIndex({
-                index: 0,
-                animated: false
-            })
-            homeTabFlex.value = withTiming(4, { duration: 500 })
-            homeTabColor.value = withTiming(COLORS.primary, {
-            duration: 500 })
-        } else {
-            homeTabFlex.value = withTiming(1 , { duration: 500 })
-            homeTabColor.value = withTiming(COLORS.white, {
-            duration: 500 })
-        }
-        if (selectedTab === constants.screens.search) {            flatListRef?.current?.scrollToIndex({
-                index: 1,
-                animated: false
-        })
-            searchTabFlex.value = withTiming(4, { duration: 500 })
-            searchTabColor.value = withTiming(COLORS.primary, {
-            duration: 500 })
-        } else {
-            searchTabFlex.value = withTiming(1 , { duration: 500 })
-            searchTabColor.value = withTiming(COLORS.white, {
-            duration: 500 })
-        }
-        if (selectedTab === constants.screens.cart) {            flatListRef?.current?.scrollToIndex({
-                index: 2,
-                animated: false
-            })
-            cartTabFlex.value = withTiming(4, { duration: 500 })
-            cartTabColor.value = withTiming(COLORS.primary, {
-            duration: 500 })
-        } else {
-            cartTabFlex.value = withTiming(1 , { duration: 500 })
-            cartTabColor.value = withTiming(COLORS.white, {
-            duration: 500 })
-        }
-        if (selectedTab === constants.screens.favourite) {            flatListRef?.current?.scrollToIndex({
-                index: 3,
-                animated: false
-            })
-            favouriteTabFlex.value = withTiming(4, { duration: 500 })
-            favouriteTabColor.value = withTiming(COLORS.primary, {
-            duration: 500 })
-        } else {
-            favouriteTabFlex.value = withTiming(1 , { duration: 500 })
-            favouriteTabColor.value = withTiming(COLORS.white, {
-            duration: 500 })
-        }
-        if (selectedTab === constants.screens.notification) {            flatListRef?.current?.scrollToIndex({
-                index: 4,
-                animated: false
-            })
-            notificationTabFlex.value = withTiming(4, { duration: 500 })
-            notificationTabColor.value = withTiming(COLORS.primary, {
-            duration: 500 })
-        } else {
-            notificationTabFlex.value = withTiming(1 , { duration: 500 })
-            notificationTabColor.value = withTiming(COLORS.white, {
-            duration: 500 })
-        }
-    }, [selectedTab])
+
+    if(selectedTab == constants.screens.menu){
+        menuTabFlex.value = withTiming(4, { duration: 500, useNativeDriver: false })
+        menuTabColor.value = withTiming(COLORS.primary, { duration: 10, useNativeDriver: false })
+    } else {
+        menuTabFlex.value = withTiming(1, { duration: 500, useNativeDriver: false })
+        menuTabColor.value = withTiming(COLORS.white, { duration: 10, useNativeDriver: false })
+    }
+
+
+
+
+
+}, [selectedTab])
+
+
+
+
+function renderSearch() {
     return (
-        <Animated.View
-            style={{
-                flex: 1,
-                backgroundColor: COLORS.white,
-                ...drawerAnimationStyle
-            }}
+ 
+
+        <SafeAreaView
+        style={{
+            // flex: 1,
+            justifyContent: 'space-around',
+            flexDirection: 'row',
+            marginVertical: SIZES.dyes,
+            marginRight: 15
+
+        }}
         >
+      
             {/* Header */}
             {/* <Header
                 containerStyle={{
@@ -251,109 +252,262 @@ selectedTab, setSelectedTab }) => {
                     marginTop: 40,
                     alignItem: 'center'
                 }}
-            title={selectedTab.toUpperCase()}
-                leftComponent={
-                    <TouchableOpacity
-                     style={{
-                    //     width: 40,
-                    //     height: 40,
-                    //     alignItems: 'center',
-                    //     justifyContent: 'center',
-                    //     borderWidth: 1,
-                    //     boderColor: COLORS.gray2,
-                    //     borderRadius: SIZES.radius
-                    // }}
-                    // onPress={() => navigation.openDrawer()}
-                    
-                >
-                    {/* <Image
-                            source={icons.menu} 
-                        /> 
-                    </TouchableOpacity>
-                }
-                rightComponent={
-                    <View>
-                    <TouchableOpacity
+            >
+                
+            
+        <View
+            style={{
+                flexDirection: 'row',
+                height: 45,
+                alignItems: 'center',
+                width: '80%',
+                marginHorizontal: SIZES.padding,
+                marginVertical: 4,
+                paddingHorizontal: SIZES.radius,
+                borederRadius: SIZES.radius,
+                backgroundColor: COLORS.lightGray2,
+                borderRadius: SIZES.radius
+            }}    
+        >
+            {/* Icon */}                
+            <Image
+                source={icons.search}
+                style={{
+                    height: 20,
+                    width: 15,
+                    tintColor: COLORS.black
+                }}
+            />
+            {/* Text Input */}
+            <TextInput
+                style={{
+                    flex: 1,
+                    marginLeft: SIZES.radius,
+                    ...FONTS.body4
+                }}
+                placeholder="Search Order ID number"
+            />
+            {/* Filter Button */}
+            <TouchableOpacity
+                onPress={() => setShowFilterModal(true)}
+            >
+                <Image
+                    source={icons.filter}
                     style={{
-                        width: 40,
-                        height: 43,
-                        alignItems: 'center',
+                        height: 20,
+                        width: 20,
+                        tintColor: COLORS.black
+                    }}
+                /> 
+            
+            </TouchableOpacity>    
+        <TouchableOpacity>
+        <Ionicon name="add-circle-outline" size={45} color={COLORS.darkGray}/>
+        </TouchableOpacity>
+        </SafeAreaView>
+        
+    )
+}
+
+
+function renderHeader() {
+    return(
+        <Header
+         title={selectedTab.toUpperCase()}
+        titleStyle={{
+            ...FONTS.h3,
+            fontWeight: '700',
+            textAlign: 'center'
+        }}
+        containerStyle={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 40,
+            marginHorizontal: SIZES.padding,
+            marginTop: 20
+        }}            
+        leftComponent={
+            <View
+            style={{
+                width: '25%'
+            }}
+        />
+        }
+        rightComponent={
+            <View style={{
+                width: '25%',
+                paddingLeft: SIZES.padding
+                }}>
+                {/* <HomeSwitch
+                    value={isOnline}
+                    onPress={() => setIsOnline(!isOnline)}
+                /> */}
+            </View>
+        }
+    />
+    )
+}
+
+function renderHomeMenuList() {
+    return (
+        <FlatList
+            horizontal
+            ref={tabRef}
+            contentContainerStyle={{
+                // justifyContent: 'center',
+                // paddingTop: 20,
+                paddingBottom: SIZES.padding,
+                paddingTop: SIZES.base
+
+            }}
+            style={{
+                maxHeight: 70
+            }}
+            scr
+            data={constants.homeMenu}
+   
+            keyExtractor={item => `${item.id}`}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({item, index}) => (
+                <TouchableOpacity
+                    style={{
+                        marginLeft: SIZES.padding,
+                        marginRight: index == constants.homeMenu.length -1 ? SIZES.padding : 0,
+                        backgroundColor: selectedMenuId == item.id ? COLORS.primary : COLORS.lightGray2,
+                        borderRadius: SIZES.padding,
+                        paddingLeft: SIZES.radius,
+                        paddingRight: SIZES.radius,
+                        height: 40,
+                        flexDirection: 'row',
                         justifyContent: 'center',
-                        borderWidth: 1,
-                        boderColor: COLORS.gray2,
-                        borderRadius: SIZES.radius,
+                        alignItems: 'center'
                     }}
                     onPress={() => {
-                        setSelectedTab(constants.screens.cart)
-                        navigation.navigate("CartTab")
+                        handleChangeHomeMenu(item.id)
                     }}
+                >
+                    <Text
+                        style={{
+                            color: selectedMenuId == item.id ? COLORS.white : COLORS.black, 
+                            ...FONTS.h3
+                        }}
                     >
-                        <Icon name="add" size={40} color={COLORS.darkGray}/>
-                        {/* <Ionicons name="add-circle" /> 
-                    </TouchableOpacity>
-                    </View>
-                }
-            
-            />*/}
+                        {item.name}
+                    </Text>
+                </TouchableOpacity>
+            )}
+        />
+    )
+}  
 
 
-            {/* Content */}
-            <View
+function renderOrderCards() {
+    return (
+        <FlatList
+        data={myList}
+        contentContainerStyle={{
+            // marginTop: SIZES.padding
+        }}
+        keyExtractor={item => `${item.id}`}
+        showsHorizontalScrollIndicator={false}
+        renderItem={({item, index}) => (
+            <HorizontalFoodCard 
+                        containerStyle={{
+                            // height: 275,
+                            marginHorizontal: SIZES.padding,
+                            padding: SIZES.base,
+                            marginBottom: SIZES.radius
+                        }}
+                      
+                        item={item}
+                        onPress={(e) => navigation.navigate(e, { orderId: item.id })}
+                    />
+        )}
+        ListFooterComponent={
+            <View  style={{height: 10 }}/>
+        }
+    />
+    )
+}
+
+
+
+function renderMainContent() {
+    return (
+        <View
+        style={{
+            flex: 1            
+        }}
+    >
+        {/* Home Menu */}
+        {renderHomeMenuList()}
+
+        {/* Order Card List */}
+        <HomeContent 
+           setCurrentIndex={(e) => {
+                handleChangeHomeMenu(e)
+            }
+            }
+            currentIndex={selectedMenuId}
+        >
+            {renderOrderCards()}
+        </HomeContent>
+        {/* {renderOrderCards()} */}
+
+    </View>
+    )
+}
+
+    console.log(selectedTab)
+    return (
+        <Animated.View
+        style={{
+            flex: 1,
+            backgroundColor: COLORS.white,
+            ...animatedStyle
+        }}
+    >
+
+        {/* Header */}
+        {/* {renderHeader()} */}
+        {/* {renderSearch()} */}
+        {/* Content */}
+            {/* <Home/> */}
+        {/* {renderMainContent()} */}
+        <View
                 style={{
                     flex: 1,
                 }}
             >
-                <FlatList
-                    ref={flatListRef}
-                    horizontal
-                    scrollEnabled={false}
-                    pagingEnabled
-                    snapToAlignment='center'
-                    snapToInterval={SIZES.width}
-                    showsHorizontalScrollIndicator={false}
-                    data={constants.bottom_tabs}
-                    keyExtractor={item => `${item.id}`}
-                    renderItem={({ item, index }) => {
-                        return (
-                            <View
-                                style={{
-                                  height: SIZES.height,
-                                    width: SIZES.width,
-                                }}
-                            >
-                                {item.label == constants.screens.
+                 {selectedTab == constants.screens.
                                 home && <Home />}
-                                {/* {item.label == constants.screens.
-                                search && <Search />} */}
-                                {item.label == constants.screens.
-                                cart && <CartTab />}
-                                {/* {item.label == constants.screens.
-                                favourite && <Favourite />} */}
-                                {item.label == constants.screens.
-                                notification && <Notification />}
-                            </View>
-                        )
-                    }} 
-                />
+                 {selectedTab == constants.screens.
+                                menu && <Menu />}
+                 {selectedTab == constants.screens.account && <MyAccount />}
+            {/* Content */}
+
             </View>
-            {/* Footer */}
+
+          
+
             <View
             style={{
-                height: 100,
+                height: 100, 
                 justifyContent: 'flex-end',
             }}
             >
             {/* Shadow */}
             <LinearGradient
-                start={{x:0, y:0 }}
+                start={{x: 0, y: 0}}
                 end={{x: 0, y: 4}}
                 colors={[
                     COLORS.transparent,
-                    COLORS.darkGray
+                    COLORS.gray
                 ]}
                 style={{
                     position: 'absolute',
-                    top: -20,
+                    top: -50,
                     left: 0,
                     right: 0,
                     height: 100,
@@ -362,69 +516,47 @@ selectedTab, setSelectedTab }) => {
                 }}
             />
             {/* Tabs */}
-            <View
-            style={{
-                flex: 1,
-                flexDirection: 'row',
-                paddingHorizontal: SIZES.radius,
-                paddingBottom: 10,
-                borderTopLeftRadius: 20,
-                borderTopRightRadius: 20,
-                backgroundColor: COLORS.white
-            }}
-            >
-                <TabButton
-                    label={constants.screens.home}
-                    icon={icons.home}
-                    isFocused={selectedTab === constants.
-                    screens.home}
-                    outerContainerStyle={homeFlexStyle}
-                    innerContainerStyle={homeColorStyle}
-                    onPress={() => setSelectedTab(constants.
-                    screens.home)}
-                />
-                {/* <TabButton
-                    label={constants.screens.search}
-                    icon={icons.search}
-                    isFocused={selectedTab === constants.
-                    screens.search}
-                    outerContainerStyle={searchFlexStyle}
-                    innerContainerStyle={searchColorStyle}
-                    onPress={() => setSelectedTab(constants.
-                    screens.search)}
-                /> */}
-                <TabButton
-                    label={constants.screens.cart}
-                    icon={icons.cart}
-                    isFocused={selectedTab === constants.
-                    screens.cart}
-                    outerContainerStyle={cartFlexStyle}
-                    innerContainerStyle={cartColorStyle}
-                    onPress={() => setSelectedTab(constants.
-                    screens.cart)}
-                />
-                {/* <TabButton
-                    label={constants.screens.favourite}
-                    icon={icons.favourite}
-                    isFocused={selectedTab === constants.
-                    screens.favourite}
-                    outerContainerStyle={favouriteFlexStyle}
-                    innerContainerStyle={favouriteColorStyle}
-                    onPress={() => setSelectedTab(constants.
-                    screens.favourite)}
-                /> */}
-                <TabButton
-                    label={constants.screens.notification}
-                    icon={icons.notification}
-                    isFocused={selectedTab === constants.
-                    screens.notification}
-                    outerContainerStyle={notificationFlexStyle}
-                    innerContainerStyle={notificationColorStyle}
-                    onPress={() => setSelectedTab(constants.
-                    screens.notification)}
-                />
+                <View 
+                    style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        paddingHorizontal: SIZES.radius,
+                        paddingBottom: 5,
+                        borderTopLeftRadius: 20,
+                        borderTopRightRadius: 20,
+                        backgroundColor: COLORS.white
+                    }}
+                >
+                      <TabButton
+                        label={constants.screens.menu}
+                        icon={icons.menu}
+                        isFocused={selectedTab == constants.screens.menu}
+                        outerContainerStyle={menuFlexStyle}
+                        innerContainerStyle={menuColorStyle}
+                        onPress={() => setSelectedTab(constants.screens.menu)}
+                    />
+                    <TabButton
+                        label={constants.screens.home}
+                        icon={icons.coupon}
+                        isFocused={selectedTab == constants.screens.home}
+                        outerContainerStyle={homeFlexStyle}
+                        innerContainerStyle={homeColorStyle}
+                        onPress={() => setSelectedTab(constants.screens.home)}
+                    />
+                     
+                            <TabButton
+                        label={constants.screens.account}
+                        icon={icons.account4}
+                        isFocused={selectedTab == constants.screens.account}
+                        outerContainerStyle={accountFlexStyle}
+                        innerContainerStyle={accountColorStyle}
+                        onPress={() => {
+                            setSelectedTab(constants.screens.account)
+                        }}
+                    />
+                </View>
             </View>
-            </View>
+
         </Animated.View>
     )
 }

@@ -28,13 +28,23 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="com.imagepicker.ImagePickerProvider"
+            android:authorities="com.fooddeliveryapp.imagepickerprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/imagepicker_provider_paths" />
+        </provider>
     </application>
 
 </manifest>

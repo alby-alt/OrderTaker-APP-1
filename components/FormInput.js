@@ -1,17 +1,14 @@
-import React from 'react';
-import {
-    View,
-    Text,
-    TextInput
-} from 'react-native';
+import React from 'react'
+import { View, Text, TextInput } from 'react-native'
+import { FONTS, SIZES, COLORS } from '../constants';
 
-import { FONTS, SIZES, COLORS } from "../constants";
 
-const FormInput  = ({
-    containerSyle,
+const  FormInput = ({
+    containerStyle,
     label,
     placeholder,
     inputStyle,
+    inputContainerStyle,
     prependComponent,
     appendComponent,
     onChange,
@@ -19,55 +16,73 @@ const FormInput  = ({
     keyboardType = "default",
     autoCompleteType = "off",
     autoCapitalize = "none",
-    errorMsg = ""
+    errorMsg = "",
+    onPressIn
 }) => {
     return (
-        <View
-            style={{...containerSyle}}>
-            {/* Label & Error Msg */}
+        <View 
+            style={{
+                ...containerStyle
+            }}
+        >
+                {/* Label & Error Msg */}
             <View
                 style={{
                     flexDirection: 'row',
-                    justifyContent: 'space-between',
+                    justifyContent: 'space-between'
                 }}
             >
-                <Text style={{ color: COLORS.black, ...FONTS.body4 }}>
-                    {label}</Text>
-                <Text style={{ color: COLORS.red, ...FONTS.body4 }}>
-                    {errorMsg}</Text>
-            </View>
-                {/* Text input */}
-                <View
+                <Text
                     style={{
-                        flexDirection: 'row',
-                        height: 55,
-                        paddingHorizontal: SIZES.padding,
-                        marginTop: SIZES.base,
-                        borderRadius: SIZES.radius,
-                        backgroundColor: COLORS.lightGray2
+                        color: COLORS.gray, ...FONTS.body4
                     }}
                 >
-                    {prependComponent}
-                    <TextInput 
-                        style={{
-                            flex: 1,
-                            ...inputStyle
-                        }}
-                        // value={value}
-                        placeholder={placeholder}
-                        placeholderTextColor={COLORS.black}
-                        secureTextEntry={secureTextEntry}
-                        keyboardType={keyboardType}
-                        autoCompleteType={autoCompleteType}
-                        autoCapitalize={autoCapitalize}
-                        onChangeText={onChange}
+                    {label}
+                </Text>
+                <Text
+                    style={{
+                        color: COLORS.red,
+                        ...FONTS.body4
+                    }}
+                >
+                    {errorMsg}
+                </Text>
+            </View>
+
+            {/* Text input */}
+            <View
+                style={{
                     
-                        
-                    />      
-                    {appendComponent}
-                </View>
+                    flexDirection: 'row',
+                    height: 40,
+                    // paddingHorizontal: SIZES.padding,
+                    borderRadius: SIZES.radius,
+                    backgroundColor: COLORS.lightGray2,
+                    ...inputContainerStyle
+                }}
+            >
+                {prependComponent}
+                <TextInput
+                style={{
+                    flex: 1,
+                    color: COLORS.black,
+                    ...inputStyle
+                }}
+                placeholder={placeholder}
+                placeholderTextColor={COLORS.gray}
+                secureTextEntry={secureTextEntry}
+                keyboardType={keyboardType}
+                autoCompleteType={autoCompleteType}
+                autoCapitalize={autoCapitalize}
+                onChangeText={onChange}
+                onPressIn={onPressIn}
+            />
+            {appendComponent}
+            </View>
+       
         </View>
     )
 }
 
-export default FormInput;
+
+export default FormInput

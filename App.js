@@ -3,8 +3,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import CustomDrawer from "./navigation/CustomDrawer";
-
 import SplashScreen from 'react-native-splash-screen'
 
 // import { Home } from "./screens/Home";
@@ -16,10 +14,21 @@ import {
     ForgotPassword,
     Otp,
     Home,
+    MerchantDetails,
+    TypesAndPricing,
+    ServicesProvided,
+    TermsAndCondition,
+    Success,
+    MainLayout,
+    VerifyOrder,
+    Notification,
+    Menu,
+    TrackDriver,
+    OrderDetails,
+    MyAccount
 } from './screens'
 
 import CartTab from "./screens/Cart/CartTab.js";
-import MainLayout from "./screens/MainLayout";
 
 // import { createStore, applyMiddleware} from "redux";
 import { Provider } from "react-redux";
@@ -57,6 +66,10 @@ const App = () => {
                     component={SignIn}
                 />
                 <Stack.Screen
+                    name="SignUp"
+                    component={SignUp}
+                />
+                <Stack.Screen
                     name="ForgotPassword"
                     component={ForgotPassword}
                 />
@@ -72,10 +85,51 @@ const App = () => {
                     name="MainLayout"
                     component={CustomDrawer}
                 /> */}
+         {/* Setup */}
+         <Stack.Screen
+                    name="MerchantDetails"
+                    component={MerchantDetails}
+                />
                 <Stack.Screen
+                    name="ServicesProvided"
+                    component={ServicesProvided}
+                />
+                <Stack.Screen
+                    name="TypesAndPricing"
+                    component={TypesAndPricing}
+                />
+                  <Stack.Screen
+                    name="Success"
+                    component={Success}
+                />
+                <Stack.Screen
+                    name="TermsAndCondition"
+                    component={TermsAndCondition}
+                />
+                 <Stack.Screen
                     name="Home"
-                    component={CustomDrawer}
-                />                
+                    component={MainLayout}
+                />
+                    <Stack.Screen
+                    name="OrderDetails"
+                    component={OrderDetails}
+                    />
+                     <Stack.Screen
+                    name="VerifyOrder"
+                    component={VerifyOrder}
+                    />
+                     <Stack.Screen
+                    name="Menu"
+                    component={Menu}
+                    />
+                     <Stack.Screen
+                    name="MyAccount"
+                    component={MyAccount}
+                    />
+                    <Stack.Screen
+                    name="TrackDriver"
+                    component={TrackDriver}
+                    />            
                 
             </Stack.Navigator>
         </NavigationContainer>

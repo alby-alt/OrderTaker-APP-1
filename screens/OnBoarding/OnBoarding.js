@@ -117,35 +117,7 @@ const OnBoarding = ({ navigation }) => {
                         marginVertical: SIZES.padding
                     }}
                 >
-                {/* <TextButton 
-                // Skip Button Container
-                    label="Skip"
-                    buttonContainerStyle={{
-                        backgroundColor: null
-                    }}
-                    labelStyle={{
-                        color: COLORS.darkGray2,
-                        ...FONTS.h3   
-                    }}
-                    onPress={() => navigation.replace("SignIn")}
-                /> */}
                 
-                {/* <TextButton 
-                //Next button Container
-                    label="Next"
-                    buttonContainerStyle={{
-                        height: 60,
-                        width: 200,
-                        borderRadius: SIZES.radius,
-                    }}
-                    onPress={() => {
-                            flatListRef?.current?.scrollToIndex({
-                                index : currentIndex + 1,
-                                animated: true
-                            })
-                        }} 
-                    
-                /> */}
                 </View>
                 }
 
